@@ -9,8 +9,9 @@ import { Auth } from './components/Auth';
 import { CustomerPortal } from './components/CustomerPortal';
 
 import { OrderSuccess } from './components/OrderSuccess';
+import { AdminLayout } from './components/admin/AdminLayout';
 
-type ViewState = 'catalog' | 'product' | 'checkout' | 'auth' | 'order_success' | 'customer_portal';
+type ViewState = 'catalog' | 'product' | 'checkout' | 'auth' | 'order_success' | 'customer_portal' | 'admin';
 
 export default function App() {
   const [currentView, setCurrentView] = useState<ViewState>('catalog');
@@ -37,6 +38,10 @@ export default function App() {
   };
 
   const selectedProduct = selectedProductId ? MOCK_PRODUCTS.find(p => p.id === selectedProductId) : null;
+
+  if (currentView === 'admin') {
+    return <AdminLayout onLogout={() => setCurrentView('catalog')} />;
+  }
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-rose-200">
@@ -66,12 +71,20 @@ export default function App() {
                 Olá, {user.name.split(' ')[0]}
               </div>
             ) : (
-              <div 
-                className="hidden md:flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-rose-600 cursor-pointer transition-colors px-2 py-1 rounded-md hover:bg-rose-50"
-                onClick={() => setCurrentView('auth')}
-              >
-                <User className="w-4 h-4" />
-                Entrar
+              <div className="hidden md:flex items-center gap-2">
+                <div 
+                  className="flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-rose-600 cursor-pointer transition-colors px-2 py-1 rounded-md hover:bg-rose-50"
+                  onClick={() => setCurrentView('admin')}
+                >
+                  Admin ERP
+                </div>
+                <div 
+                  className="flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-rose-600 cursor-pointer transition-colors px-2 py-1 rounded-md hover:bg-rose-50"
+                  onClick={() => setCurrentView('auth')}
+                >
+                  <User className="w-4 h-4" />
+                  Entrar
+                </div>
               </div>
             )}
             
