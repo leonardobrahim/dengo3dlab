@@ -1,0 +1,6 @@
+{
+  "name": "Dengo3DLab",
+  "description": "Plataforma proprietária de vendas e gestão (E-commerce & ERP) focada em Impressão 3D. Checkout transparente, seguro e 100% aderente à LGPD.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
