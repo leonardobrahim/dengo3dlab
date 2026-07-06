@@ -7,7 +7,7 @@ import { maskCPF, maskEmail } from '../utils/masking';
 
 type Step = 'identification' | 'shipping' | 'payment';
 
-export function CheckoutForm() {
+export function CheckoutForm({ onSuccess }: { onSuccess: () => void }) {
   const [activeStep, setActiveStep] = useState<Step>('identification');
 
   // Form States (Mocked for UI visualization)
@@ -296,6 +296,7 @@ export function CheckoutForm() {
                     size="lg" 
                     className="w-full md:w-auto text-base px-8 h-12"
                     disabled={!lgpdConsent}
+                    onClick={onSuccess}
                   >
                     <Lock className="w-4 h-4 mr-2" />
                     Finalizar Pedido

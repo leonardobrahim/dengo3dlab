@@ -93,7 +93,7 @@ export function Catalog({ onProductSelect }: CatalogProps) {
                   className="rounded-full w-10 h-10 p-0 flex items-center justify-center"
                   title="Configurar Impressão"
                 >
-                  <ChevronRight className="w-5 h-5" />
+                  <ShoppingCart className="w-5 h-5" />
                 </Button>
               </div>
             </div>
