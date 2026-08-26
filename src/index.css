@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* Dengo 3D Lab - Soft marshmallow pastel light palette */
+    --background: 330 40% 99%;
+    --foreground: 222 47% 18%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 18%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 18%;
+    
+    /* Primary: Baby Pink Candy (#F472B6 / #EC4899) */
+    --primary: 335 85% 65%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Secondary: Baby Blue / Sky (#38BDF8) */
+    --secondary: 199 89% 65%;
+    --secondary-foreground: 222 47% 18%;
+    
+    /* Soft Muted */
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 25% 45%;
+    
+    /* Accent */
+    --accent: 330 70% 95%;
+    --accent-foreground: 335 80% 40%;
+    
+    --destructive: 345 82% 58%;
+    --destructive-foreground: 0 0% 98%;
+    
+    /* Pastel borders */
+    --border: 330 30% 91%;
+    --input: 215 30% 90%;
+    --ring: 335 85% 65%;
+    --radius: 0.85rem;
+    --sidebar-bg: 330 40% 98%;
+
+    /* Dedicated Dengo Brand Tokens */
+    --dengo-pink: 335 85% 65%;
+    --dengo-pink-light: 330 80% 94%;
+    --dengo-blue: 199 89% 60%;
+    --dengo-blue-light: 200 85% 94%;
+    --dengo-cherry: 350 85% 60%;
+  }
+}
+
+@theme {
+  --color-background: #fffbfe;
+  --color-foreground: #1e293b;
+  --color-card: #ffffff;
+  --color-card-foreground: #1e293b;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #1e293b;
+  --color-primary: #ec4899;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #38bdf8;
+  --color-secondary-foreground: #0f172a;
+  --color-muted: #f8fafc;
+  --color-muted-foreground: #64748b;
+  --color-accent: #fdf2f8;
+  --color-accent-foreground: #be185d;
+  --color-destructive: #f43f5e;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #fce7f3;
+  --color-input: #e2e8f0;
+  --color-ring: #ec4899;
+}
+
+body {
+  background-color: #fffbfe;
+  color: #1e293b;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+/* Custom scrollbars with cute baby pink & baby blue pastel gradient */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #F472B6, #38BDF8);
+  border-radius: 9999px;
+  opacity: 0.7;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #EC4899, #0284C7);
+}
+
+/* Candy Glow & Floating Animations */
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(1deg);
+  }
+}
+
+.animate-float {
+  animation: float-gentle 4s ease-in-out infinite;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s ease-in-out infinite;
+}
+

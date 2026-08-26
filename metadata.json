@@ -1,0 +1,6 @@
+{
+  "name": "Dengo3dLab - Estúdio Criativo & Impressão 3D",
+  "description": "Estúdio criativo e loja de impressão 3D inspirada no Dengo 3D Lab: filamentos pastéis candy color, colecionáveis fofos, cortadores e impressões sob medida em azul e rosa bebê.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
