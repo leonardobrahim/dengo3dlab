@@ -138,7 +138,7 @@ export const CartDrawer: React.FC = () => {
                   navigate('/checkout');
                 }}
               >
-                <span>Finalizar Pedido Fofo</span>
+                <span>Finalizar Pedido</span>
                 <ArrowRight className="h-4 w-4 ml-1.5" />
               </Button>
 

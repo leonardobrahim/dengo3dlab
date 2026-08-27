@@ -29,7 +29,7 @@ export const Footer: React.FC = () => {
           {/* Quick links */}
           <div className="grid grid-cols-2 gap-8 text-left">
             <div>
-              <h4 className="font-bold text-foreground mb-2 text-xs uppercase tracking-wider">Categorias Fofas</h4>
+              <h4 className="font-bold text-foreground mb-2 text-xs uppercase tracking-wider">Categorias</h4>
               <ul className="space-y-1.5 text-xs text-muted-foreground">
                 <li className="hover:text-pink-500 cursor-pointer">Lontrinhas & Articulados</li>
                 <li className="hover:text-pink-500 cursor-pointer">Filamentos Rosa & Azul Bebê</li>

@@ -109,7 +109,7 @@ export const RegisterPage: React.FC = () => {
               className="w-full font-bold text-xs sm:text-sm gap-2 mt-2"
             >
               <Sparkles className="h-4 w-4" />
-              <span>Concluir Cadastro Fofo</span>
+              <span>Concluir Cadastro</span>
             </Button>
           </form>
 

@@ -145,46 +145,10 @@ export const HomePage: React.FC = () => {
 
             {/* Right Hero Visual Card */}
             <div className="lg:col-span-5 flex items-center justify-center relative">
-              <div className="relative w-full max-w-md p-6 sm:p-8 rounded-3xl bg-white/80 dark:bg-card/80 border border-pink-200 dark:border-pink-900/60 shadow-xl backdrop-blur-md space-y-4 text-center">
-                <div className="absolute -top-3 -right-3">
-                  <Badge variant="candyGradient" className="font-bold text-xs uppercase shadow-md">
-                    Mascote Oficial ✨
-                  </Badge>
+              <div className="relative w-full max-w-sm rounded-full overflow-hidden shadow-2xl bg-white/20 p-4 border-4 border-white/50 backdrop-blur-sm">
+                <div className="w-full h-full rounded-full overflow-hidden bg-white">
+                  <img src="/logo.jpg" alt="Dengo 3D Logo" className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700" />
                 </div>
-
-                <div className="relative mx-auto aspect-square w-full max-w-[260px] overflow-hidden rounded-2xl border-2 border-pink-200/80 dark:border-pink-900/60 bg-gradient-to-b from-pink-50 to-white dark:from-zinc-900 dark:to-zinc-800 shadow-inner group">
-                  <img
-                    src="https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=800&q=80"
-                    alt="Lontrinha Dengo 3D Articulada"
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-108"
-                  />
-                  <div className="absolute bottom-2 inset-x-2 bg-white/90 dark:bg-card/90 backdrop-blur-xs py-1.5 px-3 rounded-xl border border-pink-100 dark:border-border text-left flex items-center justify-between shadow-2xs">
-                    <div>
-                      <p className="text-[11px] font-bold text-foreground">Lontrinha Dengo 3D</p>
-                      <p className="text-[9px] text-pink-600 dark:text-pink-400 font-semibold">Silk Rosa & Avelã</p>
-                    </div>
-                    <span className="text-xs font-black text-pink-600">R$ 74,90</span>
-                  </div>
-                </div>
-
-                <div className="space-y-1">
-                  <h3 className="text-base font-black text-foreground">
-                    Feito em Impressão 3D Multi-Peça
-                  </h3>
-                  <p className="text-xs text-muted-foreground">
-                    Articulações flexíveis, toque aveludado e cheirinho de novo.
-                  </p>
-                </div>
-
-                <Button
-                  variant="dengo"
-                  size="sm"
-                  onClick={() => navigate('/produtos/mascote-lontrinha-dengo-3d-articulada', { slug: 'mascote-lontrinha-dengo-3d-articulada' })}
-                  className="w-full font-bold text-xs gap-1.5 shadow-xs"
-                >
-                  <Heart className="h-3.5 w-3.5 fill-current" />
-                  <span>Garantir Meu Mascote com Brinde</span>
-                </Button>
               </div>
             </div>
           </div>
