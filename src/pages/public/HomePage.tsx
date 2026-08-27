@@ -79,13 +79,6 @@ export const HomePage: React.FC = () => {
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-6 text-left">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 dark:bg-card/90 border border-pink-200 dark:border-pink-900/60 shadow-2xs backdrop-blur-xs">
-                <span className="flex h-2.5 w-2.5 rounded-full bg-pink-500 animate-ping" />
-                <span className="text-xs font-black text-pink-600 dark:text-pink-400 uppercase tracking-wider">
-                  Coleção Candy Silk 2026
-                </span>
-              </div>
-
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-foreground tracking-tight leading-[1.12]">
                 O Estúdio de Impressão 3D{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-500 to-sky-500">
@@ -145,11 +138,15 @@ export const HomePage: React.FC = () => {
 
             {/* Right Hero Visual Card */}
             <div className="lg:col-span-5 flex items-center justify-center relative">
-              <div className="relative w-full max-w-sm rounded-full overflow-hidden shadow-2xl bg-white/20 p-4 border-4 border-white/50 backdrop-blur-sm">
+              <button 
+                onClick={() => navigate('/')}
+                className="relative w-full max-w-sm aspect-square rounded-full overflow-hidden shadow-2xl bg-white/20 p-4 border-4 border-white/50 backdrop-blur-sm group cursor-pointer transition-all hover:shadow-pink-500/20 hover:border-white focus:outline-none focus:ring-4 focus:ring-white/80"
+                aria-label="Ir para o início"
+              >
                 <div className="w-full h-full rounded-full overflow-hidden bg-white">
-                  <img src="/logo.jpg" alt="Dengo 3D Logo" className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700" />
+                  <img src="/logo.jpg" alt="Dengo 3D Logo" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
                 </div>
-              </div>
+              </button>
             </div>
           </div>
         </section>

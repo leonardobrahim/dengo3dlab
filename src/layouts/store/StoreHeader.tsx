@@ -56,27 +56,7 @@ export const StoreHeader: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-pink-200/60 dark:border-pink-900/40 bg-background/95 backdrop-blur-md">
-      {/* Top Dengo Announcement Banner in Candy Colors */}
-      <div className="bg-gradient-to-r from-pink-500 via-pink-400 to-sky-400 text-white text-[11px] py-1.5 px-4 flex items-center justify-between shadow-2xs">
-        <div className="flex items-center gap-2">
-          <span className="flex h-2 w-2 rounded-full bg-white animate-ping" />
-          <span className="font-semibold tracking-wide flex items-center gap-1.5">
-            <span>✨</span>
-            <span>{siteConfig.brandName} • Estúdio Criativo & Loja de Impressão 3D</span>
-          </span>
-        </div>
-        <div className="hidden sm:flex items-center gap-4 font-medium text-[11px] text-white/90">
-          <span>Colecionáveis Articulados</span>
-          <span>•</span>
-          <span>Filamentos Candy Color</span>
-          <span>•</span>
-          <span>
-            Cupom: <strong>DENGO10</strong> (10% OFF)
-          </span>
-        </div>
-      </div>
-
+    <header className="sticky top-0 z-40 w-full bg-gradient-to-r from-pink-500 via-pink-400 to-sky-400 text-white shadow-md">
       {/* Main Desktop & Mobile Header Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-17 flex items-center justify-between gap-3 sm:gap-6">
         {/* Mobile Left: Menu Toggle */}
@@ -86,9 +66,9 @@ export const StoreHeader: React.FC = () => {
             size="icon-sm"
             onClick={() => setMobileMenuOpen(true)}
             aria-label="Abrir menu de navegação"
-            className="hover:bg-pink-50 dark:hover:bg-pink-950/40"
+            className="hover:bg-white/20 text-white"
           >
-            <Menu className="h-5 w-5 text-pink-500" />
+            <Menu className="h-5 w-5" />
           </Button>
         </div>
 
@@ -97,17 +77,27 @@ export const StoreHeader: React.FC = () => {
           className="cursor-pointer select-none transition-transform hover:scale-[1.02] shrink-0"
           onClick={() => navigate('/')}
         >
-          <DengoLogo size="md" variant="full" />
+          <DengoLogo size="sm" variant="full" />
         </div>
 
         {/* Desktop Navigation Links */}
         <nav className="hidden lg:flex items-center gap-1 font-medium text-xs">
           <button
+            onClick={() => navigate('/')}
+            className={`px-3.5 py-2 rounded-xl transition-all cursor-pointer select-none ${
+              currentPath === '/'
+                ? 'bg-white/20 text-white shadow-sm font-bold'
+                : 'text-white/90 hover:text-white hover:bg-white/10'
+            }`}
+          >
+            Início
+          </button>
+          <button
             onClick={() => navigate('/produtos')}
             className={`px-3.5 py-2 rounded-xl transition-all cursor-pointer select-none ${
               currentPath.startsWith('/produtos')
-                ? 'bg-pink-100/70 text-pink-700 dark:bg-pink-950/60 dark:text-pink-300 font-bold'
-                : 'text-muted-foreground hover:text-foreground hover:bg-pink-50 dark:hover:bg-card'
+                ? 'bg-white/20 text-white shadow-sm font-bold'
+                : 'text-white/90 hover:text-white hover:bg-white/10'
             }`}
           >
             Produtos
@@ -119,8 +109,8 @@ export const StoreHeader: React.FC = () => {
               <button
                 className={`px-3.5 py-2 rounded-xl transition-all cursor-pointer select-none inline-flex items-center gap-1 ${
                   currentPath.startsWith('/categorias')
-                    ? 'bg-sky-100/70 text-sky-700 dark:bg-sky-950/60 dark:text-sky-300 font-bold'
-                    : 'text-muted-foreground hover:text-foreground hover:bg-pink-50 dark:hover:bg-card'
+                    ? 'bg-white/20 text-white shadow-sm font-bold'
+                    : 'text-white/90 hover:text-white hover:bg-white/10'
                 }`}
               >
                 <span>Categorias</span>
@@ -151,8 +141,8 @@ export const StoreHeader: React.FC = () => {
             onClick={() => navigate('/ofertas')}
             className={`px-3.5 py-2 rounded-xl transition-all cursor-pointer select-none inline-flex items-center gap-1.5 ${
               currentPath === '/ofertas'
-                ? 'bg-rose-100/70 text-rose-700 dark:bg-rose-950/60 dark:text-rose-300 font-bold'
-                : 'text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30'
+                ? 'bg-white/20 text-white shadow-sm font-bold'
+                : 'text-white/90 hover:text-white hover:bg-white/10'
             }`}
           >
             <Flame className="h-3.5 w-3.5 fill-current" />
@@ -171,25 +161,25 @@ export const StoreHeader: React.FC = () => {
           <Button
             variant="ghost"
             size="icon-sm"
-            className="md:hidden"
+            className="md:hidden hover:bg-white/20 text-white"
             onClick={() => setIsSearchExpandedMobile(!isSearchExpandedMobile)}
             aria-label="Buscar produtos"
           >
-            <Search className="h-4 w-4 text-pink-500" />
+            <Search className="h-4 w-4 text-white" />
           </Button>
 
           {/* Wishlist / Favoritos */}
           <Button
-            variant="outline"
+            variant="ghost"
             size="icon-sm"
             onClick={() => navigate('/minha-conta/favoritos')}
-            className="relative border-pink-200 hover:bg-pink-50"
+            className="relative border border-white/30 hover:bg-white/20 text-white"
             aria-label="Lista de Favoritos"
             title="Lista de Favoritos"
           >
-            <Heart className="h-4 w-4 text-pink-500 fill-pink-500/20" />
+            <Heart className="h-4 w-4 text-white fill-white/20" />
             {wishlistCount > 0 && (
-              <span className="absolute -top-1.5 -right-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-pink-500 text-[10px] font-bold text-white shadow-xs">
+              <span className="absolute -top-1.5 -right-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-white text-pink-500 text-[10px] font-bold shadow-xs">
                 {wishlistCount}
               </span>
             )}
@@ -201,7 +191,7 @@ export const StoreHeader: React.FC = () => {
             trigger={
               <button
                 type="button"
-                className="flex items-center gap-1.5 p-1 rounded-full ring-2 ring-pink-200 dark:ring-pink-900/60 hover:ring-pink-400 transition-all cursor-pointer"
+                className="flex items-center gap-1.5 p-1 rounded-full ring-2 ring-white/30 hover:ring-white/70 transition-all cursor-pointer"
                 aria-label="Menu da Conta"
               >
                 <Avatar
@@ -286,16 +276,16 @@ export const StoreHeader: React.FC = () => {
 
           {/* Cart Trigger with Quantity Badge */}
           <Button
-            variant="dengo"
+            variant="outline"
             size="sm"
             onClick={() => setCartDrawerOpen(true)}
-            className="gap-1.5 text-xs font-bold shrink-0"
+            className="gap-1.5 text-xs font-bold shrink-0 bg-white/20 border-white/30 hover:bg-white/30 text-white"
             aria-label="Abrir carrinho de compras"
           >
             <ShoppingBag className="h-4 w-4" />
             <span className="hidden sm:inline">Carrinho</span>
             {cartCount > 0 && (
-              <span className="h-4 min-w-4 px-1 rounded-full bg-white text-pink-600 text-[10px] font-extrabold flex items-center justify-center shadow-xs">
+              <span className="h-4 min-w-4 px-1 rounded-full bg-white text-pink-500 text-[10px] font-extrabold flex items-center justify-center shadow-xs">
                 {cartCount}
               </span>
             )}
