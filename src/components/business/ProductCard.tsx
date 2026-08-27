@@ -191,7 +191,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               status={
                 !product.inStock || selectedVariant.stockQuantity === 0 
                   ? 'out_of_stock' 
-                  : selectedVariant.stockQuantity < 5 
+                  : (selectedVariant.stockQuantity !== null && selectedVariant.stockQuantity < 5)
                     ? 'low_stock' 
                     : 'in_stock'
               } 
@@ -206,7 +206,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
           {/* Rating */}
           <div className="mt-1.5">
-            <Rating value={product.rating || 5} reviewCount={product.reviewCount || 0} size="sm" />
+            {product.rating ? <Rating value={product.rating} reviewCount={product.reviewCount ?? undefined} size="sm" /> : null}
           </div>
         </div>
 

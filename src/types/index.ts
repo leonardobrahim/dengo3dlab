@@ -120,14 +120,16 @@ export interface ProductVariant {
   id: string;
   sku: string;
   name: string;
+  type?: string; // e.g., 'color', 'phrase', 'quantity'
+  value?: string; // the value of the variant, e.g., 'FODA-SE', 'Lilás'
   colorHex?: string;
   colorName?: string;
-  diameterMm?: number; // e.g. 1.75 or 2.85
-  weightGrams?: number; // e.g. 1000g spool
-  material?: string; // PLA, PETG, ABS, Resin
+  diameterMm?: number;
+  weightGrams?: number;
+  material?: string;
   price: number;
   promotionalPrice?: number;
-  stockQuantity: number;
+  stockQuantity: number | null;
   imageUrl?: string;
 }
 
@@ -165,15 +167,21 @@ export interface Product {
   basePromotionalPrice?: number;
   images: string[];
   featuredImage: string;
-  rating: number;
-  reviewCount: number;
+  rating: number | null;
+  reviewCount: number | null;
+  soldCount?: number | null;
   isFeatured?: boolean;
   isNew?: boolean;
   isBestSeller?: boolean;
   inStock: boolean;
-  stockTotal: number;
+  stockTotal: number | null;
   technicalSpecs?: TechnicalSpecs;
   tags: string[];
+  origin?: string;
+  packageContents?: string[];
+  careInstructions?: string[];
+  faq?: { question: string; answer: string }[];
+  seo?: { metaTitle?: string; metaDescription?: string; keywords?: string[] };
   createdAt: string;
   updatedAt: string;
 }

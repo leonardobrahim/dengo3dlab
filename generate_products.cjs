@@ -1,10 +1,12 @@
-import { Product } from '@/src/types';
+const fs = require('fs');
+
+const content = `import { Product } from '@/src/types';
 import { mockCategories } from './categories';
 
 export const mockProducts: Product[] = [
   {
     id: 'prod-kit-pombinha',
-    name: 'Kit Pombinha Divino Espírito Santo / Resplendor Lembrancinha Aplique Artesanato Cristão',
+    name: 'Kit Pombinha Divino Espírito Santo',
     slug: 'kit-pombinha-divino-espirito-santo',
     shortDescription: 'Kit decorativo com Pombinha do Divino Espírito Santo, perfeito para abençoar e decorar ambientes.',
     description: 'Belo item decorativo que representa a paz, o amor e a espiritualidade do Divino Espírito Santo. Feito com tecnologia de impressão 3D em material sustentável, esta peça transmite serenidade e é ideal para compor decorações religiosas, cantinhos de oração, ou mesmo como uma lembrança muito especial para batizados, primeiras comunhões e casamentos.',
@@ -20,21 +22,19 @@ export const mockProducts: Product[] = [
     ],
     rating: 5.0,
     reviewCount: null as any,
-    soldCount: 58,
     isFeatured: true,
     isNew: false,
     isBestSeller: true,
     inStock: true,
-    stockTotal: null, // TEMPORARY DEVELOPMENT STOCK
+    stockTotal: 999, // TEMPORARY DEVELOPMENT STOCK
     tags: ['religioso', 'espírito santo', 'pombinha', 'decoração religiosa', 'fé', 'decoração', 'impressão 3d'],
-    origin: 'Pernambuco',
     variants: [
       {
         id: 'var-kit-pombinha-1',
         sku: 'KIT-POMBINHA',
         name: 'Padrão',
         price: 35.90,
-        stockQuantity: null
+        stockQuantity: 999
       }
     ],
     technicalSpecs: {
@@ -45,7 +45,7 @@ export const mockProducts: Product[] = [
   },
   {
     id: 'prod-botao-foda-se',
-    name: 'Botão Do Foda-se - Fidget Toy Com Switch Mecânico / Botão Fidget Toy Antiestresse',
+    name: 'Botão Do Foda-se - Fidget Toy com Switch Mecânico',
     slug: 'botao-do-foda-se-fidget-toy',
     shortDescription: 'Fidget toy divertido e antiestresse com um autêntico switch mecânico.',
     description: 'Perfeito para aliviar a tensão do dia a dia ou simplesmente para dar boas risadas! Este fidget toy simula a sensação tátil e sonora de um teclado mecânico, com frases irreverentes para aqueles momentos em que a paciência já acabou. Escolha a sua frase favorita e aperte sempre que precisar de uma pausa relaxante ou cômica no trabalho ou nos estudos.',
@@ -65,45 +65,36 @@ export const mockProducts: Product[] = [
     isNew: false,
     isBestSeller: false,
     inStock: true,
-    stockTotal: null, // TEMPORARY DEVELOPMENT STOCK
+    stockTotal: 999, // TEMPORARY DEVELOPMENT STOCK
     tags: ['fidget', 'fidget toy', 'antiestresse', 'switch mecânico', 'brinquedo', 'diversão', 'impressão 3d'],
-    origin: 'Pernambuco',
     variants: [
       {
         id: 'var-btn-fodase',
         sku: 'BTN-FODASE',
         name: 'FODA-SE',
-        type: 'phrase',
-        value: 'FODA-SE',
         price: 29.90,
-        stockQuantity: null
+        stockQuantity: 999
       },
       {
         id: 'var-btn-calma',
         sku: 'BTN-CALMA',
         name: 'CALMA CARALHO',
-        type: 'phrase',
-        value: 'CALMA CARALHO',
         price: 29.90,
-        stockQuantity: null
+        stockQuantity: 999
       },
       {
         id: 'var-btn-naofode',
         sku: 'BTN-NAOFODE',
         name: 'NÃO FODE',
-        type: 'phrase',
-        value: 'NÃO FODE',
         price: 29.90,
-        stockQuantity: null
+        stockQuantity: 999
       },
       {
         id: 'var-btn-gritado',
         sku: 'BTN-GRITADO',
         name: 'GRITADO PORRA',
-        type: 'phrase',
-        value: 'GRITADO PORRA',
         price: 29.90,
-        stockQuantity: null
+        stockQuantity: 999
       }
     ],
     createdAt: new Date().toISOString(),
@@ -131,7 +122,7 @@ export const mockProducts: Product[] = [
     isNew: true,
     isBestSeller: false,
     inStock: true,
-    stockTotal: null,
+    stockTotal: 999, // TEMPORARY DEVELOPMENT STOCK
     tags: ['porta gloss', 'porta batom', 'chaveiro', 'beleza', 'hello kitty', 'organizador', 'acessório'],
     variants: [
       {
@@ -140,7 +131,7 @@ export const mockProducts: Product[] = [
         name: 'Lilás',
         colorName: 'Lilás',
         price: 22.90,
-        stockQuantity: null
+        stockQuantity: 999
       },
       {
         id: 'var-pgloss-rosabebe',
@@ -148,7 +139,7 @@ export const mockProducts: Product[] = [
         name: 'Rosa Bebê',
         colorName: 'Rosa Bebê',
         price: 22.90,
-        stockQuantity: null
+        stockQuantity: 999
       }
     ],
     createdAt: new Date().toISOString(),
@@ -159,7 +150,7 @@ export const mockProducts: Product[] = [
     name: 'Suporte para Ferramentas - Organizador de Bancada',
     slug: 'suporte-ferramentas-organizador-bancada',
     shortDescription: 'Mantenha sua bancada de artesanato, costura ou ferramentas organizada com este suporte compacto e inteligente.',
-    description: 'A organização é a chave da produtividade! Este suporte para ferramentas foi projetado para abrigar pequenos utensílios como pinças, alicates de corte, estiletes, tesouras e muito mais. Ideal para espaços de artesanato, costura e oficinas criativas, ele mantém o essencial organizado, visível e pronto para uso.\n\nAtenção: As ferramentas presentes nas imagens são puramente ilustrativas e não acompanham o produto.',
+    description: 'A organização é a chave da produtividade! Este suporte para ferramentas foi projetado para abrigar pequenos utensílios como pinças, alicates de corte, estiletes, tesouras e muito mais. Ideal para espaços de artesanato, costura e oficinas criativas, ele mantém o essencial organizado, visível e pronto para uso.\\n\\nAtenção: As ferramentas presentes nas imagens são puramente ilustrativas e não acompanham o produto.',
     type: 'printed_model',
     brand: 'Dengo 3D',
     categories: [mockCategories[1]], // Equipamento Escolar e de Escritório
@@ -176,7 +167,7 @@ export const mockProducts: Product[] = [
     isNew: false,
     isBestSeller: false,
     inStock: true,
-    stockTotal: null,
+    stockTotal: 999, // TEMPORARY DEVELOPMENT STOCK
     tags: ['ferramentas', 'organizador', 'bancada', 'artesanato', 'costura', 'oficina', 'impressão 3d'],
     variants: [
       {
@@ -185,7 +176,7 @@ export const mockProducts: Product[] = [
         name: 'Rosa Bebê',
         colorName: 'Rosa Bebê',
         price: 64.90,
-        stockQuantity: null
+        stockQuantity: 999
       },
       {
         id: 'var-sferramenta-branco',
@@ -193,7 +184,7 @@ export const mockProducts: Product[] = [
         name: 'Branco',
         colorName: 'Branco',
         price: 64.90,
-        stockQuantity: null
+        stockQuantity: 999
       }
     ],
     technicalSpecs: {
@@ -225,24 +216,24 @@ export const mockProducts: Product[] = [
     isNew: false,
     isBestSeller: false,
     inStock: true,
-    stockTotal: null,
+    stockTotal: 999, // TEMPORARY DEVELOPMENT STOCK
     tags: ['cofrinho', 'porquinho', 'fazendeiro', 'decoração', 'presente', 'souvenir', 'impressão 3d'],
     variants: [
       {
         id: 'var-cofre-chapeu-vermelho',
         sku: 'COFRE-CHAPEU-VERM',
-        name: 'Vermelho',
+        name: 'Chapéu Vermelho',
         colorName: 'Vermelho',
         price: 59.90,
-        stockQuantity: null
+        stockQuantity: 999
       },
       {
         id: 'var-cofre-chapeu-amarelo',
         sku: 'COFRE-CHAPEU-AMAR',
-        name: 'Amarelo',
+        name: 'Chapéu Amarelo',
         colorName: 'Amarelo',
         price: 59.90,
-        stockQuantity: null
+        stockQuantity: 999
       }
     ],
     createdAt: new Date().toISOString(),
@@ -250,13 +241,13 @@ export const mockProducts: Product[] = [
   },
   {
     id: 'prod-suporte-cola',
-    name: 'Suporte Para Pistola De Cola Quente Organizador De Bancada Artesanato',
+    name: 'Suporte para Pistola de Cola Quente - Organizador de Bancada',
     slug: 'suporte-pistola-cola-quente',
-    shortDescription: 'Mantenha sua pistola de cola quente segura e sua área de trabalho limpa e organizada.',
-    description: 'Evite acidentes, queimaduras ou sujeira na sua bancada com este suporte para pistola de cola quente.\n\nOrganização: Mantém sua área de artesanato limpa e livre de fios embolados.\nSegurança: Desenhado para acomodar a pistola enquanto esfria ou durante o uso, evitando acidentes.\nMaterial: Produzido em plástico resistente através de impressão 3D.\nDimensões: Formato compacto ideal para bancadas.\nCompatibilidade: Compatível com modelos de pistola de cola quente de tamanho padrão similares.\nConteúdo da embalagem: 1x Suporte para Pistola de Cola Quente (Pistola não inclusa).\nCuidados: Não expor a altas temperaturas diretas além do bico da pistola e limpar com pano úmido.',
+    shortDescription: 'Mantenha sua pistola de cola quente segura e sua área de trabalho limpa.',
+    description: 'Evite acidentes, queimaduras ou sujeira na sua bancada! Este suporte organizador foi especialmente desenhado para acomodar pistolas de cola quente enquanto elas esfriam ou durante o uso. Um acessório robusto, prático e que mantém sua área de artesanato organizada.\\n\\nAtenção: O produto é compatível com modelos de tamanho padrão similares. A pistola de cola quente não acompanha o suporte.',
     type: 'printed_model',
     brand: 'Dengo 3D',
-    categories: [mockCategories[1]],
+    categories: [mockCategories[1]], // Equipamento Escolar e de Escritório
     basePrice: 44.90,
     featuredImage: '/products/suporte-cola/01.jpg',
     images: [
@@ -270,8 +261,7 @@ export const mockProducts: Product[] = [
     isNew: false,
     isBestSeller: true,
     inStock: true,
-    stockTotal: null,
-    origin: 'Pernambuco',
+    stockTotal: 999, // TEMPORARY DEVELOPMENT STOCK
     tags: ['cola quente', 'pistola de cola', 'organizador', 'bancada', 'artesanato', 'ferramentas', 'impressão 3d'],
     variants: [
       {
@@ -280,7 +270,7 @@ export const mockProducts: Product[] = [
         name: 'Rosa Bebê',
         colorName: 'Rosa Bebê',
         price: 44.90,
-        stockQuantity: null
+        stockQuantity: 999
       },
       {
         id: 'var-scola-branco',
@@ -288,21 +278,24 @@ export const mockProducts: Product[] = [
         name: 'Branco',
         colorName: 'Branco',
         price: 44.90,
-        stockQuantity: null
+        stockQuantity: 999
       }
     ],
+    technicalSpecs: {
+      dimensionsMm: { x: 180, y: 90, z: 60 }
+    },
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
   {
     id: 'prod-aneis-abelha',
-    name: 'Conjunto Anel Para Guardanapos Abelha Colmeia Luxo Porta Guardanapos',
+    name: 'Conjunto de Anéis para Guardanapos Abelha',
     slug: 'conjunto-aneis-guardanapos-abelha',
-    shortDescription: 'Um toque encantador e luxuoso de abelhas e colmeia para sua mesa posta.',
-    description: 'Encante seus convidados com uma decoração de mesa elegante com estes anéis para guardanapos.\n\nAbelha e Colmeia: Design detalhado e luxuoso inspirado na natureza.\nOcasiões: Perfeito para jantares, almoços, casamentos e celebrações especiais.\nMaterial: Produzido com material resistente em impressão 3D de alta qualidade.\nCaracterísticas: Acabamento refinado que adiciona sofisticação à sua mesa posta.\nCuidados: Limpar com pano úmido e macio. Não utilizar produtos abrasivos ou lavar na máquina.',
+    shortDescription: 'Um toque encantador e delicado de abelhinhas para sua mesa posta.',
+    description: 'Encante seus convidados com uma decoração de mesa super carinhosa e elegante. Nossos anéis de guardanapo com design 3D de abelha dão um toque de natureza e sofisticação para jantares, celebrações, casamentos ou almoços especiais. Fabricados com requinte e material de qualidade, são perfeitos para trazer ainda mais vida e alegria para os momentos em volta da mesa.',
     type: 'printed_model',
     brand: 'Dengo 3D',
-    categories: [mockCategories[4]],
+    categories: [mockCategories[4]], // Louça
     basePrice: 39.90,
     featuredImage: '/products/aneis-abelha/01.jpg',
     images: [
@@ -316,44 +309,46 @@ export const mockProducts: Product[] = [
     isNew: false,
     isBestSeller: false,
     inStock: true,
-    stockTotal: null,
-    origin: 'Pernambuco',
-    tags: ['guardanapo', 'anel de guardanapo', 'abelha', 'colmeia', 'luxo', 'mesa posta', 'decoração', 'festa'],
+    stockTotal: 999, // TEMPORARY DEVELOPMENT STOCK
+    tags: ['guardanapo', 'anel de guardanapo', 'abelha', 'mesa posta', 'decoração', 'festa', 'casamento', 'impressão 3d'],
     variants: [
       {
         id: 'var-aneis-4un',
         sku: 'ANEIS-ABELHA-4UN',
-        name: '4 UNIDADES',
+        name: '4 unidades',
         price: 39.90,
-        stockQuantity: null
+        stockQuantity: 999
       },
       {
         id: 'var-aneis-6un',
         sku: 'ANEIS-ABELHA-6UN',
-        name: '6 UNIDADES',
-        price: 59.90, // Calculated proportionally based on logic or base price if provided. Assuming base price is for 4. Or I will just set the ones I had before. Wait, I will adjust to real values if I knew them, but I don't.
-        stockQuantity: null
+        name: '6 unidades',
+        price: 59.90,
+        stockQuantity: 999
       },
       {
         id: 'var-aneis-12un',
         sku: 'ANEIS-ABELHA-12UN',
-        name: '12 UNIDADES',
+        name: '12 unidades',
         price: 119.90,
-        stockQuantity: null
+        stockQuantity: 999
       }
     ],
+    technicalSpecs: {
+      material: 'PLA',
+    },
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
   {
     id: 'prod-sagrada-familia',
-    name: 'Escultura Sagrada Família Religiosa Católico Cristo Evangelho Busto Imagem Parede',
+    name: 'Escultura Sagrada Família Religiosa',
     slug: 'escultura-sagrada-familia',
-    shortDescription: 'Representação da Sagrada Família, ideal para uso decorativo e religioso.',
-    description: 'Bela Escultura Sagrada Família Religiosa Católico Cristo Evangelho Busto Imagem Parede.\n\nRepresentação da Sagrada Família: Símbolo de união, amor e fé.\nUso decorativo/religioso: Ideal para oratórios domésticos, aparadores, paredes e ambientes de oração.\nAcabamento: Rico em detalhes e estética minimalista/contemporânea.\nMaterial: Plástico sustentável via impressão 3D.\nCaracterísticas: Busto resistente e leve.\nBenefícios: Traz serenidade e espiritualidade ao ambiente.\nConteúdo da embalagem: 1x Escultura.\nInformações de fabricação: Produzido com tecnologia 3D avançada.\nCuidados: Evitar exposição prolongada ao sol intenso e limpar com pano seco.',
+    shortDescription: 'Escultura decorativa de Jesus, Maria e José, símbolo de união, amor e fé.',
+    description: 'Esta delicada escultura retrata de forma minimalista a Sagrada Família (Jesus, Maria e José). Uma peça que enriquece a decoração da sua casa com os símbolos de afeto, união e fé cristã. Ideal para oratórios domésticos, aparadores e mesas laterais, e uma lembrança extremamente marcante para presentear em casamentos, batizados e festividades religiosas.',
     type: 'printed_model',
-    brand: '3D',
-    categories: [mockCategories[0]],
+    brand: 'Dengo 3D',
+    categories: [mockCategories[0]], // Artigos Religiosos e de Fengshui
     basePrice: 54.90,
     featuredImage: '/products/sagrada-familia/01.jpg',
     images: [
@@ -367,16 +362,15 @@ export const mockProducts: Product[] = [
     isNew: true,
     isBestSeller: false,
     inStock: true,
-    stockTotal: null,
-    origin: 'Brasil / Pernambuco',
-    tags: ['sagrada família', 'religioso', 'católico', 'decoração', 'fé', 'jesus', 'maria', 'josé', 'cristo', 'evangelho'],
+    stockTotal: 999, // TEMPORARY DEVELOPMENT STOCK
+    tags: ['sagrada família', 'religioso', 'católico', 'decoração', 'fé', 'jesus', 'maria', 'josé', 'presente religioso', 'impressão 3d'],
     variants: [
       {
         id: 'var-sagrada-familia',
         sku: 'SAGRADA-FAMILIA',
         name: 'Padrão',
         price: 54.90,
-        stockQuantity: null
+        stockQuantity: 999
       }
     ],
     createdAt: new Date().toISOString(),
@@ -384,13 +378,13 @@ export const mockProducts: Product[] = [
   },
   {
     id: 'prod-nossa-senhora',
-    name: 'Enfeite Decorativo Nossa Senhora Rogai Por Nós Escultura Religiosa Moderna 3D',
+    name: 'Enfeite Decorativo Nossa Senhora Rogai por Nós',
     slug: 'enfeite-nossa-senhora-rogai-por-nos',
-    shortDescription: 'Enfeite decorativo de Nossa Senhora com a frase "Rogai Por Nós".',
-    description: 'Belo enfeite decorativo de oração com a representação de Nossa Senhora e a frase "Rogai Por Nós".\n\nTemática: Nossa Senhora com os dizeres "Rogai Por Nós".\nCaracterísticas: Escultura moderna, combinando fé e decoração contemporânea.\nUtilização: Perfeito para estantes, mesas de escritório e decoração do lar.\nAcabamento: Rico em detalhes de impressão 3D.\nCuidados: Evitar altas temperaturas e limpar apenas com pano seco.',
+    shortDescription: 'Enfeite de oração com a frase "Rogai por Nós", combinando fé e decoração contemporânea.',
+    description: 'Adicione serenidade e propósito ao seu espaço de trabalho ou cantinho de oração. Este enfeite apresenta uma belíssima representação de Nossa Senhora com os dizeres "Rogai por Nós". Perfeito para estantes, mesas de escritório e decoração da casa para lembrar do poder da oração e da fé diariamente, sendo também uma linda opção de presente espiritual.',
     type: 'printed_model',
     brand: 'Dengo 3D',
-    categories: [mockCategories[0]],
+    categories: [mockCategories[0]], // Artigos Religiosos e de Fengshui
     basePrice: 29.90,
     featuredImage: '/products/nossa-senhora/01.jpg',
     images: [
@@ -404,8 +398,7 @@ export const mockProducts: Product[] = [
     isNew: false,
     isBestSeller: false,
     inStock: true,
-    stockTotal: null,
-    origin: 'Pernambuco',
+    stockTotal: 999, // TEMPORARY DEVELOPMENT STOCK
     tags: ['nossa senhora', 'rogai por nós', 'religioso', 'fé', 'decoração', 'oração', 'católico', 'presente', 'impressão 3d'],
     variants: [
       {
@@ -413,7 +406,7 @@ export const mockProducts: Product[] = [
         sku: 'NOSSA-SENHORA',
         name: 'Padrão',
         price: 29.90,
-        stockQuantity: null
+        stockQuantity: 999
       }
     ],
     createdAt: new Date().toISOString(),
@@ -421,13 +414,13 @@ export const mockProducts: Product[] = [
   },
   {
     id: 'prod-caixa-cogumelo',
-    name: 'Caixa De Joias Cogumelo Com Tampa Removível Organizador',
+    name: 'Caixa de Joias Cogumelo com Tampa Removível',
     slug: 'caixa-joias-cogumelo',
-    shortDescription: 'Um charmoso organizador em formato de cogumelo mágico para guardar joias e acessórios.',
-    description: 'Traga a fantasia para a sua organização pessoal! Esta caixa em formato de cogumelo possui um compartimento interno engenhoso.\n\nOrganização de Joias: Armazenamento seguro de anéis, brincos e pequenas joias.\nTampa Removível: Compartimento interno prático e estiloso.\nAcabamento: Peça essencial que une o aspecto decorativo com a utilidade.\nCuidados: Não deixar exposto ao sol forte contínuo. Limpar com pano macio.',
+    shortDescription: 'Um charmoso organizador em formato de cogumelo mágico para guardar pequenos acessórios.',
+    description: 'Traga a fantasia do bosque para a sua organização pessoal! Esta caixa em formato de cogumelo mágico possui um compartimento interno engenhoso, com tampa superior removível para o armazenamento seguro e estiloso de anéis, brincos, pequenas joias e miudezas. Uma peça essencial que une o aspecto decorativo fantástico com a praticidade de um mini porta-joias funcional.',
     type: 'printed_model',
     brand: 'Dengo 3D',
-    categories: [mockCategories[3]],
+    categories: [mockCategories[3]], // Organizadores para Casa
     basePrice: 79.90,
     featuredImage: '/products/caixa-cogumelo/01.jpg',
     images: [
@@ -441,30 +434,32 @@ export const mockProducts: Product[] = [
     isNew: false,
     isBestSeller: true,
     inStock: true,
-    stockTotal: null,
-    origin: 'Pernambuco',
-    tags: ['porta joias', 'caixa de joias', 'cogumelo', 'organizador', 'decoração', 'acessórios', 'Organizadores de Joias', 'impressão 3d'],
+    stockTotal: 999, // TEMPORARY DEVELOPMENT STOCK
+    tags: ['porta joias', 'caixa de joias', 'cogumelo', 'organizador', 'decoração', 'acessórios', 'presente', 'impressão 3d'],
     variants: [
       {
         id: 'var-caixa-cogumelo',
         sku: 'CAIXA-COGUMELO',
         name: 'Padrão',
         price: 79.90,
-        stockQuantity: null
+        stockQuantity: 999
       }
     ],
+    technicalSpecs: {
+      material: 'PLA',
+    },
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
   {
     id: 'prod-marcador-barquinho',
-    name: 'Marcador de Página Barquinho 3D Navegando - Marcador de Páginas Criativo',
+    name: 'Marcador de Página Barquinho 3D Navegando',
     slug: 'marcador-pagina-barquinho-3d',
-    shortDescription: 'Um marcador de páginas criativo em formato de barco que repousa sobre seu livro.',
-    description: 'Transforme a sua leitura com este marcador de páginas exclusivo.\n\nFormato de Barquinho: Cria a ilusão de um barco navegando e repousando sobre as páginas.\nFuncionamento: Marcador prático, muito leve e delicado que não danifica as folhas.\nMaterial: Fabricado em plástico PLA sustentável via impressão 3D.\nConteúdo da embalagem: 1x Marcador de páginas.\nCuidados: Manusear com cuidado para não quebrar a haste e não expor a calor excessivo.',
+    shortDescription: 'Um marcador encantador que repousa sobre seu livro como um barco no mar de páginas.',
+    description: 'Transforme a sua leitura em uma verdadeira aventura com este marcador de páginas exclusivo. O marcador cria a ilusão maravilhosa de um pequeno barquinho 3D navegando e repousando elegantemente sobre o topo do seu livro. Muito leve e delicado, ele não danifica as páginas, sendo o presente ideal para amigos leitores, estudantes e entusiastas da papelaria criativa.',
     type: 'printed_model',
     brand: 'Dengo 3D',
-    categories: [mockCategories[2]],
+    categories: [mockCategories[2]], // Cadernos e Papéis
     basePrice: 18.90,
     featuredImage: '/products/marcador-barquinho/01.jpg',
     images: [
@@ -478,19 +473,25 @@ export const mockProducts: Product[] = [
     isNew: true,
     isBestSeller: false,
     inStock: true,
-    stockTotal: null,
-    origin: 'Pernambuco',
-    tags: ['marcador', 'marcador de página', 'livro', 'leitura', 'papelaria', 'barquinho', 'Marcadores de Página', 'impressão 3d'],
+    stockTotal: 999, // TEMPORARY DEVELOPMENT STOCK
+    tags: ['marcador', 'marcador de página', 'livro', 'leitura', 'papelaria', 'barquinho', 'presente', 'impressão 3d'],
     variants: [
       {
         id: 'var-marcador-barquinho',
         sku: 'MARC-BARQUINHO',
         name: 'Padrão',
         price: 18.90,
-        stockQuantity: null
+        stockQuantity: 999
       }
     ],
+    technicalSpecs: {
+      material: 'PLA',
+    },
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   }
 ];
+`;
+
+fs.writeFileSync('src/mocks/products.ts', content, 'utf8');
+console.log('Done!');

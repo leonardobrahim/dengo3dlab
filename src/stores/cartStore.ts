@@ -26,25 +26,7 @@ interface CartState {
 export const useCartStore = create<CartState>()(
   persist(
     (set, get) => ({
-      items: [
-        // Pre-populate with 1 initial demo item so the cart isn't empty on first mount
-        {
-          id: 'cart-init-1',
-          productId: 'prod-1',
-          variantId: 'var-1c',
-          productName: 'Filamento PLA Hyper Speed Precision 1.75mm (1kg)',
-          productSlug: 'filamento-pla-hyper-speed-precision-1-75mm-1kg',
-          variantName: 'Laranja Industrial - 1kg',
-          colorName: 'Laranja Industrial',
-          colorHex: '#f97316',
-          material: 'PLA Hyper',
-          imageUrl: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=400&q=80',
-          unitPrice: 109.90,
-          quantity: 1,
-          maxStock: 20,
-          sku: 'PLA-HYP-ORG-1KG',
-        },
-      ],
+      items: [],
       coupon: null,
       shippingAddress: null,
       shippingCost: 0,

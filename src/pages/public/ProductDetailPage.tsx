@@ -137,9 +137,15 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug: prop
   const product = mockProducts.find((p) => p.slug === currentSlug);
 
   // Configuration state for variations
-  const [selectedMaterial, setSelectedMaterial] = React.useState(MATERIAL_OPTIONS[0]);
-  const [selectedSize, setSelectedSize] = React.useState(SIZE_OPTIONS[1]); // default M
-  const [selectedColor, setSelectedColor] = React.useState(COLOR_OPTIONS[0]);
+  const [selectedVariant, setSelectedVariant] = React.useState(product?.variants?.[0] || null);
+  
+  
+  React.useEffect(() => {
+    if (product && product.variants && product.variants.length > 0) {
+      setSelectedVariant(product.variants[0]);
+    }
+  }, [product?.id]);
+
   const [quantity, setQuantity] = React.useState(1);
 
   // Reviews dataset
@@ -166,9 +172,6 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug: prop
   // Reset variation configuration on product change
   React.useEffect(() => {
     if (product) {
-      setSelectedMaterial(MATERIAL_OPTIONS[0]);
-      setSelectedSize(SIZE_OPTIONS[1]);
-      setSelectedColor(COLOR_OPTIONS[0]);
       setQuantity(1);
     }
   }, [product?.id]);
@@ -209,22 +212,15 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug: prop
   }
 
   // Dynamic Price and SKU Calculation based on selected Material, Size and Color
-  const basePrice = product.variants[0]?.price || 89.9;
-  const baseCompareAtPrice = product.variants[0]?.promotionalPrice
-    ? product.variants[0]?.price
-    : (product.variants[0]?.price || 89.9) * 1.25;
-
-  const combinedMultiplier = selectedMaterial.priceMultiplier * selectedSize.priceMultiplier;
-  const currentPrice = Number((basePrice * combinedMultiplier).toFixed(2));
-  const currentCompareAtPrice = Number((baseCompareAtPrice * combinedMultiplier).toFixed(2));
+  const currentPrice = selectedVariant?.price || product.basePrice || 0;
+  const currentCompareAtPrice = selectedVariant?.promotionalPrice || (currentPrice * 1.25);
   const discountPct = Math.round(((currentCompareAtPrice - currentPrice) / currentCompareAtPrice) * 100);
 
   // Dynamic SKU
-  const dynamicSku = `DNG-${product.slug.slice(0, 8).toUpperCase()}-${selectedMaterial.id.toUpperCase()}-${selectedColor.name.slice(0, 3).toUpperCase()}-${selectedSize.id.toUpperCase()}`;
+  const dynamicSku = selectedVariant?.sku || `DNG-${product.slug.slice(0, 8).toUpperCase()}`;
 
   // Variation Stock computation
-  const isColorOutOfStock = !selectedColor.inStock;
-  const currentStock = isColorOutOfStock ? 0 : 8; // realistic stock
+  const currentStock = (selectedVariant ? selectedVariant.stockQuantity : product.stockTotal) ?? 10; // Fallback to 10 if null
   const isOutOfStock = currentStock <= 0;
 
   // Primary category and Wishlist state
@@ -248,11 +244,11 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug: prop
       return;
     }
 
-    const variantNameFormatted = `${selectedMaterial.name} • ${selectedColor.name} • ${selectedSize.label}`;
+    const variantNameFormatted = selectedVariant?.name || 'Padrão';
 
     addItem({
       productId: product.id,
-      variantId: `${product.id}-${selectedMaterial.id}-${selectedColor.id}-${selectedSize.id}`,
+      variantId: selectedVariant?.id || 'default',
       productName: product.name,
       productSlug: product.slug,
       variantName: variantNameFormatted,
@@ -260,9 +256,9 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug: prop
       unitPrice: currentPrice,
       quantity,
       imageUrl: product.featuredImage || product.images[0],
-      colorHex: selectedColor.hex,
-      colorName: selectedColor.name,
-      material: selectedMaterial.name,
+      colorHex: selectedVariant?.colorHex,
+      colorName: selectedVariant?.colorName,
+      material: selectedVariant?.material || product.technicalSpecs?.material,
       maxStock: currentStock,
     });
 
@@ -424,135 +420,57 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug: prop
             {/* VARIATION CONFIGURATOR                     */}
             {/* ========================================== */}
             <div className="space-y-5 pt-2 border-t border-pink-100">
-              {/* 1. Material Selector */}
-              <div className="space-y-2">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="font-bold text-slate-800">
-                    1. Material de Impressão:{' '}
-                    <span className="text-pink-600 font-semibold">{selectedMaterial.name}</span>
-                  </span>
-                  <span className="text-[11px] text-slate-600 font-medium">{selectedMaterial.badge}</span>
-                </div>
+              {product.variants && product.variants.length > 1 && (
+              <div className="space-y-6 pt-2 pb-4">
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="font-bold text-slate-800">
+                      Selecione a Variação:{' '}
+                      <span className="text-pink-600 font-semibold">{selectedVariant?.name || 'Padrão'}</span>
+                    </span>
+                  </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-2 gap-2">
-                  {MATERIAL_OPTIONS.map((mat) => {
-                    const isSelected = selectedMaterial.id === mat.id;
-                    return (
-                      <button
-                        key={mat.id}
-                        type="button"
-                        onClick={() => setSelectedMaterial(mat)}
-                        className={cn(
-                          'p-3 rounded-2xl border text-left transition-all cursor-pointer space-y-1',
-                          isSelected
-                            ? 'border-pink-500 bg-pink-50/60 ring-2 ring-pink-300/30'
-                            : 'border-pink-100 bg-white hover:border-pink-200'
-                        )}
-                      >
-                        <div className="flex items-center justify-between">
-                          <span className="text-xs font-bold text-slate-800">{mat.name}</span>
-                          {isSelected && <CheckCircle2 className="h-3.5 w-3.5 text-pink-500" />}
-                        </div>
-                        <p className="text-[10px] text-slate-600 line-clamp-1">{mat.description}</p>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* 2. Color Swatches */}
-              <div className="space-y-2">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="font-bold text-slate-800">
-                    2. Cor Candy & Acabamento:{' '}
-                    <span className="text-pink-600 font-semibold">{selectedColor.name}</span>
-                  </span>
-                  <span className="text-[11px]">
-                    {selectedColor.inStock ? (
-                      <span className="text-emerald-700 font-bold">✓ Em estoque</span>
-                    ) : (
-                      <span className="text-rose-700 font-bold">Esgotado nesta cor</span>
-                    )}
-                  </span>
-                </div>
-
-                <div className="flex flex-wrap gap-2.5">
-                  {COLOR_OPTIONS.map((c) => {
-                    const isSelected = selectedColor.id === c.id;
-                    return (
-                      <button
-                        key={c.id}
-                        type="button"
-                        onClick={() => setSelectedColor(c)}
-                        title={`${c.name} ${!c.inStock ? '(Esgotado)' : ''}`}
-                        className={cn(
-                          'group relative flex items-center gap-2 px-3 py-1.5 rounded-2xl border text-xs font-semibold transition-all cursor-pointer',
-                          isSelected
-                            ? 'border-pink-500 bg-pink-50 text-pink-800 ring-2 ring-pink-300/40 shadow-xs'
-                            : 'border-pink-200 bg-white text-slate-700 hover:border-pink-300',
-                          !c.inStock && 'opacity-60 grayscale-[30%]'
-                        )}
-                      >
-                        <span
-                          className="h-4 w-4 rounded-full border border-slate-300 inline-block shadow-2xs shrink-0"
-                          style={{ backgroundColor: c.hex }}
-                        />
-                        <span>{c.name}</span>
-                        {!c.inStock && (
-                          <span className="text-[9px] text-rose-500 font-bold uppercase">(Falta)</span>
-                        )}
-                      </button>
-                    );
-                  })}
+                  <div className="grid grid-cols-2 sm:grid-cols-2 gap-2">
+                    {product.variants.map((v) => {
+                      const isSelected = selectedVariant?.id === v.id;
+                      const isInStock = v.stockQuantity === null || v.stockQuantity > 0;
+                      return (
+                        <button
+                          key={v.id}
+                          type="button"
+                          onClick={() => isInStock && setSelectedVariant(v)}
+                          disabled={!isInStock}
+                          className={cn(
+                            'p-3 rounded-2xl border text-left transition-all cursor-pointer space-y-1',
+                            isSelected
+                              ? 'border-pink-500 bg-pink-50/60 ring-2 ring-pink-300/30 shadow-xs'
+                              : 'border-pink-100 bg-white hover:border-pink-200',
+                            !isInStock && 'opacity-50 cursor-not-allowed bg-slate-50'
+                          )}
+                        >
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              {v.colorHex && (
+                                <span
+                                  className="h-3 w-3 rounded-full border border-slate-300 inline-block shadow-2xs shrink-0"
+                                  style={{ backgroundColor: v.colorHex }}
+                                />
+                              )}
+                              <span className="text-xs font-bold text-slate-800">{v.name}</span>
+                            </div>
+                            {isSelected && <CheckCircle2 className="h-3.5 w-3.5 text-pink-500" />}
+                          </div>
+                          <p className="text-[10px] text-slate-600 line-clamp-1">
+                            {!isInStock ? 'Esgotado' : (v.price > 0 ? `Por R$ ${v.price.toFixed(2).replace('.', ',')}` : 'Grátis')}
+                          </p>
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
+            )}
 
-              {/* 3. Size / Dimension Selector */}
-              <div className="space-y-2">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="font-bold text-slate-800">
-                    3. Tamanho & Escala:{' '}
-                    <span className="text-pink-600 font-semibold">{selectedSize.label}</span>
-                  </span>
-                  <span className="text-[11px] text-slate-600">
-                    Peso aprox: <strong className="text-slate-800">{selectedSize.weightGrams}g</strong>
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-3 gap-2">
-                  {SIZE_OPTIONS.map((s) => {
-                    const isSelected = selectedSize.id === s.id;
-                    return (
-                      <button
-                        key={s.id}
-                        type="button"
-                        onClick={() => setSelectedSize(s)}
-                        className={cn(
-                          'p-2.5 rounded-2xl border text-center transition-all cursor-pointer space-y-0.5',
-                          isSelected
-                            ? 'border-pink-500 bg-pink-50/60 ring-2 ring-pink-300/30'
-                            : 'border-pink-100 bg-white hover:border-pink-200'
-                        )}
-                      >
-                        <span className="text-xs font-bold text-slate-800 block">{s.label}</span>
-                        <span className="text-[10px] text-slate-600 block">{s.dimensions}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-
-            {/* Dynamic Calculated Specs Summary Pill */}
-            <div className="p-3 rounded-2xl bg-white border border-pink-100 flex items-center justify-between text-[11px] text-slate-600">
-              <span className="flex items-center gap-1.5 font-medium">
-                <Cpu className="h-3.5 w-3.5 text-pink-500" />
-                <span>Dimensões: <strong className="text-slate-800">{selectedSize.dimensions}</strong></span>
-              </span>
-              <span className="flex items-center gap-1.5 font-medium">
-                <Package className="h-3.5 w-3.5 text-pink-500" />
-                <span>Peso: <strong className="text-slate-800">{selectedSize.weightGrams}g</strong></span>
-              </span>
             </div>
 
             {/* Stock Availability Alert */}
@@ -562,7 +480,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug: prop
                   <div className="flex items-center gap-2 text-rose-800">
                     <AlertTriangle className="h-4 w-4 text-rose-600 shrink-0" />
                     <span>
-                      Esta combinação de <strong>{selectedColor.name}</strong> está esgotada no momento.
+                      Esta variação está esgotada no momento.
                     </span>
                   </div>
                   <Button
@@ -631,7 +549,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug: prop
             {/* Shipping Calculator Embedded */}
             <ShippingCalculator
               productPrice={currentPrice}
-              productWeightGrams={selectedSize.weightGrams}
+              productWeightGrams={selectedVariant?.weightGrams || product.technicalSpecs?.weightGrams || 200}
             />
           </div>
         </div>
@@ -717,13 +635,19 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug: prop
               <div className="overflow-hidden rounded-2xl border border-pink-100">
                 <table className="w-full text-left text-xs border-collapse">
                   <tbody>
+                    {product.origin && (
+                      <tr className="border-b border-pink-100 bg-pink-50/50">
+                        <td className="p-3.5 font-bold text-slate-700 w-1/3">Origem / Envio</td>
+                        <td className="p-3.5 text-slate-800">{product.origin}</td>
+                      </tr>
+                    )}
                     <tr className="border-b border-pink-100 bg-pink-50/30">
                       <td className="p-3.5 font-bold text-slate-700 w-1/3">Tecnologia de Manufatura</td>
-                      <td className="p-3.5 text-slate-800">{selectedMaterial.technology}</td>
+                      <td className="p-3.5 text-slate-800">{(MATERIAL_OPTIONS[0]).technology}</td>
                     </tr>
                     <tr className="border-b border-pink-100">
                       <td className="p-3.5 font-bold text-slate-700">Material Selecionado</td>
-                      <td className="p-3.5 text-slate-800">{selectedMaterial.name} ({selectedMaterial.badge})</td>
+                      <td className="p-3.5 text-slate-800">{(MATERIAL_OPTIONS[0]).name} ({(MATERIAL_OPTIONS[0]).badge})</td>
                     </tr>
                     <tr className="border-b border-pink-100 bg-pink-50/30">
                       <td className="p-3.5 font-bold text-slate-700">Altura de Camada (Resolução)</td>
@@ -739,16 +663,16 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug: prop
                     </tr>
                     <tr className="border-b border-pink-100 bg-pink-50/30">
                       <td className="p-3.5 font-bold text-slate-700">Dimensões Físicas</td>
-                      <td className="p-3.5 text-slate-800">{selectedSize.dimensions}</td>
+                      <td className="p-3.5 text-slate-800">{(SIZE_OPTIONS[1]).dimensions}</td>
                     </tr>
                     <tr className="border-b border-pink-100">
                       <td className="p-3.5 font-bold text-slate-700">Peso Líquido</td>
-                      <td className="p-3.5 text-slate-800">{selectedSize.weightGrams} gramas</td>
+                      <td className="p-3.5 text-slate-800">{(SIZE_OPTIONS[1]).weightGrams} gramas</td>
                     </tr>
                     <tr className="border-b border-pink-100 bg-pink-50/30">
                       <td className="p-3.5 font-bold text-slate-700">Resistência Térmica Máxima</td>
                       <td className="p-3.5 text-slate-800">
-                        {selectedMaterial.id === 'petg' ? '75°C (Suporta sol moderado)' : '55°C (Manter em ambiente interno)'}
+                        {(MATERIAL_OPTIONS[0]).id === 'petg' ? '75°C (Suporta sol moderado)' : '55°C (Manter em ambiente interno)'}
                       </td>
                     </tr>
                     <tr>
@@ -899,7 +823,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug: prop
           open={notifyModalOpen}
           onOpenChange={setNotifyModalOpen}
           title="Avise-me quando estiver em estoque"
-          description={`Receba um e-mail imediato quando ${product.name} (${selectedColor.name}) estiver disponível.`}
+          description={`Receba um e-mail imediato quando ${product.name} (${(selectedVariant?.name || 'Padrão')}) estiver disponível.`}
         >
           <form onSubmit={handleNotifySubmit} className="space-y-4 pt-2 text-left">
             <div className="p-3 rounded-2xl bg-pink-50/60 border border-pink-100 flex items-center gap-3">
@@ -910,7 +834,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug: prop
               />
               <div className="text-xs">
                 <span className="font-bold text-slate-800 block">{product.name}</span>
-                <span className="text-slate-600 block">Variação: {selectedColor.name} • {selectedSize.label}</span>
+                <span className="text-slate-600 block">Variação: {selectedVariant?.name || 'Padrão'}</span>
               </div>
             </div>
 
