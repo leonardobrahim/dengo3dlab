@@ -44,7 +44,7 @@ export const StoreFooter: React.FC = () => {
       <div className="border-b border-pink-100 dark:border-pink-950/60 bg-gradient-to-r from-pink-50/70 via-background to-sky-50/70 dark:from-pink-950/20 dark:via-card dark:to-sky-950/20 py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center sm:text-left">
           <div className="flex flex-col sm:flex-row items-center gap-3">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-pink-100 dark:bg-pink-950/80 text-pink-500 shadow-2xs">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-pink-500 text-white shadow-sm">
               <Truck className="h-5 w-5" />
             </div>
             <div>
@@ -54,7 +54,7 @@ export const StoreFooter: React.FC = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-3">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-sky-100 dark:bg-sky-950/80 text-sky-500 shadow-2xs">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-sky-500 text-white shadow-sm">
               <Sparkles className="h-5 w-5" />
             </div>
             <div>
@@ -64,7 +64,7 @@ export const StoreFooter: React.FC = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-3">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-pink-100 dark:bg-pink-950/80 text-pink-500 shadow-2xs">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-pink-500 text-white shadow-sm">
               <RotateCcw className="h-5 w-5" />
             </div>
             <div>
@@ -74,7 +74,7 @@ export const StoreFooter: React.FC = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-3">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-sky-100 dark:bg-sky-950/80 text-sky-500 shadow-2xs">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-sky-500 text-white shadow-sm">
               <ShieldCheck className="h-5 w-5" />
             </div>
             <div>
@@ -100,7 +100,7 @@ export const StoreFooter: React.FC = () => {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-8 w-8 items-center justify-center rounded-xl bg-pink-100 dark:bg-pink-950/60 text-pink-600 hover:bg-pink-200 transition-colors"
+                className="flex h-8 w-8 items-center justify-center rounded-xl bg-pink-500 text-white hover:bg-pink-600 shadow-sm transition-colors"
                 aria-label="Instagram"
               >
                 <Instagram className="h-4 w-4" />
@@ -109,7 +109,7 @@ export const StoreFooter: React.FC = () => {
                 href="https://youtube.com"
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-8 w-8 items-center justify-center rounded-xl bg-sky-100 dark:bg-sky-950/60 text-sky-600 hover:bg-sky-200 transition-colors"
+                className="flex h-8 w-8 items-center justify-center rounded-xl bg-sky-500 text-white hover:bg-sky-600 shadow-sm transition-colors"
                 aria-label="YouTube"
               >
                 <Youtube className="h-4 w-4" />
@@ -118,7 +118,7 @@ export const StoreFooter: React.FC = () => {
                 href="https://whatsapp.com"
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 hover:bg-emerald-200 transition-colors"
+                className="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-500 text-white hover:bg-emerald-600 shadow-sm transition-colors"
                 aria-label="WhatsApp"
               >
                 <MessageCircle className="h-4 w-4" />

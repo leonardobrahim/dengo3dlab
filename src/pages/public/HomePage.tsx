@@ -116,19 +116,19 @@ export const HomePage: React.FC = () => {
               {/* Trust Badges Bar */}
               <div className="pt-6 grid grid-cols-2 sm:grid-cols-3 gap-3 border-t border-pink-200/60 dark:border-pink-900/40 text-xs font-semibold text-muted-foreground">
                 <div className="flex items-center gap-2">
-                  <div className="flex h-6 w-6 rounded-full bg-pink-100 dark:bg-pink-950/60 items-center justify-center text-pink-600">
+                  <div className="flex h-6 w-6 rounded-full bg-pink-500 items-center justify-center text-white shadow-sm">
                     <Leaf className="h-3.5 w-3.5" />
                   </div>
                   <span>PLA Biodegradável</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="flex h-6 w-6 rounded-full bg-sky-100 dark:bg-sky-950/60 items-center justify-center text-sky-600">
+                  <div className="flex h-6 w-6 rounded-full bg-sky-500 items-center justify-center text-white shadow-sm">
                     <Truck className="h-3.5 w-3.5" />
                   </div>
                   <span>Envio p/ Todo Brasil</span>
                 </div>
                 <div className="flex items-center gap-2 col-span-2 sm:col-span-1">
-                  <div className="flex h-6 w-6 rounded-full bg-rose-100 dark:bg-rose-950/60 items-center justify-center text-rose-600">
+                  <div className="flex h-6 w-6 rounded-full bg-rose-500 items-center justify-center text-white shadow-sm">
                     <Heart className="h-3.5 w-3.5" />
                   </div>
                   <span>+3.000 Makers Felizes</span>
@@ -304,7 +304,7 @@ export const HomePage: React.FC = () => {
            ========================================== */}
         <section className="rounded-3xl sm:rounded-[36px] border border-pink-200/80 dark:border-pink-900/50 bg-gradient-to-b from-card to-pink-50/30 dark:to-pink-950/20 p-6 sm:p-12 text-left space-y-8">
           <div className="text-center max-w-2xl mx-auto space-y-2">
-            <Badge variant="babyPink" className="font-bold text-xs uppercase tracking-wider">
+            <Badge variant="default" className="text-xs bg-pink-500 text-white border-transparent hover:bg-pink-600 font-bold uppercase tracking-wider">
               Como Fazemos a Mágica Acontecer ✨
             </Badge>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-foreground">
@@ -318,7 +318,7 @@ export const HomePage: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Step 1 */}
             <div className="p-5 rounded-2xl border border-pink-200/60 dark:border-pink-900/40 bg-card space-y-3 shadow-2xs hover:border-pink-300 transition-colors">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-pink-100 dark:bg-pink-950/70 text-pink-600 font-black text-base">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-pink-500 text-white shadow-sm font-black text-base">
                 1
               </div>
               <h3 className="font-bold text-sm text-foreground flex items-center gap-1.5">
@@ -332,7 +332,7 @@ export const HomePage: React.FC = () => {
 
             {/* Step 2 */}
             <div className="p-5 rounded-2xl border border-pink-200/60 dark:border-pink-900/40 bg-card space-y-3 shadow-2xs hover:border-pink-300 transition-colors">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-100 dark:bg-sky-950/70 text-sky-600 font-black text-base">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-500 text-white shadow-sm font-black text-base">
                 2
               </div>
               <h3 className="font-bold text-sm text-foreground flex items-center gap-1.5">
@@ -346,7 +346,7 @@ export const HomePage: React.FC = () => {
 
             {/* Step 3 */}
             <div className="p-5 rounded-2xl border border-pink-200/60 dark:border-pink-900/40 bg-card space-y-3 shadow-2xs hover:border-pink-300 transition-colors">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-purple-100 dark:bg-purple-950/70 text-purple-600 font-black text-base">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-purple-500 text-white shadow-sm font-black text-base">
                 3
               </div>
               <h3 className="font-bold text-sm text-foreground flex items-center gap-1.5">
@@ -360,7 +360,7 @@ export const HomePage: React.FC = () => {
 
             {/* Step 4 */}
             <div className="p-5 rounded-2xl border border-pink-200/60 dark:border-pink-900/40 bg-card space-y-3 shadow-2xs hover:border-pink-300 transition-colors">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-600 font-black text-base">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-500 text-white shadow-sm font-black text-base">
                 4
               </div>
               <h3 className="font-bold text-sm text-foreground flex items-center gap-1.5">
@@ -407,7 +407,7 @@ export const HomePage: React.FC = () => {
            ========================================== */}
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
           <div className="p-6 rounded-3xl border border-pink-200/70 dark:border-pink-900/40 bg-card space-y-2 shadow-2xs">
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-pink-100 text-pink-600">
+            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-pink-500 text-white shadow-sm">
               <Leaf className="h-5 w-5" />
             </div>
             <h3 className="font-bold text-sm text-foreground">100% PLA Biodegradável</h3>
@@ -417,7 +417,7 @@ export const HomePage: React.FC = () => {
           </div>
 
           <div className="p-6 rounded-3xl border border-pink-200/70 dark:border-pink-900/40 bg-card space-y-2 shadow-2xs">
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-sky-100 text-sky-600">
+            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-sky-500 text-white shadow-sm">
               <Truck className="h-5 w-5" />
             </div>
             <h3 className="font-bold text-sm text-foreground">Frete Cuidadoso</h3>
@@ -427,7 +427,7 @@ export const HomePage: React.FC = () => {
           </div>
 
           <div className="p-6 rounded-3xl border border-pink-200/70 dark:border-pink-900/40 bg-card space-y-2 shadow-2xs">
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-purple-100 text-purple-600">
+            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-purple-500 text-white shadow-sm">
               <Wand2 className="h-5 w-5" />
             </div>
             <h3 className="font-bold text-sm text-foreground">Customização sob Medida</h3>
@@ -437,7 +437,7 @@ export const HomePage: React.FC = () => {
           </div>
 
           <div className="p-6 rounded-3xl border border-pink-200/70 dark:border-pink-900/40 bg-card space-y-2 shadow-2xs">
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-rose-100 text-rose-600">
+            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-rose-500 text-white shadow-sm">
               <ShieldCheck className="h-5 w-5" />
             </div>
             <h3 className="font-bold text-sm text-foreground">Garantia Dengo</h3>
@@ -452,7 +452,7 @@ export const HomePage: React.FC = () => {
            ========================================== */}
         <section className="space-y-6 text-left">
           <div className="text-center max-w-2xl mx-auto space-y-2">
-            <Badge variant="babyBlue" className="font-bold text-xs uppercase tracking-wider">
+            <Badge variant="default" className="text-xs bg-sky-500 text-white border-transparent hover:bg-sky-600 font-bold uppercase tracking-wider">
               Comunidade Maker Apaixonada
             </Badge>
             <h2 className="text-2xl sm:text-3xl font-black text-foreground">
