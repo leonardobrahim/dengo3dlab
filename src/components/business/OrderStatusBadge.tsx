@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { OrderStatus } from '@/src/types';
-import { Badge } from '@/src/components/ui/Badge';
+import * as React from "react";
+import { OrderStatus } from "@/src/types";
+import { Badge } from "@/src/components/ui/Badge";
 import {
   Clock,
   CheckCircle2,
@@ -9,7 +9,7 @@ import {
   Truck,
   CheckCheck,
   XCircle,
-} from 'lucide-react';
+} from "lucide-react";
 
 export interface OrderStatusBadgeProps {
   status: OrderStatus;
@@ -24,48 +24,59 @@ export const OrderStatusBadge: React.FC<OrderStatusBadgeProps> = ({
 }) => {
   const configs: Record<
     OrderStatus,
-    { label: string; variant: 'default' | 'secondary' | 'warning' | 'success' | 'destructive' | 'filament' | 'tech'; icon: React.ReactNode }
+    {
+      label: string;
+      variant:
+        | "default"
+        | "secondary"
+        | "warning"
+        | "success"
+        | "destructive"
+        | "filament"
+        | "tech";
+      icon: React.ReactNode;
+    }
   > = {
     pending: {
-      label: 'Aguardando Pagamento',
-      variant: 'warning',
+      label: "Aguardando Pagamento",
+      variant: "warning",
       icon: <Clock className="h-3 w-3 mr-1" />,
     },
     confirmed: {
-      label: 'Pagamento Confirmado',
-      variant: 'success',
+      label: "Pagamento Confirmado",
+      variant: "success",
       icon: <CheckCircle2 className="h-3 w-3 mr-1" />,
     },
     in_production: {
-      label: 'Em Produção',
-      variant: 'filament',
+      label: "Em Produção",
+      variant: "filament",
       icon: <Cpu className="h-3 w-3 mr-1" />,
     },
     ready_to_ship: {
-      label: 'Em Preparação',
-      variant: 'secondary',
+      label: "Em Preparação",
+      variant: "secondary",
       icon: <PackageCheck className="h-3 w-3 mr-1" />,
     },
     shipped: {
-      label: 'Enviado',
-      variant: 'tech',
+      label: "Enviado",
+      variant: "tech",
       icon: <Truck className="h-3 w-3 mr-1" />,
     },
     delivered: {
-      label: 'Entregue',
-      variant: 'success',
+      label: "Entregue",
+      variant: "success",
       icon: <CheckCheck className="h-3 w-3 mr-1" />,
     },
     cancelled: {
-      label: 'Cancelado',
-      variant: 'destructive',
+      label: "Cancelado",
+      variant: "destructive",
       icon: <XCircle className="h-3 w-3 mr-1" />,
     },
   };
 
   const config = configs[status] || {
     label: status,
-    variant: 'secondary',
+    variant: "secondary",
     icon: null,
   };
 

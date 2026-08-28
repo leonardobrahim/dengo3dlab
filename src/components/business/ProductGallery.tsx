@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   ChevronLeft,
   ChevronRight,
@@ -9,11 +9,11 @@ import {
   Sparkles,
   Heart,
   Share2,
-} from 'lucide-react';
-import { Badge } from '@/src/components/ui/Badge';
-import { Button } from '@/src/components/ui/Button';
-import { cn } from '@/src/lib/utils';
-import { motion, AnimatePresence } from 'motion/react';
+} from "lucide-react";
+import { Badge } from "@/src/components/ui/Badge";
+import { Button } from "@/src/components/ui/Button";
+import { cn } from "@/src/lib/utils";
+import { motion, AnimatePresence } from "motion/react";
 
 export interface ProductGalleryProps {
   images: string[];
@@ -42,9 +42,12 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({
   const [isFullscreen, setIsFullscreen] = React.useState(false);
   const [lightboxZoom, setLightboxZoom] = React.useState(1);
 
-  const safeImages = images && images.length > 0
-    ? images
-    : ['https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80'];
+  const safeImages =
+    images && images.length > 0
+      ? images
+      : [
+          "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80",
+        ];
 
   const currentImage = safeImages[selectedIndex] || safeImages[0];
 
@@ -59,7 +62,8 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({
   };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+    const { left, top, width, height } =
+      e.currentTarget.getBoundingClientRect();
     const x = ((e.clientX - left) / width) * 100;
     const y = ((e.clientY - top) / height) * 100;
     setZoomPosition({ x, y });
@@ -69,12 +73,12 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({
   React.useEffect(() => {
     if (!isFullscreen) return;
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setIsFullscreen(false);
-      if (e.key === 'ArrowLeft') handlePrev();
-      if (e.key === 'ArrowRight') handleNext();
+      if (e.key === "Escape") setIsFullscreen(false);
+      if (e.key === "ArrowLeft") handlePrev();
+      if (e.key === "ArrowRight") handleNext();
     };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isFullscreen, safeImages.length]);
 
   return (
@@ -94,8 +98,8 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({
             src={currentImage}
             alt={`${productName} - Imagem ${selectedIndex + 1}`}
             className={cn(
-              'h-full w-full object-cover object-center transition-transform duration-200',
-              isZoomed ? 'scale-175' : 'scale-100'
+              "h-full w-full object-cover object-center transition-transform duration-200",
+              isZoomed ? "scale-175" : "scale-100",
             )}
             style={
               isZoomed
@@ -115,7 +119,10 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({
             </Badge>
           ) : null}
           {isBestSeller && (
-            <Badge variant="candy" className="shadow-xs font-bold flex items-center gap-1">
+            <Badge
+              variant="candyGradient"
+              className="shadow-xs font-bold flex items-center gap-1"
+            >
               <Sparkles className="h-3 w-3" />
               <span>Mais Vendido</span>
             </Badge>
@@ -159,8 +166,10 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({
             >
               <Heart
                 className={cn(
-                  'h-5 w-5 transition-colors',
-                  isFav ? 'text-pink-500 fill-pink-500' : 'text-slate-500 hover:text-pink-500'
+                  "h-5 w-5 transition-colors",
+                  isFav
+                    ? "text-pink-500 fill-pink-500"
+                    : "text-slate-500 hover:text-pink-500",
                 )}
               />
             </button>
@@ -228,10 +237,10 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({
               type="button"
               onClick={() => setSelectedIndex(idx)}
               className={cn(
-                'relative h-18 w-18 sm:h-20 sm:w-20 rounded-2xl overflow-hidden border-2 transition-all shrink-0 cursor-pointer bg-white',
+                "relative h-18 w-18 sm:h-20 sm:w-20 rounded-2xl overflow-hidden border-2 transition-all shrink-0 cursor-pointer bg-white",
                 selectedIndex === idx
-                  ? 'border-pink-500 ring-4 ring-pink-300/40 scale-102 shadow-sm'
-                  : 'border-pink-200 opacity-70 hover:opacity-100 hover:border-pink-300'
+                  ? "border-pink-500 ring-4 ring-pink-300/40 scale-102 shadow-sm"
+                  : "border-pink-200 opacity-70 hover:opacity-100 hover:border-pink-300",
               )}
               aria-label={`Ver foto ${idx + 1} de ${productName}`}
             >
@@ -271,8 +280,10 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({
               {/* Header Bar */}
               <div className="w-full flex items-center justify-between pb-3 border-b border-pink-100">
                 <div className="flex items-center gap-2">
-                  <Badge variant="candy">Foto {selectedIndex + 1} de {safeImages.length}</Badge>
-                  <span className="text-sm font-bold text-slate-800 truncate max-w-[240px] sm:max-w-md">
+                  <Badge variant="candyGradient">
+                    Foto {selectedIndex + 1} de {safeImages.length}
+                  </Badge>
+                  <span className="text-sm font-bold text-slate-800 truncate max-w-60 sm:max-w-md">
                     {productName}
                   </span>
                 </div>
@@ -282,10 +293,14 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({
                     variant="outline"
                     size="icon-sm"
                     onClick={() => setLightboxZoom((z) => (z > 1 ? 1 : 1.75))}
-                    title={lightboxZoom > 1 ? 'Reduzir Zoom' : 'Aumentar Zoom'}
+                    title={lightboxZoom > 1 ? "Reduzir Zoom" : "Aumentar Zoom"}
                     className="border-pink-200"
                   >
-                    {lightboxZoom > 1 ? <ZoomOut className="h-4 w-4" /> : <ZoomIn className="h-4 w-4" />}
+                    {lightboxZoom > 1 ? (
+                      <ZoomOut className="h-4 w-4" />
+                    ) : (
+                      <ZoomIn className="h-4 w-4" />
+                    )}
                   </Button>
                   <Button
                     variant="outline"
@@ -300,7 +315,7 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({
               </div>
 
               {/* Main Lightbox Image */}
-              <div className="relative flex-1 w-full min-h-[320px] max-h-[65vh] flex items-center justify-center my-4 overflow-auto rounded-2xl bg-pink-50/20">
+              <div className="relative flex-1 w-full min-h-80 max-h-[65vh] flex items-center justify-center my-4 overflow-auto rounded-2xl bg-pink-50/20">
                 <img
                   src={currentImage}
                   alt={productName}
@@ -337,13 +352,17 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({
                       key={idx}
                       onClick={() => setSelectedIndex(idx)}
                       className={cn(
-                        'h-14 w-14 rounded-xl overflow-hidden border-2 transition-all shrink-0 cursor-pointer bg-white',
+                        "h-14 w-14 rounded-xl overflow-hidden border-2 transition-all shrink-0 cursor-pointer bg-white",
                         selectedIndex === idx
-                          ? 'border-pink-500 ring-2 ring-pink-400'
-                          : 'border-pink-200 opacity-60 hover:opacity-100'
+                          ? "border-pink-500 ring-2 ring-pink-400"
+                          : "border-pink-200 opacity-60 hover:opacity-100",
                       )}
                     >
-                      <img src={img} alt="thumb" className="h-full w-full object-cover" />
+                      <img
+                        src={img}
+                        alt="thumb"
+                        className="h-full w-full object-cover"
+                      />
                     </button>
                   ))}
                 </div>

@@ -165,7 +165,7 @@ export const ProductReviewsSection: React.FC<ProductReviewsSectionProps> = ({
             <Button
               id="open-review-modal-btn"
               variant="dengo"
-              size="md"
+              size="lg"
               onClick={() => setIsModalOpen(true)}
               className="w-full sm:w-auto font-bold text-xs gap-2 rounded-2xl shadow-xs"
             >

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   Search,
   Heart,
@@ -17,21 +17,25 @@ import {
   ArrowRight,
   Flame,
   Tag,
-} from 'lucide-react';
-import { DengoLogo } from '@/src/components/brand/DengoLogo';
-import { Button } from '@/src/components/ui/Button';
-import { Badge } from '@/src/components/ui/Badge';
-import { Dropdown, DropdownItem, DropdownSeparator } from '@/src/components/ui/Dropdown';
-import { Avatar } from '@/src/components/ui/Avatar';
-import { Drawer } from '@/src/components/ui/Drawer';
-import { ProductSearchWithSuggestions } from '@/src/components/business/ProductSearchWithSuggestions';
-import { useUIStore } from '@/src/stores/uiStore';
-import { useAuthStore } from '@/src/stores/authStore';
-import { useCartStore } from '@/src/stores/cartStore';
-import { useWishlistStore } from '@/src/stores/wishlistStore';
-import { useNavigationStore } from '@/src/stores/navigationStore';
-import { mockCategories } from '@/src/mocks/categories';
-import { siteConfig } from '@/src/config/site';
+} from "lucide-react";
+import { DengoLogo } from "@/src/components/brand/DengoLogo";
+import { Button } from "@/src/components/ui/Button";
+import { Badge } from "@/src/components/ui/Badge";
+import {
+  Dropdown,
+  DropdownItem,
+  DropdownSeparator,
+} from "@/src/components/ui/Dropdown";
+import { Avatar } from "@/src/components/ui/Avatar";
+import { Drawer } from "@/src/components/ui/Drawer";
+import { ProductSearchWithSuggestions } from "@/src/components/business/ProductSearchWithSuggestions";
+import { useUIStore } from "@/src/stores/uiStore";
+import { useAuthStore } from "@/src/stores/authStore";
+import { useCartStore } from "@/src/stores/cartStore";
+import { useWishlistStore } from "@/src/stores/wishlistStore";
+import { useNavigationStore } from "@/src/stores/navigationStore";
+import { mockCategories } from "@/src/mocks/categories";
+import { siteConfig } from "@/src/config/site";
 
 export const StoreHeader: React.FC = () => {
   const { setCartDrawerOpen } = useUIStore();
@@ -41,8 +45,9 @@ export const StoreHeader: React.FC = () => {
   const { currentPath, navigate } = useNavigationStore();
 
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
-  const [searchQuery, setSearchQuery] = React.useState('');
-  const [isSearchExpandedMobile, setIsSearchExpandedMobile] = React.useState(false);
+  const [searchQuery, setSearchQuery] = React.useState("");
+  const [isSearchExpandedMobile, setIsSearchExpandedMobile] =
+    React.useState(false);
 
   const cartCount = getTotalItemsCount();
   const wishlistCount = productIds.length;
@@ -50,13 +55,13 @@ export const StoreHeader: React.FC = () => {
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      navigate('/busca', { query: searchQuery.trim() });
+      navigate("/busca", { query: searchQuery.trim() });
       setIsSearchExpandedMobile(false);
     }
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-gradient-to-r from-pink-500 via-pink-400 to-sky-400 text-white shadow-md">
+    <header className="sticky top-0 z-40 w-full bg-linear-to-r from-pink-500 via-pink-400 to-sky-400 text-white shadow-md">
       {/* Main Desktop & Mobile Header Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-17 flex items-center justify-between gap-3 sm:gap-6">
         {/* Mobile Left: Menu Toggle */}
@@ -75,7 +80,7 @@ export const StoreHeader: React.FC = () => {
         {/* Brand Logo */}
         <div
           className="cursor-pointer select-none transition-transform hover:scale-[1.02] shrink-0"
-          onClick={() => navigate('/')}
+          onClick={() => navigate("/")}
         >
           <DengoLogo size="sm" variant="full" />
         </div>
@@ -83,21 +88,21 @@ export const StoreHeader: React.FC = () => {
         {/* Desktop Navigation Links */}
         <nav className="hidden lg:flex items-center gap-1 font-medium text-xs">
           <button
-            onClick={() => navigate('/')}
+            onClick={() => navigate("/")}
             className={`px-3.5 py-2 rounded-xl transition-all cursor-pointer select-none ${
-              currentPath === '/'
-                ? 'bg-white/20 text-white shadow-sm font-bold'
-                : 'text-white/90 hover:text-white hover:bg-white/10'
+              currentPath === "/"
+                ? "bg-white/20 text-white shadow-sm font-bold"
+                : "text-white/90 hover:text-white hover:bg-white/10"
             }`}
           >
             Início
           </button>
           <button
-            onClick={() => navigate('/produtos')}
+            onClick={() => navigate("/produtos")}
             className={`px-3.5 py-2 rounded-xl transition-all cursor-pointer select-none ${
-              currentPath.startsWith('/produtos')
-                ? 'bg-white/20 text-white shadow-sm font-bold'
-                : 'text-white/90 hover:text-white hover:bg-white/10'
+              currentPath.startsWith("/produtos")
+                ? "bg-white/20 text-white shadow-sm font-bold"
+                : "text-white/90 hover:text-white hover:bg-white/10"
             }`}
           >
             Produtos
@@ -108,9 +113,9 @@ export const StoreHeader: React.FC = () => {
             trigger={
               <button
                 className={`px-3.5 py-2 rounded-xl transition-all cursor-pointer select-none inline-flex items-center gap-1 ${
-                  currentPath.startsWith('/categorias')
-                    ? 'bg-white/20 text-white shadow-sm font-bold'
-                    : 'text-white/90 hover:text-white hover:bg-white/10'
+                  currentPath.startsWith("/categorias")
+                    ? "bg-white/20 text-white shadow-sm font-bold"
+                    : "text-white/90 hover:text-white hover:bg-white/10"
                 }`}
               >
                 <span>Categorias</span>
@@ -118,14 +123,20 @@ export const StoreHeader: React.FC = () => {
               </button>
             }
           >
-            <DropdownItem onClick={() => navigate('/categorias')}>
-              <span className="font-bold text-pink-600 dark:text-pink-400">Ver Todas as Categorias</span>
+            <DropdownItem onClick={() => navigate("/categorias")}>
+              <span className="font-bold text-pink-600 dark:text-pink-400">
+                Ver Todas as Categorias
+              </span>
             </DropdownItem>
             <DropdownSeparator />
             {mockCategories.map((cat) => (
               <DropdownItem
                 key={cat.id}
-                onClick={() => navigate(`/categorias/${cat.slug}`, { categorySlug: cat.slug })}
+                onClick={() =>
+                  navigate(`/categorias/${cat.slug}`, {
+                    categorySlug: cat.slug,
+                  })
+                }
               >
                 <div className="flex items-center justify-between w-full">
                   <span>{cat.name}</span>
@@ -138,11 +149,11 @@ export const StoreHeader: React.FC = () => {
           </Dropdown>
 
           <button
-            onClick={() => navigate('/ofertas')}
+            onClick={() => navigate("/ofertas")}
             className={`px-3.5 py-2 rounded-xl transition-all cursor-pointer select-none inline-flex items-center gap-1.5 ${
-              currentPath === '/ofertas'
-                ? 'bg-white/20 text-white shadow-sm font-bold'
-                : 'text-white/90 hover:text-white hover:bg-white/10'
+              currentPath === "/ofertas"
+                ? "bg-white/20 text-white shadow-sm font-bold"
+                : "text-white/90 hover:text-white hover:bg-white/10"
             }`}
           >
             <Flame className="h-3.5 w-3.5 fill-current" />
@@ -172,7 +183,7 @@ export const StoreHeader: React.FC = () => {
           <Button
             variant="ghost"
             size="icon-sm"
-            onClick={() => navigate('/minha-conta/favoritos')}
+            onClick={() => navigate("/minha-conta/favoritos")}
             className="relative border border-white/30 hover:bg-white/20 text-white"
             aria-label="Lista de Favoritos"
             title="Lista de Favoritos"
@@ -196,9 +207,9 @@ export const StoreHeader: React.FC = () => {
               >
                 <Avatar
                   src={user?.avatarUrl}
-                  name={user?.name || 'Visitante'}
+                  name={user?.name || "Visitante"}
                   size="sm"
-                  status={isAuthenticated ? 'online' : 'offline'}
+                  status={isAuthenticated ? "online" : "offline"}
                 />
               </button>
             }
@@ -207,36 +218,51 @@ export const StoreHeader: React.FC = () => {
               <>
                 <div className="px-3 py-2 border-b border-border text-left">
                   <div className="flex items-center gap-1.5">
-                    <p className="text-xs font-bold text-foreground truncate">{user.name}</p>
+                    <p className="text-xs font-bold text-foreground truncate">
+                      {user.name}
+                    </p>
                     <span className="text-pink-500 text-xs">💖</span>
                   </div>
-                  <p className="text-[11px] text-muted-foreground truncate">{user.email}</p>
-                  <Badge variant="babyPink" className="mt-1 text-[9px] uppercase">
+                  <p className="text-[11px] text-muted-foreground truncate">
+                    {user.email}
+                  </p>
+                  <Badge
+                    variant="babyPink"
+                    className="mt-1 text-[9px] uppercase"
+                  >
                     {user.role}
                   </Badge>
                 </div>
 
-                <DropdownItem onClick={() => navigate('/minha-conta/perfil')}>
+                <DropdownItem onClick={() => navigate("/minha-conta/perfil")}>
                   <User className="h-3.5 w-3.5 mr-2 text-pink-500" />
                   <span>Meu perfil</span>
                 </DropdownItem>
-                <DropdownItem onClick={() => navigate('/minha-conta/pedidos')}>
+                <DropdownItem onClick={() => navigate("/minha-conta/pedidos")}>
                   <Package className="h-3.5 w-3.5 mr-2 text-sky-500" />
                   <span>Meus pedidos</span>
                 </DropdownItem>
-                <DropdownItem onClick={() => navigate('/minha-conta/favoritos')}>
+                <DropdownItem
+                  onClick={() => navigate("/minha-conta/favoritos")}
+                >
                   <Heart className="h-3.5 w-3.5 mr-2 text-rose-500" />
                   <span>Favoritos</span>
                 </DropdownItem>
-                <DropdownItem onClick={() => navigate('/minha-conta/configuracoes')}>
+                <DropdownItem
+                  onClick={() => navigate("/minha-conta/configuracoes")}
+                >
                   <Settings className="h-3.5 w-3.5 mr-2 text-muted-foreground" />
                   <span>Configurações</span>
                 </DropdownItem>
 
-                {(user.role === 'admin' || user.role === 'superadmin' || user.role === 'support' || user.role === 'production' || user.role === 'stock') && (
+                {(user.role === "admin" ||
+                  user.role === "superadmin" ||
+                  user.role === "support" ||
+                  user.role === "production" ||
+                  user.role === "stock") && (
                   <>
                     <DropdownSeparator />
-                    <DropdownItem onClick={() => navigate('/admin')}>
+                    <DropdownItem onClick={() => navigate("/admin")}>
                       <ShieldAlert className="h-3.5 w-3.5 mr-2 text-purple-500" />
                       <span className="font-bold text-purple-600 dark:text-purple-400">
                         Painel Administrativo
@@ -254,19 +280,23 @@ export const StoreHeader: React.FC = () => {
             ) : (
               <>
                 <div className="px-3 py-2 border-b border-border text-left">
-                  <p className="text-xs font-bold text-foreground">Bem-vindo à Dengo 3D!</p>
-                  <p className="text-[11px] text-muted-foreground">Acesse sua conta para ver pedidos</p>
+                  <p className="text-xs font-bold text-foreground">
+                    Bem-vindo à Dengo 3D!
+                  </p>
+                  <p className="text-[11px] text-muted-foreground">
+                    Acesse sua conta para ver pedidos
+                  </p>
                 </div>
-                <DropdownItem onClick={() => navigate('/login')}>
+                <DropdownItem onClick={() => navigate("/login")}>
                   <User className="h-3.5 w-3.5 mr-2 text-pink-500" />
                   <span className="font-bold">Entrar</span>
                 </DropdownItem>
-                <DropdownItem onClick={() => navigate('/cadastro')}>
+                <DropdownItem onClick={() => navigate("/cadastro")}>
                   <Sparkles className="h-3.5 w-3.5 mr-2 text-sky-500" />
                   <span>Criar conta</span>
                 </DropdownItem>
                 <DropdownSeparator />
-                <DropdownItem onClick={() => navigate('/admin')}>
+                <DropdownItem onClick={() => navigate("/admin")}>
                   <ShieldAlert className="h-3.5 w-3.5 mr-2 text-muted-foreground" />
                   <span>Acesso Admin</span>
                 </DropdownItem>
@@ -320,7 +350,7 @@ export const StoreHeader: React.FC = () => {
 
             <button
               onClick={() => {
-                navigate('/produtos');
+                navigate("/produtos");
                 setMobileMenuOpen(false);
               }}
               className="w-full flex items-center justify-between p-3 rounded-2xl text-xs font-bold text-foreground hover:bg-pink-50 dark:hover:bg-pink-950/40 transition-colors"
@@ -336,7 +366,7 @@ export const StoreHeader: React.FC = () => {
 
             <button
               onClick={() => {
-                navigate('/categorias');
+                navigate("/categorias");
                 setMobileMenuOpen(false);
               }}
               className="w-full flex items-center justify-between p-3 rounded-2xl text-xs font-bold text-foreground hover:bg-pink-50 dark:hover:bg-pink-950/40 transition-colors"
@@ -352,7 +382,7 @@ export const StoreHeader: React.FC = () => {
 
             <button
               onClick={() => {
-                navigate('/ofertas');
+                navigate("/ofertas");
                 setMobileMenuOpen(false);
               }}
               className="w-full flex items-center justify-between p-3 rounded-2xl text-xs font-bold text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors"
@@ -373,7 +403,7 @@ export const StoreHeader: React.FC = () => {
 
               <button
                 onClick={() => {
-                  navigate('/minha-conta');
+                  navigate("/minha-conta");
                   setMobileMenuOpen(false);
                 }}
                 className="w-full flex items-center gap-3 p-3 rounded-2xl text-xs font-medium text-foreground hover:bg-pink-50 dark:hover:bg-pink-950/40 transition-colors"
@@ -384,7 +414,7 @@ export const StoreHeader: React.FC = () => {
 
               <button
                 onClick={() => {
-                  navigate('/minha-conta/favoritos');
+                  navigate("/minha-conta/favoritos");
                   setMobileMenuOpen(false);
                 }}
                 className="w-full flex items-center justify-between p-3 rounded-2xl text-xs font-medium text-foreground hover:bg-pink-50 dark:hover:bg-pink-950/40 transition-colors"
@@ -393,12 +423,14 @@ export const StoreHeader: React.FC = () => {
                   <Heart className="h-4 w-4 text-pink-500" />
                   <span>Favoritos</span>
                 </div>
-                {wishlistCount > 0 && <Badge variant="babyPink">{wishlistCount}</Badge>}
+                {wishlistCount > 0 && (
+                  <Badge variant="babyPink">{wishlistCount}</Badge>
+                )}
               </button>
 
               <button
                 onClick={() => {
-                  navigate('/contato');
+                  navigate("/contato");
                   setMobileMenuOpen(false);
                 }}
                 className="w-full flex items-center gap-3 p-3 rounded-2xl text-xs font-medium text-foreground hover:bg-pink-50 dark:hover:bg-pink-950/40 transition-colors"
@@ -409,7 +441,7 @@ export const StoreHeader: React.FC = () => {
 
               <button
                 onClick={() => {
-                  navigate('/admin');
+                  navigate("/admin");
                   setMobileMenuOpen(false);
                 }}
                 className="w-full flex items-center gap-3 p-3 rounded-2xl text-xs font-medium text-purple-600 dark:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-950/40 transition-colors"
@@ -440,7 +472,7 @@ export const StoreHeader: React.FC = () => {
                   variant="outline"
                   size="sm"
                   onClick={() => {
-                    navigate('/login');
+                    navigate("/login");
                     setMobileMenuOpen(false);
                   }}
                 >
@@ -450,7 +482,7 @@ export const StoreHeader: React.FC = () => {
                   variant="dengo"
                   size="sm"
                   onClick={() => {
-                    navigate('/cadastro');
+                    navigate("/cadastro");
                     setMobileMenuOpen(false);
                   }}
                 >

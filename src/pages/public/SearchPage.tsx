@@ -1,34 +1,37 @@
-import * as React from 'react';
-import { StoreLayout } from '@/src/layouts/store/StoreLayout';
-import { Breadcrumb } from '@/src/components/ui/Breadcrumb';
-import { ProductGrid } from '@/src/components/business/ProductGrid';
-import { ProductFilters, FilterState } from '@/src/components/business/ProductFilters';
-import { Pagination } from '@/src/components/ui/Pagination';
-import { Drawer } from '@/src/components/ui/Drawer';
-import { Badge } from '@/src/components/ui/Badge';
-import { Button } from '@/src/components/ui/Button';
-import { mockProducts } from '@/src/mocks/products';
-import { mockCategories } from '@/src/mocks/categories';
-import { useNavigationStore } from '@/src/stores/navigationStore';
-import { Search, X, Sparkles, Filter, ArrowUpDown } from 'lucide-react';
-import { cn } from '@/src/lib/utils';
+import * as React from "react";
+import { StoreLayout } from "@/src/layouts/store/StoreLayout";
+import { Breadcrumb } from "@/src/components/ui/Breadcrumb";
+import { ProductGrid } from "@/src/components/business/ProductGrid";
+import {
+  ProductFilters,
+  FilterState,
+} from "@/src/components/business/ProductFilters";
+import { Pagination } from "@/src/components/ui/Pagination";
+import { Drawer } from "@/src/components/ui/Drawer";
+import { Badge } from "@/src/components/ui/Badge";
+import { Button } from "@/src/components/ui/Button";
+import { mockProducts } from "@/src/mocks/products";
+import { mockCategories } from "@/src/mocks/categories";
+import { useNavigationStore } from "@/src/stores/navigationStore";
+import { Search, X, Sparkles, Filter, ArrowUpDown } from "lucide-react";
+import { cn } from "@/src/lib/utils";
 
 const ITEMS_PER_PAGE = 12;
 
 const POPULAR_SEARCH_TAGS = [
-  'Lontrinha',
-  'Dragão Articulado',
-  'Vaso Geométrico',
-  'Suporte Headset',
-  'Cortadores Candy',
-  'PLA Silk Rosa',
-  'Resina 8K',
-  'Organizador',
+  "Lontrinha",
+  "Dragão Articulado",
+  "Vaso Geométrico",
+  "Suporte Headset",
+  "Cortadores Candy",
+  "PLA Silk Rosa",
+  "Resina 8K",
+  "Organizador",
 ];
 
 export const SearchPage: React.FC = () => {
   const { params, navigate, setQueryParams } = useNavigationStore();
-  const rawQuery = params.query || params.q || '';
+  const rawQuery = params.query || params.q || "";
   const [searchInput, setSearchInput] = React.useState(rawQuery);
   const [mobileFilterOpen, setMobileFilterOpen] = React.useState(false);
 
@@ -47,13 +50,13 @@ export const SearchPage: React.FC = () => {
     return () => clearTimeout(timer);
   }, [searchInput, rawQuery, setQueryParams]);
 
-  const currentCategory = params.categorySlug || params.category || 'all';
-  const currentSort = params.sort || 'featured';
+  const currentCategory = params.categorySlug || params.category || "all";
+  const currentSort = params.sort || "featured";
   const currentPage = Number(params.page) || 1;
   const currentMinPrice = params.minPrice ? Number(params.minPrice) : undefined;
   const currentMaxPrice = params.maxPrice ? Number(params.maxPrice) : undefined;
   const currentMinRating = params.rating ? Number(params.rating) : undefined;
-  const currentInStock = params.inStock === true || params.inStock === 'true';
+  const currentInStock = params.inStock === true || params.inStock === "true";
 
   const currentMaterials = React.useMemo(() => {
     if (!params.material) return [];
@@ -87,27 +90,39 @@ export const SearchPage: React.FC = () => {
         const descMatch = p.description.toLowerCase().includes(q);
         const shortDescMatch = p.shortDescription?.toLowerCase().includes(q);
         const tagMatch = p.tags.some((t) => t.toLowerCase().includes(q));
-        const catMatch = p.categories.some((c) => c.name.toLowerCase().includes(q) || c.slug.includes(q));
+        const catMatch = p.categories.some(
+          (c) => c.name.toLowerCase().includes(q) || c.slug.includes(q),
+        );
         const specMatch = p.technicalSpecs?.material?.toLowerCase().includes(q);
-        return nameMatch || descMatch || shortDescMatch || tagMatch || catMatch || specMatch;
+        return (
+          nameMatch ||
+          descMatch ||
+          shortDescMatch ||
+          tagMatch ||
+          catMatch ||
+          specMatch
+        );
       });
     }
 
     // 2. Category Filter
-    if (filterState.category && filterState.category !== 'all') {
+    if (filterState.category && filterState.category !== "all") {
       result = result.filter((p) =>
-        p.categories.some((c) => c.slug === filterState.category || c.id === filterState.category)
+        p.categories.some(
+          (c) =>
+            c.slug === filterState.category || c.id === filterState.category,
+        ),
       );
     }
 
     // 3. Price Filter
-    if (filterState.minPrice !== undefined && filterState.minPrice !== '') {
+    if (filterState.minPrice !== undefined && filterState.minPrice !== "") {
       result = result.filter((p) => {
         const effectivePrice = p.basePromotionalPrice || p.basePrice;
         return effectivePrice >= Number(filterState.minPrice);
       });
     }
-    if (filterState.maxPrice !== undefined && filterState.maxPrice !== '') {
+    if (filterState.maxPrice !== undefined && filterState.maxPrice !== "") {
       result = result.filter((p) => {
         const effectivePrice = p.basePromotionalPrice || p.basePrice;
         return effectivePrice <= Number(filterState.maxPrice);
@@ -119,9 +134,11 @@ export const SearchPage: React.FC = () => {
       result = result.filter((p) => {
         return filterState.material.some((mat) => {
           const matLower = mat.toLowerCase();
-          const specMat = p.technicalSpecs?.material?.toLowerCase() || '';
+          const specMat = p.technicalSpecs?.material?.toLowerCase() || "";
           const tagMat = p.tags.some((t) => t.toLowerCase().includes(matLower));
-          const variantMat = p.variants?.some((v) => v.material?.toLowerCase().includes(matLower));
+          const variantMat = p.variants?.some((v) =>
+            v.material?.toLowerCase().includes(matLower),
+          );
           return specMat.includes(matLower) || tagMat || variantMat;
         });
       });
@@ -132,11 +149,14 @@ export const SearchPage: React.FC = () => {
       result = result.filter((p) => {
         return filterState.color.some((col) => {
           const colLower = col.toLowerCase();
-          const variantMatch = p.variants?.some((v) =>
-            v.name.toLowerCase().includes(colLower) ||
-            v.colorName?.toLowerCase().includes(colLower)
+          const variantMatch = p.variants?.some(
+            (v) =>
+              v.name.toLowerCase().includes(colLower) ||
+              v.colorName?.toLowerCase().includes(colLower),
           );
-          const tagMatch = p.tags.some((t) => t.toLowerCase().includes(colLower));
+          const tagMatch = p.tags.some((t) =>
+            t.toLowerCase().includes(colLower),
+          );
           return variantMatch || tagMatch;
         });
       });
@@ -144,12 +164,14 @@ export const SearchPage: React.FC = () => {
 
     // 6. Rating Filter
     if (filterState.minRating) {
-      result = result.filter((p) => (p.rating || 0) >= (filterState.minRating || 0));
+      result = result.filter(
+        (p) => (p.rating || 0) >= (filterState.minRating || 0),
+      );
     }
 
     // 7. In Stock Filter
     if (filterState.inStockOnly) {
-      result = result.filter((p) => p.inStock && p.stockTotal > 0);
+      result = result.filter((p) => p.inStock && (p.stockTotal ?? 0) > 0);
     }
 
     // 8. Sort
@@ -158,17 +180,19 @@ export const SearchPage: React.FC = () => {
       const priceB = b.basePromotionalPrice || b.basePrice;
 
       switch (currentSort) {
-        case 'price_asc':
+        case "price_asc":
           return priceA - priceB;
-        case 'price_desc':
+        case "price_desc":
           return priceB - priceA;
-        case 'rating_desc':
+        case "rating_desc":
           return (b.rating || 0) - (a.rating || 0);
-        case 'bestseller':
+        case "bestseller":
           return (b.isBestSeller ? 1 : 0) - (a.isBestSeller ? 1 : 0);
-        case 'newest':
-          return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-        case 'featured':
+        case "newest":
+          return (
+            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          );
+        case "featured":
         default:
           return (b.isFeatured ? 1 : 0) - (a.isFeatured ? 1 : 0);
       }
@@ -185,12 +209,17 @@ export const SearchPage: React.FC = () => {
 
   const handleFilterChange = (newFilters: FilterState) => {
     setQueryParams({
-      category: newFilters.category === 'all' ? undefined : newFilters.category,
-      categorySlug: newFilters.category === 'all' ? undefined : newFilters.category,
+      category: newFilters.category === "all" ? undefined : newFilters.category,
+      categorySlug:
+        newFilters.category === "all" ? undefined : newFilters.category,
       minPrice: newFilters.minPrice,
       maxPrice: newFilters.maxPrice,
-      material: newFilters.material.length > 0 ? newFilters.material.join(',') : undefined,
-      color: newFilters.color.length > 0 ? newFilters.color.join(',') : undefined,
+      material:
+        newFilters.material.length > 0
+          ? newFilters.material.join(",")
+          : undefined,
+      color:
+        newFilters.color.length > 0 ? newFilters.color.join(",") : undefined,
       rating: newFilters.minRating,
       inStock: newFilters.inStockOnly ? true : undefined,
       page: 1,
@@ -212,8 +241,8 @@ export const SearchPage: React.FC = () => {
   };
 
   const breadcrumbs = [
-    { label: 'Início', href: '/' },
-    { label: 'Busca Global', isCurrent: true },
+    { label: "Início", href: "/" },
+    { label: "Busca Global", isCurrent: true },
   ];
 
   return (
@@ -222,12 +251,15 @@ export const SearchPage: React.FC = () => {
         <Breadcrumb items={breadcrumbs} onNavigate={navigate} />
 
         {/* Search Header Banner with Live Search Box */}
-        <div className="p-6 sm:p-8 rounded-3xl border border-pink-200/80 dark:border-pink-900/50 bg-gradient-to-br from-pink-50/90 via-card to-sky-50/60 dark:from-pink-950/30 dark:to-card space-y-4 shadow-2xs">
+        <div className="p-6 sm:p-8 rounded-3xl border border-pink-200/80 dark:border-pink-900/50 bg-linear-to-br from-pink-50/90 via-card to-sky-50/60 dark:from-pink-950/30 dark:to-card space-y-4 shadow-2xs">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <h1 className="text-xl sm:text-2xl font-black text-foreground">
               Busca de Produtos
             </h1>
-            <Badge variant="babyPink" className="font-bold text-xs self-start sm:self-auto">
+            <Badge
+              variant="babyPink"
+              className="font-bold text-xs self-start sm:self-auto"
+            >
               {filteredProducts.length} itens encontrados
             </Badge>
           </div>
@@ -244,7 +276,7 @@ export const SearchPage: React.FC = () => {
             {searchInput && (
               <button
                 type="button"
-                onClick={() => setSearchInput('')}
+                onClick={() => setSearchInput("")}
                 className="absolute right-3.5 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground cursor-pointer p-1"
               >
                 <X className="h-4 w-4" />
@@ -284,15 +316,21 @@ export const SearchPage: React.FC = () => {
               <span>Filtros</span>
             </Button>
             <span className="text-xs text-muted-foreground font-semibold">
-              {searchInput ? `Resultados para "${searchInput}"` : 'Todos os produtos'}
+              {searchInput
+                ? `Resultados para "${searchInput}"`
+                : "Todos os produtos"}
             </span>
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="text-xs text-muted-foreground font-medium hidden sm:inline">Ordenar:</span>
+            <span className="text-xs text-muted-foreground font-medium hidden sm:inline">
+              Ordenar:
+            </span>
             <select
               value={currentSort}
-              onChange={(e) => setQueryParams({ sort: e.target.value, page: 1 })}
+              onChange={(e) =>
+                setQueryParams({ sort: e.target.value, page: 1 })
+              }
               className="h-9 px-3 text-xs rounded-xl border border-pink-200/80 dark:border-pink-900/60 bg-card text-foreground font-semibold focus:outline-none focus:ring-1 focus:ring-pink-400 cursor-pointer shadow-2xs"
             >
               <option value="featured">✨ Em Destaque</option>
@@ -346,9 +384,9 @@ export const SearchPage: React.FC = () => {
               emptyDescription="Nossa lontrinha não localizou peças com esse termo de busca. Experimente termos como 'articulado', 'filamento', 'cortadores' ou redefina os filtros."
               emptyActionLabel="Ver Catálogo Completo"
               onEmptyAction={() => {
-                setSearchInput('');
+                setSearchInput("");
                 handleResetFilters();
-                navigate('/produtos');
+                navigate("/produtos");
               }}
             />
 
@@ -359,7 +397,7 @@ export const SearchPage: React.FC = () => {
                   totalPages={totalPages}
                   onPageChange={(page) => {
                     setQueryParams({ page });
-                    window.scrollTo({ top: 180, behavior: 'smooth' });
+                    window.scrollTo({ top: 180, behavior: "smooth" });
                   }}
                 />
               </div>

@@ -45,7 +45,7 @@
   }
 }
 
-@theme {
+:root {
   --color-background: #fffbfe;
   --color-foreground: #1e293b;
   --color-card: #ffffff;

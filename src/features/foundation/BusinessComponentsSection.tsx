@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   ProductCard,
   PriceDisplay,
@@ -7,34 +7,47 @@ import {
   QuantitySelector,
   OrderStatusBadge,
   OrderTimeline,
-} from '@/src/components/business';
-import { mockProducts, mockOrders } from '@/src/mocks';
-import { OrderStatus, InventoryStatus } from '@/src/types';
-import { Box, Layers, Cpu, ShieldCheck, CheckCircle2, Clock } from 'lucide-react';
-import { Card, CardHeader, CardTitle, CardContent } from '@/src/components/ui/Card';
-import { Button } from '@/src/components/ui/Button';
+} from "@/src/components/business";
+import { mockProducts, mockOrders } from "@/src/mocks";
+import { OrderStatus, InventoryStatus } from "@/src/types";
+import {
+  Box,
+  Layers,
+  Cpu,
+  ShieldCheck,
+  CheckCircle2,
+  Clock,
+} from "lucide-react";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+} from "@/src/components/ui/Card";
+import { Button } from "@/src/components/ui/Button";
 
 export const BusinessComponentsSection: React.FC = () => {
   const [demoQty, setDemoQty] = React.useState(2);
-  const [selectedTimelineStatus, setSelectedTimelineStatus] = React.useState<OrderStatus>('in_production');
+  const [selectedTimelineStatus, setSelectedTimelineStatus] =
+    React.useState<OrderStatus>("in_production");
 
   const orderStatuses: OrderStatus[] = [
-    'pending',
-    'confirmed',
-    'in_production',
-    'in_production',
-    'ready_to_ship',
-    'shipped',
-    'delivered',
-    'cancelled',
+    "pending",
+    "confirmed",
+    "in_production",
+    "in_production",
+    "ready_to_ship",
+    "shipped",
+    "delivered",
+    "cancelled",
   ];
 
   const inventoryStatuses: InventoryStatus[] = [
-    'in_stock',
-    'low_stock',
-    'out_of_stock',
-    'made_to_order',
-    'pre_order',
+    "in_stock",
+    "low_stock",
+    "out_of_stock",
+    "made_to_order",
+    "pre_order",
   ];
 
   return (
@@ -49,7 +62,9 @@ export const BusinessComponentsSection: React.FC = () => {
           Componentes de Negócio & Manufatura 3D
         </h2>
         <p className="text-sm text-muted-foreground mt-1.5 max-w-3xl">
-          Componentes especializados para o fluxo de compra, catálogo técnico de filamentos/resinas, exibição de preços com parcelamento e rastreamento da linha de produção de peças 3D.
+          Componentes especializados para o fluxo de compra, catálogo técnico de
+          filamentos/resinas, exibição de preços com parcelamento e rastreamento
+          da linha de produção de peças 3D.
         </p>
       </div>
 
@@ -57,7 +72,8 @@ export const BusinessComponentsSection: React.FC = () => {
       <section className="space-y-4">
         <h3 className="text-base font-semibold text-foreground flex items-center gap-2">
           <span className="h-2 w-2 rounded-full bg-primary" />
-          1. ProductCard (Com Seletor de Variantes de Cores e Ações de Carrinho/Favoritos)
+          1. ProductCard (Com Seletor de Variantes de Cores e Ações de
+          Carrinho/Favoritos)
         </h3>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -78,16 +94,26 @@ export const BusinessComponentsSection: React.FC = () => {
           {/* PriceDisplay Variations */}
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-semibold">PriceDisplay (Com Desconto & Parcelamento)</CardTitle>
+              <CardTitle className="text-sm font-semibold">
+                PriceDisplay (Com Desconto & Parcelamento)
+              </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <p className="text-xs text-muted-foreground mb-1">Tamanho Grande (Página de Produto)</p>
-                <PriceDisplay price={219.90} promotionalPrice={189.90} size="lg" />
+                <p className="text-xs text-muted-foreground mb-1">
+                  Tamanho Grande (Página de Produto)
+                </p>
+                <PriceDisplay
+                  price={219.9}
+                  promotionalPrice={189.9}
+                  size="lg"
+                />
               </div>
               <div className="pt-2 border-t border-border">
-                <p className="text-xs text-muted-foreground mb-1">Preço Regular (Sem Desconto)</p>
-                <PriceDisplay price={289.00} size="md" />
+                <p className="text-xs text-muted-foreground mb-1">
+                  Preço Regular (Sem Desconto)
+                </p>
+                <PriceDisplay price={289.0} size="md" />
               </div>
             </CardContent>
           </Card>
@@ -95,19 +121,27 @@ export const BusinessComponentsSection: React.FC = () => {
           {/* Rating Scores */}
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-semibold">Rating (Avaliações & Métricas de Camada)</CardTitle>
+              <CardTitle className="text-sm font-semibold">
+                Rating (Avaliações & Métricas de Camada)
+              </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-1">
-                <p className="text-xs text-muted-foreground">Nota Geral de Produto</p>
+                <p className="text-xs text-muted-foreground">
+                  Nota Geral de Produto
+                </p>
                 <Rating rating={4.9} reviewCount={142} size="md" />
               </div>
               <div className="space-y-1">
-                <p className="text-xs text-muted-foreground">Score de Precisão Dimensional</p>
+                <p className="text-xs text-muted-foreground">
+                  Score de Precisão Dimensional
+                </p>
                 <Rating rating={5.0} reviewCount={68} size="sm" />
               </div>
               <div className="space-y-1">
-                <p className="text-xs text-muted-foreground">Avaliação Regular</p>
+                <p className="text-xs text-muted-foreground">
+                  Avaliação Regular
+                </p>
                 <Rating rating={3.5} reviewCount={12} size="sm" />
               </div>
             </CardContent>
@@ -116,11 +150,15 @@ export const BusinessComponentsSection: React.FC = () => {
           {/* Quantity Stepper */}
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-semibold">QuantitySelector (Controle de Estoque)</CardTitle>
+              <CardTitle className="text-sm font-semibold">
+                QuantitySelector (Controle de Estoque)
+              </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <p className="text-xs text-muted-foreground">Seletor Médio (Valor: {demoQty})</p>
+                <p className="text-xs text-muted-foreground">
+                  Seletor Médio (Valor: {demoQty})
+                </p>
                 <QuantitySelector
                   value={demoQty}
                   onChange={setDemoQty}
@@ -130,8 +168,15 @@ export const BusinessComponentsSection: React.FC = () => {
                 />
               </div>
               <div className="space-y-2 pt-2 border-t border-border">
-                <p className="text-xs text-muted-foreground">Seletor Compacto (Desabilitado)</p>
-                <QuantitySelector value={1} onChange={() => {}} disabled size="sm" />
+                <p className="text-xs text-muted-foreground">
+                  Seletor Compacto (Desabilitado)
+                </p>
+                <QuantitySelector
+                  value={1}
+                  onChange={() => {}}
+                  disabled
+                  size="sm"
+                />
               </div>
             </CardContent>
           </Card>
@@ -179,20 +224,30 @@ export const BusinessComponentsSection: React.FC = () => {
           </h3>
 
           <div className="flex items-center gap-1.5 flex-wrap">
-            <span className="text-xs text-muted-foreground mr-1">Simular Etapa:</span>
-            {(['confirmed', 'in_production', 'ready_to_ship', 'shipped', 'delivered'] as OrderStatus[]).map((st) => (
+            <span className="text-xs text-muted-foreground mr-1">
+              Simular Etapa:
+            </span>
+            {(
+              [
+                "confirmed",
+                "in_production",
+                "ready_to_ship",
+                "shipped",
+                "delivered",
+              ] as OrderStatus[]
+            ).map((st) => (
               <Button
                 key={st}
-                variant={selectedTimelineStatus === st ? 'default' : 'outline'}
+                variant={selectedTimelineStatus === st ? "default" : "outline"}
                 size="sm"
                 className="h-7 text-[11px] px-2"
                 onClick={() => setSelectedTimelineStatus(st)}
               >
-                {st === 'confirmed' && 'Pago'}
-                {st === 'in_production' && 'Em Impressão 3D'}
-                {st === 'ready_to_ship' && 'Qualidade'}
-                {st === 'shipped' && 'Em Trânsito'}
-                {st === 'delivered' && 'Entregue'}
+                {st === "confirmed" && "Pago"}
+                {st === "in_production" && "Em Impressão 3D"}
+                {st === "ready_to_ship" && "Qualidade"}
+                {st === "shipped" && "Em Trânsito"}
+                {st === "delivered" && "Entregue"}
               </Button>
             ))}
           </div>
@@ -202,7 +257,9 @@ export const BusinessComponentsSection: React.FC = () => {
           <CardHeader>
             <div className="flex items-center justify-between">
               <div>
-                <CardTitle className="text-base">Pedido #{mockOrders[0].orderNumber}</CardTitle>
+                <CardTitle className="text-base">
+                  Pedido #{mockOrders[0].orderNumber}
+                </CardTitle>
                 <p className="text-xs text-muted-foreground mt-0.5">
                   Filamento PLA Hyper + Peça Técnica Voron 2.4 sob demanda
                 </p>
@@ -211,10 +268,7 @@ export const BusinessComponentsSection: React.FC = () => {
             </div>
           </CardHeader>
           <CardContent>
-            <OrderTimeline
-              currentStatus={selectedTimelineStatus}
-              events={mockOrders[0].shipment?.events}
-            />
+            <OrderTimeline order={mockOrders[0]} />
           </CardContent>
         </Card>
       </section>

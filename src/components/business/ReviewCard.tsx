@@ -46,7 +46,6 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({ review, onVoteHelpful })
           <Avatar
             src={review.userAvatar}
             alt={review.userName}
-            fallback={review.userName.charAt(0).toUpperCase()}
             size="md"
             className="ring-2 ring-pink-100"
           />
