@@ -1,17 +1,17 @@
-import * as React from 'react';
-import { Product, ProductVariant } from '@/src/types';
-import { Card } from '@/src/components/ui/Card';
-import { Button } from '@/src/components/ui/Button';
-import { Badge } from '@/src/components/ui/Badge';
-import { PriceDisplay } from './PriceDisplay';
-import { Rating } from './Rating';
-import { StatusBadge } from './StatusBadge';
-import { Heart, ShoppingBag, Sparkles, Eye, Check } from 'lucide-react';
-import { useCartStore } from '@/src/stores/cartStore';
-import { useWishlistStore } from '@/src/stores/wishlistStore';
-import { useNavigationStore } from '@/src/stores/navigationStore';
-import { useToast } from '@/src/hooks/useToast';
-import { cn } from '@/src/lib/utils';
+import * as React from "react";
+import { Product, ProductVariant } from "@/src/types";
+import { Card } from "@/src/components/ui/Card";
+import { Button } from "@/src/components/ui/Button";
+import { Badge } from "@/src/components/ui/Badge";
+import { PriceDisplay } from "./PriceDisplay";
+import { Rating } from "./Rating";
+import { StatusBadge } from "./StatusBadge";
+import { Heart, ShoppingBag, Sparkles, Eye, Check } from "lucide-react";
+import { useCartStore } from "@/src/stores/cartStore";
+import { useWishlistStore } from "@/src/stores/wishlistStore";
+import { useNavigationStore } from "@/src/stores/navigationStore";
+import { useToast } from "@/src/hooks/useToast";
+import { cn } from "@/src/lib/utils";
 
 export interface ProductCardProps {
   product: Product;
@@ -28,12 +28,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
   const [selectedVariant, setSelectedVariant] = React.useState<ProductVariant>(
     product.variants?.[0] || {
-      id: 'default',
-      sku: 'SKU',
-      name: 'Padrão',
+      id: "default",
+      sku: "SKU",
+      name: "Padrão",
       price: product.basePrice,
       stockQuantity: product.stockTotal,
-    }
+    },
   );
 
   const [imageLoaded, setImageLoaded] = React.useState(false);
@@ -46,10 +46,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
   const isFavorite = isInWishlist(product.id);
 
-  const currentPrice = selectedVariant.promotionalPrice || selectedVariant.price || product.basePrice;
+  const currentPrice =
+    selectedVariant.promotionalPrice ||
+    selectedVariant.price ||
+    product.basePrice;
   const regularPrice = selectedVariant.price || product.basePrice;
-  const hasDiscount = (selectedVariant.promotionalPrice && selectedVariant.promotionalPrice < selectedVariant.price) ||
-    (product.basePromotionalPrice && product.basePromotionalPrice < product.basePrice);
+  const hasDiscount =
+    (selectedVariant.promotionalPrice &&
+      selectedVariant.promotionalPrice < selectedVariant.price) ||
+    (product.basePromotionalPrice &&
+      product.basePromotionalPrice < product.basePrice);
 
   const discountPercent = hasDiscount
     ? Math.round(((regularPrice - currentPrice) / regularPrice) * 100)
@@ -73,22 +79,29 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       variantName: selectedVariant.name,
       colorName: selectedVariant.colorName,
       colorHex: selectedVariant.colorHex,
-      material: selectedVariant.material || (product.type === 'filament' ? 'PLA Silk' : 'PLA+'),
+      material:
+        selectedVariant.material ||
+        (product.type === "filament" ? "PLA Silk" : "PLA+"),
       imageUrl: selectedVariant.imageUrl || product.featuredImage,
       unitPrice: currentPrice,
       quantity: 1,
       maxStock: selectedVariant.stockQuantity || product.stockTotal || 10,
       sku: selectedVariant.sku,
     });
-    toast.success('Adicionado com dengo! 💖', `${product.name} (${selectedVariant.name})`);
+    toast.success(
+      "Adicionado com dengo! 💖",
+      `${product.name} (${selectedVariant.name})`,
+    );
   };
 
   const handleToggleWishlist = (e: React.MouseEvent) => {
     e.stopPropagation();
     toggleWishlist(product.id);
     toast.info(
-      isFavorite ? 'Removido dos favoritos' : 'Salvo na sua Lista de Desejos 💖',
-      product.name
+      isFavorite
+        ? "Removido dos favoritos"
+        : "Salvo na sua Lista de Desejos 💖",
+      product.name,
     );
   };
 
@@ -96,22 +109,26 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     <Card
       id={`product-card-${product.id}`}
       className={cn(
-        'group flex flex-col justify-between overflow-hidden rounded-3xl border border-pink-200/70 dark:border-pink-900/40 bg-card transition-all duration-300 hover:border-pink-400 dark:hover:border-pink-500/60 hover:shadow-xl hover:shadow-pink-500/10 hover:-translate-y-1 cursor-pointer select-none',
-        className
+        "group flex flex-col justify-between overflow-hidden rounded-3xl border border-pink-200/70 dark:border-pink-900/40 bg-card transition-all duration-300 hover:border-pink-400 dark:hover:border-pink-500/60 hover:shadow-xl hover:shadow-pink-500/10 hover:-translate-y-1 cursor-pointer select-none",
+        className,
       )}
       onClick={handleCardClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative aspect-square w-full overflow-hidden bg-gradient-to-tr from-pink-50/60 via-white to-sky-50/60 dark:from-zinc-900 dark:to-zinc-800">
+      <div className="relative aspect-square w-full overflow-hidden bg-linear-to-tr from-pink-50/60 via-white to-sky-50/60 dark:from-zinc-900 dark:to-zinc-800">
         {/* Product Image with smooth skeleton backdrop */}
         <img
-          src={selectedVariant.imageUrl || product.featuredImage || product.images?.[0]}
+          src={
+            selectedVariant.imageUrl ||
+            product.featuredImage ||
+            product.images?.[0]
+          }
           alt={product.name}
           className={cn(
-            'h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-108',
-            !imageLoaded && 'opacity-0 scale-95',
-            imageLoaded && 'opacity-100 scale-100'
+            "h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-108",
+            !imageLoaded && "opacity-0 scale-95",
+            imageLoaded && "opacity-100 scale-100",
           )}
           loading="lazy"
           onLoad={() => setImageLoaded(true)}
@@ -121,22 +138,34 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         {/* Floating Badges */}
         <div className="absolute top-2.5 left-2.5 flex flex-col gap-1.5 z-10">
           {discountPercent > 0 && (
-            <Badge variant="destructive" className="font-extrabold text-[10px] shadow-xs px-2 py-0.5 bg-rose-500 text-white animate-pulse">
+            <Badge
+              variant="destructive"
+              className="font-extrabold text-[10px] shadow-xs px-2 py-0.5 bg-rose-500 text-white animate-pulse"
+            >
               -{discountPercent}% OFF
             </Badge>
           )}
           {product.isFeatured && (
-            <Badge variant="candyGradient" className="shadow-xs text-[10px] font-bold">
+            <Badge
+              variant="candyGradient"
+              className="shadow-xs text-[10px] font-bold"
+            >
               Destaque ✨
             </Badge>
           )}
           {product.isBestSeller && !product.isFeatured && (
-            <Badge variant="babyPink" className="shadow-xs text-[10px] font-bold">
+            <Badge
+              variant="babyPink"
+              className="shadow-xs text-[10px] font-bold"
+            >
               Mais Vendido 💖
             </Badge>
           )}
           {product.isNew && !product.isFeatured && !product.isBestSeller && (
-            <Badge variant="babyBlue" className="shadow-xs text-[10px] font-bold">
+            <Badge
+              variant="babyBlue"
+              className="shadow-xs text-[10px] font-bold"
+            >
               Novidade 🌟
             </Badge>
           )}
@@ -147,14 +176,21 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           type="button"
           onClick={handleToggleWishlist}
           className={cn(
-            'absolute top-2.5 right-2.5 z-10 flex h-8.5 w-8.5 items-center justify-center rounded-full bg-white/95 dark:bg-card/95 backdrop-blur-xs shadow-xs transition-all hover:scale-115 cursor-pointer border border-pink-200/60 dark:border-pink-900/60',
+            "absolute top-2.5 right-2.5 z-10 flex h-8.5 w-8.5 items-center justify-center rounded-full bg-white/95 dark:bg-card/95 backdrop-blur-xs shadow-xs transition-all hover:scale-115 cursor-pointer border border-pink-200/60 dark:border-pink-900/60",
             isFavorite
-              ? 'text-pink-500 fill-pink-500 ring-2 ring-pink-300'
-              : 'text-muted-foreground hover:text-pink-500 hover:border-pink-300'
+              ? "text-pink-500 fill-pink-500 ring-2 ring-pink-300"
+              : "text-muted-foreground hover:text-pink-500 hover:border-pink-300",
           )}
-          aria-label={isFavorite ? 'Remover dos favoritos' : 'Favoritar produto'}
+          aria-label={
+            isFavorite ? "Remover dos favoritos" : "Favoritar produto"
+          }
         >
-          <Heart className={cn('h-4 w-4 transition-transform active:scale-125', isFavorite && 'fill-current text-pink-500')} />
+          <Heart
+            className={cn(
+              "h-4 w-4 transition-transform active:scale-125",
+              isFavorite && "fill-current text-pink-500",
+            )}
+          />
         </button>
 
         {/* Quick View Floating Hint on hover */}
@@ -169,12 +205,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
         {/* Quick Tech Tag */}
         <div className="absolute bottom-2.5 left-2.5 z-5 sm:group-hover:opacity-0 transition-opacity">
-          <Badge variant="outline" className="bg-white/90 dark:bg-card/90 backdrop-blur-xs text-[10px] font-semibold border-pink-200/60 shadow-2xs">
-            {product.type === 'printed_model'
-              ? 'Peça 3D Exclusiva'
-              : product.type === 'filament'
-              ? 'Filamento Silk'
-              : 'Item Maker'}
+          <Badge
+            variant="outline"
+            className="bg-white/90 dark:bg-card/90 backdrop-blur-xs text-[10px] font-semibold border-pink-200/60 shadow-2xs"
+          >
+            {product.type === "printed_model"
+              ? "Peça 3D Exclusiva"
+              : product.type === "filament"
+                ? "Filamento Silk"
+                : "Item Maker"}
           </Badge>
         </div>
       </div>
@@ -185,17 +224,18 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           {/* Brand & Stock Status */}
           <div className="flex items-center justify-between text-[11px] text-muted-foreground mb-1 gap-2">
             <span className="font-semibold text-pink-600 dark:text-pink-400 truncate">
-              {product.brand || 'Dengo 3D Lab'}
+              {product.brand || "Dengo 3D Lab"}
             </span>
-            <StatusBadge 
+            <StatusBadge
               status={
-                !product.inStock || selectedVariant.stockQuantity === 0 
-                  ? 'out_of_stock' 
-                  : (selectedVariant.stockQuantity !== null && selectedVariant.stockQuantity < 5)
-                    ? 'low_stock' 
-                    : 'in_stock'
-              } 
-              stockCount={selectedVariant.stockQuantity} 
+                !product.inStock || selectedVariant.stockQuantity === 0
+                  ? "out_of_stock"
+                  : selectedVariant.stockQuantity !== null &&
+                      selectedVariant.stockQuantity < 5
+                    ? "low_stock"
+                    : "in_stock"
+              }
+              stockCount={selectedVariant.stockQuantity ?? undefined}
             />
           </div>
 
@@ -206,7 +246,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
           {/* Rating */}
           <div className="mt-1.5">
-            {product.rating ? <Rating value={product.rating} reviewCount={product.reviewCount ?? undefined} size="sm" /> : null}
+            {product.rating ? (
+              <Rating
+                value={product.rating}
+                reviewCount={product.reviewCount ?? undefined}
+                size="sm"
+              />
+            ) : null}
           </div>
         </div>
 
@@ -215,7 +261,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           <div className="space-y-1 pt-1.5 border-t border-pink-100/70 dark:border-border/60">
             <div className="flex items-center justify-between text-[10px] text-muted-foreground">
               <span>Opções de cor:</span>
-              <span className="font-semibold text-foreground truncate max-w-[120px]">{selectedVariant.name}</span>
+              <span className="font-semibold text-foreground truncate max-w-30">
+                {selectedVariant.name}
+              </span>
             </div>
             <div className="flex flex-wrap items-center gap-1.5">
               {product.variants.map((variant) => (
@@ -227,12 +275,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                     setSelectedVariant(variant);
                   }}
                   className={cn(
-                    'relative h-5 w-5 rounded-full border transition-all cursor-pointer shadow-2xs',
+                    "relative h-5 w-5 rounded-full border transition-all cursor-pointer shadow-2xs",
                     selectedVariant.id === variant.id
-                      ? 'ring-2 ring-pink-500 ring-offset-1 scale-110'
-                      : 'hover:scale-105 opacity-80'
+                      ? "ring-2 ring-pink-500 ring-offset-1 scale-110"
+                      : "hover:scale-105 opacity-80",
                   )}
-                  style={{ backgroundColor: variant.colorHex || '#F472B6' }}
+                  style={{ backgroundColor: variant.colorHex || "#F472B6" }}
                   title={variant.name}
                   aria-label={`Selecionar cor ${variant.name}`}
                 />
@@ -246,7 +294,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           <div>
             <PriceDisplay
               price={selectedVariant.price || product.basePrice}
-              promotionalPrice={selectedVariant.promotionalPrice || product.basePromotionalPrice}
+              promotionalPrice={
+                selectedVariant.promotionalPrice || product.basePromotionalPrice
+              }
               size="sm"
             />
             <span className="text-[10px] text-muted-foreground font-medium block">

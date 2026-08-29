@@ -1,15 +1,18 @@
-import * as React from 'react';
-import { StoreLayout } from '@/src/layouts/store/StoreLayout';
-import { ProductGrid } from '@/src/components/business/ProductGrid';
-import { ProductFilters, FilterState } from '@/src/components/business/ProductFilters';
-import { Pagination } from '@/src/components/ui/Pagination';
-import { Drawer } from '@/src/components/ui/Drawer';
-import { Badge } from '@/src/components/ui/Badge';
-import { Button } from '@/src/components/ui/Button';
-import { mockProducts } from '@/src/mocks/products';
-import { mockCategories } from '@/src/mocks/categories';
-import { useNavigationStore } from '@/src/stores/navigationStore';
-import { Product } from '@/src/types';
+import * as React from "react";
+import { StoreLayout } from "@/src/layouts/store/StoreLayout";
+import { ProductGrid } from "@/src/components/business/ProductGrid";
+import {
+  ProductFilters,
+  FilterState,
+} from "@/src/components/business/ProductFilters";
+import { Pagination } from "@/src/components/ui/Pagination";
+import { Drawer } from "@/src/components/ui/Drawer";
+import { Badge } from "@/src/components/ui/Badge";
+import { Button } from "@/src/components/ui/Button";
+import { mockProducts } from "@/src/mocks/products";
+import { mockCategories } from "@/src/mocks/categories";
+import { useNavigationStore } from "@/src/stores/navigationStore";
+import { Product } from "@/src/types";
 import {
   SlidersHorizontal,
   ArrowUpDown,
@@ -19,8 +22,8 @@ import {
   LayoutGrid,
   Grid,
   Filter,
-} from 'lucide-react';
-import { cn } from '@/src/lib/utils';
+} from "lucide-react";
+import { cn } from "@/src/lib/utils";
 
 const ITEMS_PER_PAGE = 12;
 
@@ -30,13 +33,13 @@ export const ProductsPage: React.FC = () => {
   const [gridColumns, setGridColumns] = React.useState<3 | 4>(4);
 
   // Initialize filter state from route params
-  const currentCategory = params.categorySlug || params.category || 'all';
-  const currentSort = params.sort || 'featured';
+  const currentCategory = params.categorySlug || params.category || "all";
+  const currentSort = params.sort || "featured";
   const currentPage = Number(params.page) || 1;
   const currentMinPrice = params.minPrice ? Number(params.minPrice) : undefined;
   const currentMaxPrice = params.maxPrice ? Number(params.maxPrice) : undefined;
   const currentMinRating = params.rating ? Number(params.rating) : undefined;
-  const currentInStock = params.inStock === true || params.inStock === 'true';
+  const currentInStock = params.inStock === true || params.inStock === "true";
 
   const currentMaterials = React.useMemo(() => {
     if (!params.material) return [];
@@ -63,20 +66,23 @@ export const ProductsPage: React.FC = () => {
     let result = [...mockProducts];
 
     // 1. Category Filter
-    if (filterState.category && filterState.category !== 'all') {
+    if (filterState.category && filterState.category !== "all") {
       result = result.filter((p) =>
-        p.categories.some((c) => c.slug === filterState.category || c.id === filterState.category)
+        p.categories.some(
+          (c) =>
+            c.slug === filterState.category || c.id === filterState.category,
+        ),
       );
     }
 
     // 2. Price Filter
-    if (filterState.minPrice !== undefined && filterState.minPrice !== '') {
+    if (filterState.minPrice !== undefined && filterState.minPrice !== "") {
       result = result.filter((p) => {
         const effectivePrice = p.basePromotionalPrice || p.basePrice;
         return effectivePrice >= Number(filterState.minPrice);
       });
     }
-    if (filterState.maxPrice !== undefined && filterState.maxPrice !== '') {
+    if (filterState.maxPrice !== undefined && filterState.maxPrice !== "") {
       result = result.filter((p) => {
         const effectivePrice = p.basePromotionalPrice || p.basePrice;
         return effectivePrice <= Number(filterState.maxPrice);
@@ -88,10 +94,12 @@ export const ProductsPage: React.FC = () => {
       result = result.filter((p) => {
         const matchesMaterial = filterState.material.some((mat) => {
           const matLower = mat.toLowerCase();
-          const specMat = p.technicalSpecs?.material?.toLowerCase() || '';
+          const specMat = p.technicalSpecs?.material?.toLowerCase() || "";
           const tagMat = p.tags.some((t) => t.toLowerCase().includes(matLower));
-          const variantMat = p.variants?.some((v) => v.material?.toLowerCase().includes(matLower));
-          const typeMat = p.type === 'filament' && matLower.includes('pla');
+          const variantMat = p.variants?.some((v) =>
+            v.material?.toLowerCase().includes(matLower),
+          );
+          const typeMat = p.type === "filament" && matLower.includes("pla");
           return specMat.includes(matLower) || tagMat || variantMat || typeMat;
         });
         return matchesMaterial;
@@ -103,11 +111,14 @@ export const ProductsPage: React.FC = () => {
       result = result.filter((p) => {
         return filterState.color.some((col) => {
           const colLower = col.toLowerCase();
-          const variantMatch = p.variants?.some((v) =>
-            v.name.toLowerCase().includes(colLower) ||
-            v.colorName?.toLowerCase().includes(colLower)
+          const variantMatch = p.variants?.some(
+            (v) =>
+              v.name.toLowerCase().includes(colLower) ||
+              v.colorName?.toLowerCase().includes(colLower),
           );
-          const tagMatch = p.tags.some((t) => t.toLowerCase().includes(colLower));
+          const tagMatch = p.tags.some((t) =>
+            t.toLowerCase().includes(colLower),
+          );
           return variantMatch || tagMatch;
         });
       });
@@ -115,12 +126,14 @@ export const ProductsPage: React.FC = () => {
 
     // 5. Rating Filter
     if (filterState.minRating) {
-      result = result.filter((p) => (p.rating || 0) >= (filterState.minRating || 0));
+      result = result.filter(
+        (p) => (p.rating || 0) >= (filterState.minRating || 0),
+      );
     }
 
     // 6. In Stock Filter
     if (filterState.inStockOnly) {
-      result = result.filter((p) => p.inStock && p.stockTotal > 0);
+      result = result.filter((p) => p.inStock && (p.stockTotal ?? 0) > 0);
     }
 
     // 7. Sort
@@ -129,17 +142,19 @@ export const ProductsPage: React.FC = () => {
       const priceB = b.basePromotionalPrice || b.basePrice;
 
       switch (currentSort) {
-        case 'price_asc':
+        case "price_asc":
           return priceA - priceB;
-        case 'price_desc':
+        case "price_desc":
           return priceB - priceA;
-        case 'rating_desc':
+        case "rating_desc":
           return (b.rating || 0) - (a.rating || 0);
-        case 'bestseller':
+        case "bestseller":
           return (b.isBestSeller ? 1 : 0) - (a.isBestSeller ? 1 : 0);
-        case 'newest':
-          return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-        case 'featured':
+        case "newest":
+          return (
+            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          );
+        case "featured":
         default:
           return (b.isFeatured ? 1 : 0) - (a.isFeatured ? 1 : 0);
       }
@@ -166,12 +181,17 @@ export const ProductsPage: React.FC = () => {
 
   const handleFilterChange = (newFilters: FilterState) => {
     setQueryParams({
-      category: newFilters.category === 'all' ? undefined : newFilters.category,
-      categorySlug: newFilters.category === 'all' ? undefined : newFilters.category,
+      category: newFilters.category === "all" ? undefined : newFilters.category,
+      categorySlug:
+        newFilters.category === "all" ? undefined : newFilters.category,
       minPrice: newFilters.minPrice,
       maxPrice: newFilters.maxPrice,
-      material: newFilters.material.length > 0 ? newFilters.material.join(',') : undefined,
-      color: newFilters.color.length > 0 ? newFilters.color.join(',') : undefined,
+      material:
+        newFilters.material.length > 0
+          ? newFilters.material.join(",")
+          : undefined,
+      color:
+        newFilters.color.length > 0 ? newFilters.color.join(",") : undefined,
       rating: newFilters.minRating,
       inStock: newFilters.inStockOnly ? true : undefined,
       page: 1, // Reset to page 1 on filter changes
@@ -198,38 +218,56 @@ export const ProductsPage: React.FC = () => {
 
   const handlePageChange = (newPage: number) => {
     setQueryParams({ page: newPage });
-    window.scrollTo({ top: 180, behavior: 'smooth' });
+    window.scrollTo({ top: 180, behavior: "smooth" });
   };
 
   // Find active category metadata if selected
-  const activeCategoryObj = mockCategories.find((c) => c.slug === currentCategory);
+  const activeCategoryObj = mockCategories.find(
+    (c) => c.slug === currentCategory,
+  );
 
   return (
     <StoreLayout>
       <div className="space-y-6 text-left">
         {/* Breadcrumbs */}
-        <nav aria-label="Navegação estrutural" className="flex items-center gap-1.5 text-xs text-muted-foreground">
+        <nav
+          aria-label="Navegação estrutural"
+          className="flex items-center gap-1.5 text-xs text-muted-foreground"
+        >
           <button
             type="button"
-            onClick={() => navigate('/')}
+            onClick={() => navigate("/")}
             className="hover:text-pink-600 cursor-pointer transition-colors"
           >
             Início
           </button>
           <ChevronRight className="h-3.5 w-3.5" />
-          <span className={cn(activeCategoryObj ? 'hover:text-pink-600 cursor-pointer' : 'text-foreground font-semibold')}>
+          <span
+            className={cn(
+              activeCategoryObj
+                ? "hover:text-pink-600 cursor-pointer"
+                : "text-foreground font-semibold",
+            )}
+          >
             {activeCategoryObj ? (
-              <button type="button" onClick={() => handleFilterChange({ ...filterState, category: 'all' })}>
+              <button
+                type="button"
+                onClick={() =>
+                  handleFilterChange({ ...filterState, category: "all" })
+                }
+              >
                 Produtos
               </button>
             ) : (
-              'Todos os Produtos'
+              "Todos os Produtos"
             )}
           </span>
           {activeCategoryObj && (
             <>
               <ChevronRight className="h-3.5 w-3.5" />
-              <span className="text-foreground font-bold">{activeCategoryObj.name}</span>
+              <span className="text-foreground font-bold">
+                {activeCategoryObj.name}
+              </span>
             </>
           )}
         </nav>
@@ -239,7 +277,9 @@ export const ProductsPage: React.FC = () => {
           <div className="space-y-1">
             <div className="flex items-center gap-2">
               <h1 className="text-2xl sm:text-3xl font-black text-foreground">
-                {activeCategoryObj ? activeCategoryObj.name : 'Catálogo Completo 3D'}
+                {activeCategoryObj
+                  ? activeCategoryObj.name
+                  : "Catálogo Completo 3D"}
               </h1>
               <Badge variant="babyPink" className="text-xs font-bold">
                 {filteredProducts.length} itens
@@ -248,7 +288,7 @@ export const ProductsPage: React.FC = () => {
             <p className="text-xs sm:text-sm text-muted-foreground max-w-2xl">
               {activeCategoryObj
                 ? activeCategoryObj.description
-                : 'Explore modelos articulados, filamentos silk, suportes organizadores e itens decorativos feitos no nosso laboratório de manufatura aditiva.'}
+                : "Explore modelos articulados, filamentos silk, suportes organizadores e itens decorativos feitos no nosso laboratório de manufatura aditiva."}
             </p>
           </div>
 
@@ -267,7 +307,9 @@ export const ProductsPage: React.FC = () => {
 
             {/* Sort Select */}
             <div className="flex items-center gap-2 text-xs">
-              <span className="text-muted-foreground font-medium hidden sm:inline">Ordenar:</span>
+              <span className="text-muted-foreground font-medium hidden sm:inline">
+                Ordenar:
+              </span>
               <select
                 value={currentSort}
                 onChange={(e) => handleSortChange(e.target.value)}
@@ -288,10 +330,10 @@ export const ProductsPage: React.FC = () => {
                 type="button"
                 onClick={() => setGridColumns(3)}
                 className={cn(
-                  'p-1.5 rounded-lg transition-colors cursor-pointer',
+                  "p-1.5 rounded-lg transition-colors cursor-pointer",
                   gridColumns === 3
-                    ? 'bg-pink-100 dark:bg-pink-950 text-pink-600 font-bold'
-                    : 'text-muted-foreground hover:text-foreground'
+                    ? "bg-pink-100 dark:bg-pink-950 text-pink-600 font-bold"
+                    : "text-muted-foreground hover:text-foreground",
                 )}
                 title="3 Colunas"
               >
@@ -301,10 +343,10 @@ export const ProductsPage: React.FC = () => {
                 type="button"
                 onClick={() => setGridColumns(4)}
                 className={cn(
-                  'p-1.5 rounded-lg transition-colors cursor-pointer',
+                  "p-1.5 rounded-lg transition-colors cursor-pointer",
                   gridColumns === 4
-                    ? 'bg-pink-100 dark:bg-pink-950 text-pink-600 font-bold'
-                    : 'text-muted-foreground hover:text-foreground'
+                    ? "bg-pink-100 dark:bg-pink-950 text-pink-600 font-bold"
+                    : "text-muted-foreground hover:text-foreground",
                 )}
                 title="4 Colunas"
               >
@@ -315,7 +357,7 @@ export const ProductsPage: React.FC = () => {
         </div>
 
         {/* Active Filters Chips Bar */}
-        {(filterState.category !== 'all' ||
+        {(filterState.category !== "all" ||
           filterState.minPrice ||
           filterState.maxPrice ||
           filterState.material.length > 0 ||
@@ -323,14 +365,20 @@ export const ProductsPage: React.FC = () => {
           filterState.minRating ||
           filterState.inStockOnly) && (
           <div className="flex flex-wrap items-center gap-2 pt-1">
-            <span className="text-xs font-semibold text-muted-foreground">Filtros ativos:</span>
+            <span className="text-xs font-semibold text-muted-foreground">
+              Filtros ativos:
+            </span>
 
-            {filterState.category !== 'all' && (
+            {filterState.category !== "all" && (
               <Badge variant="babyPink" className="gap-1 text-xs">
-                <span>Cat: {activeCategoryObj?.name || filterState.category}</span>
+                <span>
+                  Cat: {activeCategoryObj?.name || filterState.category}
+                </span>
                 <button
                   type="button"
-                  onClick={() => handleFilterChange({ ...filterState, category: 'all' })}
+                  onClick={() =>
+                    handleFilterChange({ ...filterState, category: "all" })
+                  }
                   className="hover:text-foreground cursor-pointer"
                 >
                   <X className="h-3 w-3" />
@@ -341,11 +389,18 @@ export const ProductsPage: React.FC = () => {
             {(filterState.minPrice || filterState.maxPrice) && (
               <Badge variant="babyPink" className="gap-1 text-xs">
                 <span>
-                  Preço: R$ {filterState.minPrice || 0} - {filterState.maxPrice ? `R$ ${filterState.maxPrice}` : '∞'}
+                  Preço: R$ {filterState.minPrice || 0} -{" "}
+                  {filterState.maxPrice ? `R$ ${filterState.maxPrice}` : "∞"}
                 </span>
                 <button
                   type="button"
-                  onClick={() => handleFilterChange({ ...filterState, minPrice: undefined, maxPrice: undefined })}
+                  onClick={() =>
+                    handleFilterChange({
+                      ...filterState,
+                      minPrice: undefined,
+                      maxPrice: undefined,
+                    })
+                  }
                   className="hover:text-foreground cursor-pointer"
                 >
                   <X className="h-3 w-3" />
@@ -372,7 +427,11 @@ export const ProductsPage: React.FC = () => {
             ))}
 
             {filterState.color.map((col) => (
-              <Badge key={col} variant="candyGradient" className="gap-1 text-xs">
+              <Badge
+                key={col}
+                variant="candyGradient"
+                className="gap-1 text-xs"
+              >
                 <span>Cor: {col}</span>
                 <button
                   type="button"
@@ -394,7 +453,9 @@ export const ProductsPage: React.FC = () => {
                 <span>{filterState.minRating}★ ou mais</span>
                 <button
                   type="button"
-                  onClick={() => handleFilterChange({ ...filterState, minRating: undefined })}
+                  onClick={() =>
+                    handleFilterChange({ ...filterState, minRating: undefined })
+                  }
                   className="hover:text-foreground cursor-pointer"
                 >
                   <X className="h-3 w-3" />
@@ -407,7 +468,9 @@ export const ProductsPage: React.FC = () => {
                 <span>Apenas Pronta Entrega</span>
                 <button
                   type="button"
-                  onClick={() => handleFilterChange({ ...filterState, inStockOnly: false })}
+                  onClick={() =>
+                    handleFilterChange({ ...filterState, inStockOnly: false })
+                  }
                   className="hover:text-foreground cursor-pointer"
                 >
                   <X className="h-3 w-3" />

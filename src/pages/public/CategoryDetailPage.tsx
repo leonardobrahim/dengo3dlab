@@ -1,17 +1,26 @@
-import * as React from 'react';
-import { StoreLayout } from '@/src/layouts/store/StoreLayout';
-import { Breadcrumb } from '@/src/components/ui/Breadcrumb';
-import { ProductGrid } from '@/src/components/business/ProductGrid';
-import { ProductFilters, FilterState } from '@/src/components/business/ProductFilters';
-import { Pagination } from '@/src/components/ui/Pagination';
-import { Drawer } from '@/src/components/ui/Drawer';
-import { Badge } from '@/src/components/ui/Badge';
-import { Button } from '@/src/components/ui/Button';
-import { mockCategories } from '@/src/mocks/categories';
-import { mockProducts } from '@/src/mocks/products';
-import { useNavigationStore } from '@/src/stores/navigationStore';
-import { Filter, ArrowUpDown, LayoutGrid, Grid, ChevronRight } from 'lucide-react';
-import { cn } from '@/src/lib/utils';
+import * as React from "react";
+import { StoreLayout } from "@/src/layouts/store/StoreLayout";
+import { Breadcrumb } from "@/src/components/ui/Breadcrumb";
+import { ProductGrid } from "@/src/components/business/ProductGrid";
+import {
+  ProductFilters,
+  FilterState,
+} from "@/src/components/business/ProductFilters";
+import { Pagination } from "@/src/components/ui/Pagination";
+import { Drawer } from "@/src/components/ui/Drawer";
+import { Badge } from "@/src/components/ui/Badge";
+import { Button } from "@/src/components/ui/Button";
+import { mockCategories } from "@/src/mocks/categories";
+import { mockProducts } from "@/src/mocks/products";
+import { useNavigationStore } from "@/src/stores/navigationStore";
+import {
+  Filter,
+  ArrowUpDown,
+  LayoutGrid,
+  Grid,
+  ChevronRight,
+} from "lucide-react";
+import { cn } from "@/src/lib/utils";
 
 const ITEMS_PER_PAGE = 12;
 
@@ -19,20 +28,27 @@ export interface CategoryDetailPageProps {
   slug?: string;
 }
 
-export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ slug: propSlug }) => {
+export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({
+  slug: propSlug,
+}) => {
   const { params, navigate, setQueryParams } = useNavigationStore();
-  const currentSlug = propSlug || params.categorySlug || params.slug || 'colecionaveis-articulados';
+  const currentSlug =
+    propSlug ||
+    params.categorySlug ||
+    params.slug ||
+    "colecionaveis-articulados";
 
-  const category = mockCategories.find((c) => c.slug === currentSlug) || mockCategories[0];
+  const category =
+    mockCategories.find((c) => c.slug === currentSlug) || mockCategories[0];
   const [mobileFilterOpen, setMobileFilterOpen] = React.useState(false);
   const [gridColumns, setGridColumns] = React.useState<3 | 4>(4);
 
-  const currentSort = params.sort || 'featured';
+  const currentSort = params.sort || "featured";
   const currentPage = Number(params.page) || 1;
   const currentMinPrice = params.minPrice ? Number(params.minPrice) : undefined;
   const currentMaxPrice = params.maxPrice ? Number(params.maxPrice) : undefined;
   const currentMinRating = params.rating ? Number(params.rating) : undefined;
-  const currentInStock = params.inStock === true || params.inStock === 'true';
+  const currentInStock = params.inStock === true || params.inStock === "true";
 
   const currentMaterials = React.useMemo(() => {
     if (!params.material) return [];
@@ -57,17 +73,17 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ slug: pr
   // Filter products belonging to this category
   const filteredProducts = React.useMemo(() => {
     let result = mockProducts.filter((p) =>
-      p.categories.some((c) => c.slug === currentSlug || c.id === currentSlug)
+      p.categories.some((c) => c.slug === currentSlug || c.id === currentSlug),
     );
 
     // Price Filter
-    if (filterState.minPrice !== undefined && filterState.minPrice !== '') {
+    if (filterState.minPrice !== undefined && filterState.minPrice !== "") {
       result = result.filter((p) => {
         const effectivePrice = p.basePromotionalPrice || p.basePrice;
         return effectivePrice >= Number(filterState.minPrice);
       });
     }
-    if (filterState.maxPrice !== undefined && filterState.maxPrice !== '') {
+    if (filterState.maxPrice !== undefined && filterState.maxPrice !== "") {
       result = result.filter((p) => {
         const effectivePrice = p.basePromotionalPrice || p.basePrice;
         return effectivePrice <= Number(filterState.maxPrice);
@@ -79,9 +95,11 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ slug: pr
       result = result.filter((p) => {
         return filterState.material.some((mat) => {
           const matLower = mat.toLowerCase();
-          const specMat = p.technicalSpecs?.material?.toLowerCase() || '';
+          const specMat = p.technicalSpecs?.material?.toLowerCase() || "";
           const tagMat = p.tags.some((t) => t.toLowerCase().includes(matLower));
-          const variantMat = p.variants?.some((v) => v.material?.toLowerCase().includes(matLower));
+          const variantMat = p.variants?.some((v) =>
+            v.material?.toLowerCase().includes(matLower),
+          );
           return specMat.includes(matLower) || tagMat || variantMat;
         });
       });
@@ -92,11 +110,14 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ slug: pr
       result = result.filter((p) => {
         return filterState.color.some((col) => {
           const colLower = col.toLowerCase();
-          const variantMatch = p.variants?.some((v) =>
-            v.name.toLowerCase().includes(colLower) ||
-            v.colorName?.toLowerCase().includes(colLower)
+          const variantMatch = p.variants?.some(
+            (v) =>
+              v.name.toLowerCase().includes(colLower) ||
+              v.colorName?.toLowerCase().includes(colLower),
           );
-          const tagMatch = p.tags.some((t) => t.toLowerCase().includes(colLower));
+          const tagMatch = p.tags.some((t) =>
+            t.toLowerCase().includes(colLower),
+          );
           return variantMatch || tagMatch;
         });
       });
@@ -104,12 +125,14 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ slug: pr
 
     // Rating Filter
     if (filterState.minRating) {
-      result = result.filter((p) => (p.rating || 0) >= (filterState.minRating || 0));
+      result = result.filter(
+        (p) => (p.rating || 0) >= (filterState.minRating || 0),
+      );
     }
 
     // In Stock Filter
     if (filterState.inStockOnly) {
-      result = result.filter((p) => p.inStock && p.stockTotal > 0);
+      result = result.filter((p) => p.inStock && (p.stockTotal ?? 0) > 0);
     }
 
     // Sort
@@ -118,17 +141,19 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ slug: pr
       const priceB = b.basePromotionalPrice || b.basePrice;
 
       switch (currentSort) {
-        case 'price_asc':
+        case "price_asc":
           return priceA - priceB;
-        case 'price_desc':
+        case "price_desc":
           return priceB - priceA;
-        case 'rating_desc':
+        case "rating_desc":
           return (b.rating || 0) - (a.rating || 0);
-        case 'bestseller':
+        case "bestseller":
           return (b.isBestSeller ? 1 : 0) - (a.isBestSeller ? 1 : 0);
-        case 'newest':
-          return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-        case 'featured':
+        case "newest":
+          return (
+            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          );
+        case "featured":
         default:
           return (b.isFeatured ? 1 : 0) - (a.isFeatured ? 1 : 0);
       }
@@ -144,15 +169,21 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ slug: pr
   }, [filteredProducts, currentPage]);
 
   const handleFilterChange = (newFilters: FilterState) => {
-    if (newFilters.category !== currentSlug && newFilters.category !== 'all') {
-      navigate(`/categorias/${newFilters.category}`, { categorySlug: newFilters.category });
+    if (newFilters.category !== currentSlug && newFilters.category !== "all") {
+      navigate(`/categorias/${newFilters.category}`, {
+        categorySlug: newFilters.category,
+      });
       return;
     }
     setQueryParams({
       minPrice: newFilters.minPrice,
       maxPrice: newFilters.maxPrice,
-      material: newFilters.material.length > 0 ? newFilters.material.join(',') : undefined,
-      color: newFilters.color.length > 0 ? newFilters.color.join(',') : undefined,
+      material:
+        newFilters.material.length > 0
+          ? newFilters.material.join(",")
+          : undefined,
+      color:
+        newFilters.color.length > 0 ? newFilters.color.join(",") : undefined,
       rating: newFilters.minRating,
       inStock: newFilters.inStockOnly ? true : undefined,
       page: 1,
@@ -172,8 +203,8 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ slug: pr
   };
 
   const breadcrumbs = [
-    { label: 'Início', href: '/' },
-    { label: 'Categorias', href: '/categorias' },
+    { label: "Início", href: "/" },
+    { label: "Categorias", href: "/categorias" },
     { label: category.name, isCurrent: true },
   ];
 
@@ -183,7 +214,7 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ slug: pr
         <Breadcrumb items={breadcrumbs} onNavigate={navigate} />
 
         {/* Category Hero Banner */}
-        <div className="relative overflow-hidden rounded-3xl border border-pink-200/80 dark:border-pink-900/50 bg-gradient-to-r from-pink-100/90 via-pink-50/50 to-sky-100/80 dark:from-pink-950/40 dark:via-card dark:to-sky-950/40 p-6 sm:p-10 shadow-xs">
+        <div className="relative overflow-hidden rounded-3xl border border-pink-200/80 dark:border-pink-900/50 bg-linear-to-r from-pink-100/90 via-pink-50/50 to-sky-100/80 dark:from-pink-950/40 dark:via-card dark:to-sky-950/40 p-6 sm:p-10 shadow-xs">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
             <div className="md:col-span-8 space-y-2">
               <div className="flex items-center gap-2">
@@ -230,10 +261,14 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ slug: pr
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="text-xs text-muted-foreground font-medium hidden sm:inline">Ordenar:</span>
+            <span className="text-xs text-muted-foreground font-medium hidden sm:inline">
+              Ordenar:
+            </span>
             <select
               value={currentSort}
-              onChange={(e) => setQueryParams({ sort: e.target.value, page: 1 })}
+              onChange={(e) =>
+                setQueryParams({ sort: e.target.value, page: 1 })
+              }
               className="h-9 px-3 text-xs rounded-xl border border-pink-200/80 dark:border-pink-900/60 bg-card text-foreground font-semibold focus:outline-none focus:ring-1 focus:ring-pink-400 cursor-pointer shadow-2xs"
             >
               <option value="featured">✨ Em Destaque</option>
@@ -286,7 +321,7 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ slug: pr
               emptyTitle="Nenhum item encontrado nesta categoria com os filtros aplicados"
               emptyDescription="Tente alterar os filtros de preço ou materiais."
               emptyActionLabel="Ver Todos os Produtos"
-              onEmptyAction={() => navigate('/produtos')}
+              onEmptyAction={() => navigate("/produtos")}
             />
 
             {totalPages > 1 && (
@@ -296,7 +331,7 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ slug: pr
                   totalPages={totalPages}
                   onPageChange={(page) => {
                     setQueryParams({ page });
-                    window.scrollTo({ top: 180, behavior: 'smooth' });
+                    window.scrollTo({ top: 180, behavior: "smooth" });
                   }}
                 />
               </div>

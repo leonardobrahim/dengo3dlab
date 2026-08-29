@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { ChevronDown } from 'lucide-react';
-import { cn } from '@/src/lib/utils';
+import * as React from "react";
+import { ChevronDown } from "lucide-react";
+import { cn } from "@/src/lib/utils";
 
 export interface SelectOption {
   value: string;
@@ -17,7 +17,10 @@ export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElemen
 }
 
 export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
-  ({ className, label, error, helperText, options, placeholder, id, ...props }, ref) => {
+  (
+    { className, label, error, helperText, options, placeholder, id, ...props },
+    ref,
+  ) => {
     const selectId = id || React.useId();
 
     return (
@@ -34,9 +37,9 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
           <select
             id={selectId}
             className={cn(
-              'flex h-10 w-full appearance-none rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 pr-8 cursor-pointer transition-colors',
-              error && 'border-destructive focus-visible:ring-destructive',
-              className
+              "flex h-10 w-full appearance-none rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 pr-8 cursor-pointer transition-colors",
+              error && "border-destructive focus-visible:ring-destructive",
+              className,
             )}
             ref={ref}
             {...props}
@@ -47,7 +50,11 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
               </option>
             )}
             {options.map((option) => (
-              <option key={option.value} value={option.value} disabled={option.disabled}>
+              <option
+                key={option.value}
+                value={option.value}
+                disabled={option.disabled}
+              >
                 {option.label}
               </option>
             ))}
@@ -61,6 +68,6 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         ) : null}
       </div>
     );
-  }
+  },
 );
-Select.displayName = 'Select';
+Select.displayName = "Select";

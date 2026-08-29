@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   Button,
   Input,
@@ -37,9 +37,9 @@ import {
   Skeleton,
   Progress,
   Separator,
-} from '@/src/components/ui';
-import { DengoLogo } from '@/src/components/brand/DengoLogo';
-import { useToast } from '@/src/hooks/useToast';
+} from "@/src/components/ui";
+import { DengoLogo } from "@/src/components/brand/DengoLogo";
+import { useToast } from "@/src/hooks/useToast";
 import {
   Layers,
   Sparkles,
@@ -56,7 +56,7 @@ import {
   Share2,
   Flower2,
   Wand2,
-} from 'lucide-react';
+} from "lucide-react";
 
 export const DesignSystemSection: React.FC = () => {
   const { toast } = useToast();
@@ -66,7 +66,7 @@ export const DesignSystemSection: React.FC = () => {
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
   const [switchChecked, setSwitchChecked] = React.useState(true);
-  const [selectedRadio, setSelectedRadio] = React.useState('pink_silk');
+  const [selectedRadio, setSelectedRadio] = React.useState("pink_silk");
   const [progressVal, setProgressVal] = React.useState(75);
   const [currentPage, setCurrentPage] = React.useState(1);
 
@@ -82,7 +82,10 @@ export const DesignSystemSection: React.FC = () => {
           Paleta Azul & Rosa Bebê com 23 Componentes Base
         </h2>
         <p className="text-sm text-muted-foreground mt-1.5 max-w-3xl">
-          A estética da Dengo 3D Lab combina a fofura de tons pastéis (Baby Pink `#F472B6` e Baby Blue `#38BDF8`), cantos arredondados orgânicos, sombras aveludadas e conformidade rigorosa com acessibilidade WCAG AA e Dark Mode.
+          A estética da Dengo 3D Lab combina a fofura de tons pastéis (Baby Pink
+          `#F472B6` e Baby Blue `#38BDF8`), cantos arredondados orgânicos,
+          sombras aveludadas e conformidade rigorosa com acessibilidade WCAG AA
+          e Dark Mode.
         </p>
       </div>
 
@@ -100,8 +103,12 @@ export const DesignSystemSection: React.FC = () => {
               #F472B6
             </div>
             <div>
-              <p className="font-bold text-xs text-foreground">Rosa Bebê (Primary)</p>
-              <p className="text-[11px] text-muted-foreground">Capuz da Lontra & Candy Silk</p>
+              <p className="font-bold text-xs text-foreground">
+                Rosa Bebê (Primary)
+              </p>
+              <p className="text-[11px] text-muted-foreground">
+                Capuz da Lontra & Candy Silk
+              </p>
             </div>
           </div>
 
@@ -111,8 +118,12 @@ export const DesignSystemSection: React.FC = () => {
               #38BDF8
             </div>
             <div>
-              <p className="font-bold text-xs text-foreground">Azul Céu (Secondary)</p>
-              <p className="text-[11px] text-muted-foreground">Benchy Pastel & Destaques</p>
+              <p className="font-bold text-xs text-foreground">
+                Azul Céu (Secondary)
+              </p>
+              <p className="text-[11px] text-muted-foreground">
+                Benchy Pastel & Destaques
+              </p>
             </div>
           </div>
 
@@ -122,8 +133,12 @@ export const DesignSystemSection: React.FC = () => {
               #FF4D6D
             </div>
             <div>
-              <p className="font-bold text-xs text-foreground">Cerejinha do Capuz</p>
-              <p className="text-[11px] text-muted-foreground">Destaques & Acentos Doces</p>
+              <p className="font-bold text-xs text-foreground">
+                Cerejinha do Capuz
+              </p>
+              <p className="text-[11px] text-muted-foreground">
+                Destaques & Acentos Doces
+              </p>
             </div>
           </div>
 
@@ -133,8 +148,12 @@ export const DesignSystemSection: React.FC = () => {
               #8D634E
             </div>
             <div>
-              <p className="font-bold text-xs text-foreground">Pelagem da Lontrinha</p>
-              <p className="text-[11px] text-muted-foreground">Aconchego & Tons Terrosos</p>
+              <p className="font-bold text-xs text-foreground">
+                Pelagem da Lontrinha
+              </p>
+              <p className="text-[11px] text-muted-foreground">
+                Aconchego & Tons Terrosos
+              </p>
             </div>
           </div>
 
@@ -144,8 +163,12 @@ export const DesignSystemSection: React.FC = () => {
               #FFFDFE
             </div>
             <div>
-              <p className="font-bold text-xs text-foreground">Marshmallow Canvas</p>
-              <p className="text-[11px] text-muted-foreground">Fundo Suave & Aveludado</p>
+              <p className="font-bold text-xs text-foreground">
+                Marshmallow Canvas
+              </p>
+              <p className="text-[11px] text-muted-foreground">
+                Fundo Suave & Aveludado
+              </p>
             </div>
           </div>
         </div>
@@ -164,30 +187,34 @@ export const DesignSystemSection: React.FC = () => {
             onClick={() => setBtnLoading(!btnLoading)}
             className="text-xs"
           >
-            {btnLoading ? 'Desativar Loading' : 'Simular Loading'}
+            {btnLoading ? "Desativar Loading" : "Simular Loading"}
           </Button>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 p-5 rounded-2xl border border-pink-200/60 dark:border-pink-900/40 bg-card">
           <div className="space-y-2">
-            <p className="text-xs font-semibold text-pink-600 dark:text-pink-400">Dengo Gradient</p>
+            <p className="text-xs font-semibold text-pink-600 dark:text-pink-400">
+              Dengo Gradient
+            </p>
             <Button
               variant="dengo"
               className="w-full"
               isLoading={btnLoading}
-              onClick={() => toast.success('Dengo Gradient Ativado!')}
+              onClick={() => toast.success("Dengo Gradient Ativado!")}
             >
               Comprar Lontrinha
             </Button>
           </div>
 
           <div className="space-y-2">
-            <p className="text-xs font-semibold text-sky-600 dark:text-sky-400">Baby Blue</p>
+            <p className="text-xs font-semibold text-sky-600 dark:text-sky-400">
+              Baby Blue
+            </p>
             <Button
               variant="babyBlue"
               className="w-full"
               isLoading={btnLoading}
-              onClick={() => toast.info('Filamento Azul Selecionado')}
+              onClick={() => toast.info("Filamento Azul Selecionado")}
             >
               Adicionar ao Carrinho
             </Button>
@@ -199,19 +226,21 @@ export const DesignSystemSection: React.FC = () => {
               variant="babyPink"
               className="w-full"
               isLoading={btnLoading}
-              onClick={() => toast.info('Filamento Rosa Selecionado')}
+              onClick={() => toast.info("Filamento Rosa Selecionado")}
             >
               Favoritar Item
             </Button>
           </div>
 
           <div className="space-y-2">
-            <p className="text-xs font-semibold text-muted-foreground">Outline Pastel</p>
+            <p className="text-xs font-semibold text-muted-foreground">
+              Outline Pastel
+            </p>
             <Button
               variant="outline"
               className="w-full"
               isLoading={btnLoading}
-              onClick={() => toast.info('Exportar arquivo STL fofo')}
+              onClick={() => toast.info("Exportar arquivo STL fofo")}
             >
               Exportar Modelo 3D
             </Button>
@@ -228,11 +257,17 @@ export const DesignSystemSection: React.FC = () => {
 
         <div className="flex flex-wrap items-center gap-2.5 p-5 rounded-2xl border border-pink-200/60 dark:border-pink-900/40 bg-card">
           <Badge variant="candyGradient">DENGO 3D OFICIAL</Badge>
-          <Badge variant="babyPink" dot>Rosa Bebê Candy</Badge>
-          <Badge variant="babyBlue" dot>Azul Céu Macaron</Badge>
+          <Badge variant="babyPink" dot>
+            Rosa Bebê Candy
+          </Badge>
+          <Badge variant="babyBlue" dot>
+            Azul Céu Macaron
+          </Badge>
           <Badge variant="cherry">🍒 Cereja do Bolo</Badge>
           <Badge variant="filament">PLA Silk 1.75mm</Badge>
-          <Badge variant="success" dot>Pronta Entrega</Badge>
+          <Badge variant="success" dot>
+            Pronta Entrega
+          </Badge>
           <Badge variant="secondary">Articulado</Badge>
           <Badge variant="outline">Edição Especial</Badge>
           <Badge variant="warning">Últimas Unidades</Badge>
@@ -257,10 +292,10 @@ export const DesignSystemSection: React.FC = () => {
           <Select
             label="Cor Candy Color Predileta"
             options={[
-              { value: 'pink', label: '🌸 Rosa Bebê Silk' },
-              { value: 'blue', label: '☁️ Azul Céu Macaron' },
-              { value: 'lavender', label: '💜 Lavanda Pastel' },
-              { value: 'mint', label: '🌿 Menta Suave' },
+              { value: "pink", label: "🌸 Rosa Bebê Silk" },
+              { value: "blue", label: "☁️ Azul Céu Macaron" },
+              { value: "lavender", label: "💜 Lavanda Pastel" },
+              { value: "mint", label: "🌿 Menta Suave" },
             ]}
           />
 
@@ -283,39 +318,61 @@ export const DesignSystemSection: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-5 rounded-2xl border border-pink-200/60 dark:border-pink-900/40 bg-card">
           {/* Checkboxes */}
           <div className="space-y-3">
-            <p className="text-xs font-bold text-pink-600 dark:text-pink-400">Opções Adicionais</p>
-            <Checkbox label="Embalagem de presente fofa com laço" defaultChecked />
+            <p className="text-xs font-bold text-pink-600 dark:text-pink-400">
+              Opções Adicionais
+            </p>
+            <Checkbox
+              label="Embalagem de presente fofa com laço"
+              defaultChecked
+            />
             <Checkbox label="Incluir mini 3DBenchy brinde" defaultChecked />
             <Checkbox label="Perfume suave de baunilha na caixa" />
           </div>
 
           {/* Radio Group */}
           <div className="space-y-3">
-            <p className="text-xs font-bold text-sky-600 dark:text-sky-400">Material de Impressão</p>
+            <p className="text-xs font-bold text-sky-600 dark:text-sky-400">
+              Material de Impressão
+            </p>
             <RadioGroup
               name="material_type"
               value={selectedRadio}
               onChange={setSelectedRadio}
               options={[
-                { value: 'pink_silk', label: 'PLA Silk Rosa Bebê (Toque Aveludado)' },
-                { value: 'blue_mac', label: 'PLA Azul Céu Macaron (Fosco Macio)' },
-                { value: 'candy_flex', label: 'TPU Flexível Candy (Super Macio)' },
+                {
+                  value: "pink_silk",
+                  label: "PLA Silk Rosa Bebê (Toque Aveludado)",
+                },
+                {
+                  value: "blue_mac",
+                  label: "PLA Azul Céu Macaron (Fosco Macio)",
+                },
+                {
+                  value: "candy_flex",
+                  label: "TPU Flexível Candy (Super Macio)",
+                },
               ]}
             />
           </div>
 
           {/* Switch & Feedback */}
           <div className="space-y-3">
-            <p className="text-xs font-bold text-foreground">Configurações Rápidas</p>
+            <p className="text-xs font-bold text-foreground">
+              Configurações Rápidas
+            </p>
             <Switch
               label="Notificações de Novos Lançamentos"
               checked={switchChecked}
-              onChange={setSwitchChecked}
+              onCheckedChange={setSwitchChecked}
             />
             <div className="pt-2">
               <div className="flex justify-between text-xs mb-1">
-                <span className="font-semibold text-muted-foreground">Progresso da Impressão</span>
-                <span className="font-mono font-bold text-pink-500">{progressVal}%</span>
+                <span className="font-semibold text-muted-foreground">
+                  Progresso da Impressão
+                </span>
+                <span className="font-mono font-bold text-pink-500">
+                  {progressVal}%
+                </span>
               </div>
               <Progress value={progressVal} />
             </div>
@@ -334,28 +391,45 @@ export const DesignSystemSection: React.FC = () => {
           <Tabs defaultValue="specs">
             <TabsList className="bg-pink-50/80 dark:bg-card">
               <TabsTrigger value="specs">Especificações da Peça</TabsTrigger>
-              <TabsTrigger value="materials">Cuidados com PLA Candy</TabsTrigger>
+              <TabsTrigger value="materials">
+                Cuidados com PLA Candy
+              </TabsTrigger>
               <TabsTrigger value="shipping">Envio & Embalagem</TabsTrigger>
             </TabsList>
 
-            <TabsContent value="specs" className="text-xs text-muted-foreground space-y-2 mt-3">
+            <TabsContent
+              value="specs"
+              className="text-xs text-muted-foreground space-y-2 mt-3"
+            >
               <p>
-                <strong>Altura da Camada:</strong> 0.12mm (Ultra-fina para sumir com as marcas de impressão).
+                <strong>Altura da Camada:</strong> 0.12mm (Ultra-fina para sumir
+                com as marcas de impressão).
               </p>
               <p>
-                <strong>Articulações:</strong> Impressão Print-in-Place sem necessidade de montagem frágil.
+                <strong>Articulações:</strong> Impressão Print-in-Place sem
+                necessidade de montagem frágil.
               </p>
             </TabsContent>
 
-            <TabsContent value="materials" className="text-xs text-muted-foreground space-y-2 mt-3">
+            <TabsContent
+              value="materials"
+              className="text-xs text-muted-foreground space-y-2 mt-3"
+            >
               <p>
-                O PLA biodegradável deve ser mantido ao abrigo de calor excessivo acima de 55°C (não deixar no interior de carros fechados ao sol). Limpar com água fria e sabão neutro.
+                O PLA biodegradável deve ser mantido ao abrigo de calor
+                excessivo acima de 55°C (não deixar no interior de carros
+                fechados ao sol). Limpar com água fria e sabão neutro.
               </p>
             </TabsContent>
 
-            <TabsContent value="shipping" className="text-xs text-muted-foreground space-y-2 mt-3">
+            <TabsContent
+              value="shipping"
+              className="text-xs text-muted-foreground space-y-2 mt-3"
+            >
               <p>
-                Todas as peças Dengo são embaladas com plástico bolha fofo rosa, papel seda perfumado e caixa reforçada para garantir que cheguem perfeitas em suas mãos!
+                Todas as peças Dengo são embaladas com plástico bolha fofo rosa,
+                papel seda perfumado e caixa reforçada para garantir que cheguem
+                perfeitas em suas mãos!
               </p>
             </TabsContent>
           </Tabs>
@@ -365,16 +439,17 @@ export const DesignSystemSection: React.FC = () => {
           <Accordion
             items={[
               {
-                id: 'acc-1',
-                title: 'Como funciona o atendimento personalizado da Dengo 3D Lab?',
+                id: "acc-1",
+                title:
+                  "Como funciona o atendimento personalizado da Dengo 3D Lab?",
                 content:
-                  'Você pode solicitar personalização de cores, gravação de nomes em chaveiros ou modelagem exclusiva de cortadores e mascotes enviando uma mensagem para nossa equipe.',
+                  "Você pode solicitar personalização de cores, gravação de nomes em chaveiros ou modelagem exclusiva de cortadores e mascotes enviando uma mensagem para nossa equipe.",
               },
               {
-                id: 'acc-2',
-                title: 'Os filamentos em tons pastéis desbotam com o tempo?',
+                id: "acc-2",
+                title: "Os filamentos em tons pastéis desbotam com o tempo?",
                 content:
-                  'Não! Nossos pigmentos Silk Candy utilizam aditivos estabilizadores UV que preservam o tom pastel vivo e reluzente por muitos anos em ambientes internos.',
+                  "Não! Nossos pigmentos Silk Candy utilizam aditivos estabilizadores UV que preservam o tom pastel vivo e reluzente por muitos anos em ambientes internos.",
               },
             ]}
           />
@@ -399,19 +474,26 @@ export const DesignSystemSection: React.FC = () => {
 
           <Dropdown
             trigger={
-              <Button variant="outline" rightIcon={<ChevronDown className="h-4 w-4" />}>
+              <Button
+                variant="outline"
+                rightIcon={<ChevronDown className="h-4 w-4" />}
+              >
                 Menu Rápido Dengo
               </Button>
             }
           >
-            <DropdownItem onClick={() => toast.info('Baixando guia de fatiamento')}>
+            <DropdownItem
+              onClick={() => toast.info("Baixando guia de fatiamento")}
+            >
               Guia de Fatiamento Candy
             </DropdownItem>
-            <DropdownItem onClick={() => toast.info('Abrindo chat da Dengo')}>
+            <DropdownItem onClick={() => toast.info("Abrindo chat da Dengo")}>
               Falar com o Suporte
             </DropdownItem>
             <DropdownSeparator />
-            <DropdownItem onClick={() => toast.success('Cupom DENGO10 copiado!')}>
+            <DropdownItem
+              onClick={() => toast.success("Cupom DENGO10 copiado!")}
+            >
               Copiar Cupom DENGO10
             </DropdownItem>
           </Dropdown>
@@ -445,7 +527,9 @@ export const DesignSystemSection: React.FC = () => {
             </TableHeader>
             <TableBody>
               <TableRow>
-                <TableCell className="font-mono text-xs text-pink-600 font-bold">FIL-SILK-PNK</TableCell>
+                <TableCell className="font-mono text-xs text-pink-600 font-bold">
+                  FIL-SILK-PNK
+                </TableCell>
                 <TableCell className="font-bold">🌸 Rosa Bebê Silk</TableCell>
                 <TableCell>205°C - 220°C</TableCell>
                 <TableCell>50°C - 60°C</TableCell>
@@ -455,7 +539,9 @@ export const DesignSystemSection: React.FC = () => {
                 </TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-mono text-xs text-sky-600 font-bold">FIL-MAC-BLU</TableCell>
+                <TableCell className="font-mono text-xs text-sky-600 font-bold">
+                  FIL-MAC-BLU
+                </TableCell>
                 <TableCell className="font-bold">☁️ Azul Céu Macaron</TableCell>
                 <TableCell>200°C - 215°C</TableCell>
                 <TableCell>50°C - 55°C</TableCell>
@@ -465,7 +551,9 @@ export const DesignSystemSection: React.FC = () => {
                 </TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-mono text-xs text-purple-600 font-bold">FIL-PAST-LAV</TableCell>
+                <TableCell className="font-mono text-xs text-purple-600 font-bold">
+                  FIL-PAST-LAV
+                </TableCell>
                 <TableCell className="font-bold">💜 Lavanda Pastel</TableCell>
                 <TableCell>205°C - 220°C</TableCell>
                 <TableCell>50°C - 60°C</TableCell>
@@ -496,17 +584,21 @@ export const DesignSystemSection: React.FC = () => {
           <div className="flex items-center gap-3 p-3 rounded-2xl bg-pink-50 dark:bg-pink-950/40 border border-pink-200 dark:border-pink-900/60">
             <DengoLogo size="sm" variant="icon" />
             <p className="text-xs text-pink-800 dark:text-pink-200 font-medium">
-              A lontrinha é impressa com articulações flexíveis nos braços, patinhas e rabinho!
+              A lontrinha é impressa com articulações flexíveis nos braços,
+              patinhas e rabinho!
             </p>
           </div>
-          <Input label="Nome para Gravação na Base (Opcional)" placeholder="Ex: Léo & Dengo" />
+          <Input
+            label="Nome para Gravação na Base (Opcional)"
+            placeholder="Ex: Léo & Dengo"
+          />
           <Select
             label="Cor Principal do Capuz de Ursinho"
             defaultValue="pink"
             options={[
-              { value: 'pink', label: '🌸 Rosa Bebê Tradicional' },
-              { value: 'blue', label: '☁️ Azul Céu Macaron' },
-              { value: 'lavender', label: '💜 Lavanda Mágica' },
+              { value: "pink", label: "🌸 Rosa Bebê Tradicional" },
+              { value: "blue", label: "☁️ Azul Céu Macaron" },
+              { value: "lavender", label: "💜 Lavanda Mágica" },
             ]}
           />
           <div className="flex justify-end gap-2 pt-3 border-t border-border">
@@ -517,7 +609,7 @@ export const DesignSystemSection: React.FC = () => {
               variant="dengo"
               onClick={() => {
                 setIsDialogOpen(false);
-                toast.success('Pedido personalizado adicionado com carinho!');
+                toast.success("Pedido personalizado adicionado com carinho!");
               }}
             >
               Salvar Personalização
@@ -536,20 +628,29 @@ export const DesignSystemSection: React.FC = () => {
       >
         <div className="space-y-4 text-left">
           <div className="p-3.5 rounded-2xl bg-pink-50 dark:bg-pink-950/40 border border-pink-200 dark:border-pink-900/50 text-xs space-y-1">
-            <p className="font-bold text-pink-700 dark:text-pink-300">Dica do Mestre Maker:</p>
+            <p className="font-bold text-pink-700 dark:text-pink-300">
+              Dica do Mestre Maker:
+            </p>
             <p className="text-muted-foreground">
-              Para o efeito Silk extra brilhante, reduza a velocidade externa para 40mm/s e eleve a temperatura para 215°C.
+              Para o efeito Silk extra brilhante, reduza a velocidade externa
+              para 40mm/s e eleve a temperatura para 215°C.
             </p>
           </div>
-          <Input label="Velocidade da Parede Externa" defaultValue="45 mm/s (Brilho Máximo)" />
-          <Input label="Multiplicador de Extrusão" defaultValue="0.98 (Acabamento Sedoso)" />
+          <Input
+            label="Velocidade da Parede Externa"
+            defaultValue="45 mm/s (Brilho Máximo)"
+          />
+          <Input
+            label="Multiplicador de Extrusão"
+            defaultValue="0.98 (Acabamento Sedoso)"
+          />
           <div className="pt-4">
             <Button
               variant="dengo"
               className="w-full"
               onClick={() => {
                 setIsDrawerOpen(false);
-                toast.success('Parâmetros salvos no perfil Dengo Slicer!');
+                toast.success("Parâmetros salvos no perfil Dengo Slicer!");
               }}
             >
               Aplicar Perfil Silk

@@ -1,49 +1,53 @@
-import * as React from 'react';
-import { AdminLayout } from '@/src/layouts/admin/AdminLayout';
-import { Button } from '@/src/components/ui/Button';
-import { Input } from '@/src/components/ui/Input';
-import { Badge } from '@/src/components/ui/Badge';
-import { mockProducts } from '@/src/mocks/products';
-import { useToast } from '@/src/components/ui/Toast';
-import { useNavigationStore } from '@/src/stores/navigationStore';
-import { Plus, Search, Edit2, Trash2, Copy, PowerOff } from 'lucide-react';
-import { formatCurrency, formatDate } from '@/src/utils/formatters';
+import * as React from "react";
+import { AdminLayout } from "@/src/layouts/admin/AdminLayout";
+import { Button } from "@/src/components/ui/Button";
+import { Input } from "@/src/components/ui/Input";
+import { Badge } from "@/src/components/ui/Badge";
+import { mockProducts } from "@/src/mocks/products";
+import { useToast } from "@/src/components/ui/Toast";
+import { useNavigationStore } from "@/src/stores/navigationStore";
+import { Plus, Search, Edit2, Trash2, Copy, PowerOff } from "lucide-react";
+import { formatCurrency, formatDate } from "@/src/utils/formatters";
 
 export const AdminProductsPage: React.FC = () => {
   const { toast } = useToast();
   const { navigate } = useNavigationStore();
-  
-  const [searchTerm, setSearchTerm] = React.useState('');
+
+  const [searchTerm, setSearchTerm] = React.useState("");
   const [products, setProducts] = React.useState(mockProducts);
-  
-  const filtered = products.filter((p) =>
-    p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    p.slug.toLowerCase().includes(searchTerm.toLowerCase())
+
+  const filtered = products.filter(
+    (p) =>
+      p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      p.slug.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   const handleDeleteProduct = (id: string) => {
     setProducts((prev) => prev.filter((p) => p.id !== id));
-    toast.success('Produto 3D removido do catálogo');
+    toast.success("Produto 3D removido do catálogo");
   };
-  
+
   const handleAction = (action: string, name: string) => {
     toast.info(`${action}: ${name}`);
-  }
+  };
 
   return (
-    <AdminLayout currentPageTitle="Catálogo de Peças & Filamentos" currentPageBreadcrumb="Produtos">
+    <AdminLayout>
       <div className="space-y-6 text-left">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="space-y-1">
-            <h1 className="text-xl sm:text-2xl font-black text-foreground">Gerenciar Produtos</h1>
+            <h1 className="text-xl sm:text-2xl font-black text-foreground">
+              Gerenciar Produtos
+            </h1>
             <p className="text-xs text-muted-foreground">
-              Cadastre e edite modelos 3D, variantes de filamento, especificações técnicas e estoque
+              Cadastre e edite modelos 3D, variantes de filamento,
+              especificações técnicas e estoque
             </p>
           </div>
           <Button
             variant="dengo"
             size="sm"
-            onClick={() => navigate('/admin/produtos/novo')}
+            onClick={() => navigate("/admin/produtos/novo")}
             className="text-xs font-bold gap-1.5 shrink-0"
           >
             <Plus className="h-4 w-4" />
@@ -81,7 +85,10 @@ export const AdminProductsPage: React.FC = () => {
             </thead>
             <tbody className="divide-y divide-border">
               {filtered.map((prod) => (
-                <tr key={prod.id} className="hover:bg-pink-50/20 dark:hover:bg-card/50 transition-colors">
+                <tr
+                  key={prod.id}
+                  className="hover:bg-pink-50/20 dark:hover:bg-card/50 transition-colors"
+                >
                   <td className="p-4">
                     <div className="flex items-center gap-3">
                       <img
@@ -90,27 +97,37 @@ export const AdminProductsPage: React.FC = () => {
                         className="h-10 w-10 rounded-xl object-cover border border-pink-100 dark:border-border shrink-0"
                       />
                       <div className="min-w-0 max-w-xs">
-                        <p className="font-bold text-foreground truncate">{prod.name}</p>
-                        <p className="text-[10px] text-muted-foreground">{prod.variants?.length || 0} variações</p>
+                        <p className="font-bold text-foreground truncate">
+                          {prod.name}
+                        </p>
+                        <p className="text-[10px] text-muted-foreground">
+                          {prod.variants?.length || 0} variações
+                        </p>
                       </div>
                     </div>
                   </td>
                   <td className="p-4 font-mono text-[10px] text-muted-foreground">
-                    DNG-{prod.id.split('-').pop()?.toUpperCase()}
+                    DNG-{prod.id.split("-").pop()?.toUpperCase()}
                   </td>
                   <td className="p-4">
-                    <span className="font-medium text-foreground">{prod.categories[0]?.name || '-'}</span>
+                    <span className="font-medium text-foreground">
+                      {prod.categories[0]?.name || "-"}
+                    </span>
                   </td>
                   <td className="p-4 font-bold text-foreground">
                     {formatCurrency(prod.basePrice)}
                   </td>
                   <td className="p-4">
                     <span className="font-semibold text-emerald-600">
-                      {prod.variants?.reduce((acc, v) => acc + (v.stockQuantity || 0), 0) || 12} un.
+                      {prod.variants?.reduce(
+                        (acc, v) => acc + (v.stockQuantity || 0),
+                        0,
+                      ) || 12}{" "}
+                      un.
                     </span>
                   </td>
                   <td className="p-4">
-                    <Badge variant="candy">Ativo</Badge>
+                    <Badge variant="success">Ativo</Badge>
                   </td>
                   <td className="p-4 text-muted-foreground text-[10px]">
                     {formatDate(new Date().toISOString())}
@@ -119,21 +136,21 @@ export const AdminProductsPage: React.FC = () => {
                     <div className="flex items-center justify-end gap-1">
                       <button
                         title="Editar"
-                        onClick={() => navigate('/admin/produtos/novo')}
+                        onClick={() => navigate("/admin/produtos/novo")}
                         className="p-1.5 text-muted-foreground hover:text-sky-600 rounded-lg hover:bg-sky-50 transition-colors"
                       >
                         <Edit2 className="h-3.5 w-3.5" />
                       </button>
                       <button
                         title="Duplicar"
-                        onClick={() => handleAction('Duplicar', prod.name)}
+                        onClick={() => handleAction("Duplicar", prod.name)}
                         className="p-1.5 text-muted-foreground hover:text-emerald-600 rounded-lg hover:bg-emerald-50 transition-colors"
                       >
                         <Copy className="h-3.5 w-3.5" />
                       </button>
                       <button
                         title="Desativar"
-                        onClick={() => handleAction('Desativar', prod.name)}
+                        onClick={() => handleAction("Desativar", prod.name)}
                         className="p-1.5 text-muted-foreground hover:text-amber-600 rounded-lg hover:bg-amber-50 transition-colors"
                       >
                         <PowerOff className="h-3.5 w-3.5" />

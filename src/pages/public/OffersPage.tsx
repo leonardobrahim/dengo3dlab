@@ -1,13 +1,13 @@
-import * as React from 'react';
-import { StoreLayout } from '@/src/layouts/store/StoreLayout';
-import { Breadcrumb } from '@/src/components/ui/Breadcrumb';
-import { ProductCard } from '@/src/components/business/ProductCard';
-import { Button } from '@/src/components/ui/Button';
-import { Badge } from '@/src/components/ui/Badge';
-import { mockProducts } from '@/src/mocks/products';
-import { useNavigationStore } from '@/src/stores/navigationStore';
-import { useToast } from '@/src/components/ui/Toast';
-import { Flame, Ticket, Copy, Check, Sparkles } from 'lucide-react';
+import * as React from "react";
+import { StoreLayout } from "@/src/layouts/store/StoreLayout";
+import { Breadcrumb } from "@/src/components/ui/Breadcrumb";
+import { ProductCard } from "@/src/components/business/ProductCard";
+import { Button } from "@/src/components/ui/Button";
+import { Badge } from "@/src/components/ui/Badge";
+import { mockProducts } from "@/src/mocks/products";
+import { useNavigationStore } from "@/src/stores/navigationStore";
+import { useToast } from "@/src/components/ui/Toast";
+import { Flame, Ticket, Copy, Check, Sparkles } from "lucide-react";
 
 export const OffersPage: React.FC = () => {
   const { navigate } = useNavigationStore();
@@ -15,19 +15,25 @@ export const OffersPage: React.FC = () => {
   const [copiedCoupon, setCopiedCoupon] = React.useState<string | null>(null);
 
   const offerProducts = mockProducts.filter(
-    (p) => p.variants.some((v) => v.promotionalPrice && v.promotionalPrice < v.price) || p.basePromotionalPrice
+    (p) =>
+      p.variants.some(
+        (v) => v.promotionalPrice && v.promotionalPrice < v.price,
+      ) || p.basePromotionalPrice,
   );
 
   const handleCopyCoupon = (code: string) => {
     navigator.clipboard?.writeText(code);
     setCopiedCoupon(code);
-    toast.success(`Cupom "${code}" copiado!`, 'Use no carrinho para desconto instantâneo.');
+    toast.success(
+      `Cupom "${code}" copiado!`,
+      "Use no carrinho para desconto instantâneo.",
+    );
     setTimeout(() => setCopiedCoupon(null), 3000);
   };
 
   const breadcrumbs = [
-    { label: 'Início', href: '/' },
-    { label: 'Ofertas & Cupons', isCurrent: true },
+    { label: "Início", href: "/" },
+    { label: "Ofertas & Cupons", isCurrent: true },
   ];
 
   return (
@@ -36,7 +42,7 @@ export const OffersPage: React.FC = () => {
         <Breadcrumb items={breadcrumbs} onNavigate={navigate} />
 
         {/* Hero Header */}
-        <div className="rounded-3xl border border-rose-200 dark:border-rose-900/50 bg-gradient-to-r from-rose-50 via-pink-50 to-amber-50 dark:from-rose-950/40 dark:via-pink-950/20 dark:to-card p-6 sm:p-10 space-y-3">
+        <div className="rounded-3xl border border-rose-200 dark:border-rose-900/50 bg-linear-to-r from-rose-50 via-pink-50 to-amber-50 dark:from-rose-950/40 dark:via-pink-950/20 dark:to-card p-6 sm:p-10 space-y-3">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-100 dark:bg-rose-950 text-rose-600 dark:text-rose-300 text-xs font-bold">
             <Flame className="h-3.5 w-3.5 fill-current" />
             <span>Semana Candy Festival 3D</span>
@@ -46,7 +52,8 @@ export const OffersPage: React.FC = () => {
             Ofertas Especiais & Cupons Exclusivos
           </h1>
           <p className="text-xs sm:text-sm text-muted-foreground max-w-xl">
-            Aproveite descontos em filamentos silk candy, bonecos articulados e cortadores temáticos.
+            Aproveite descontos em filamentos silk candy, bonecos articulados e
+            cortadores temáticos.
           </p>
         </div>
 
@@ -60,16 +67,22 @@ export const OffersPage: React.FC = () => {
                   DENGO10
                 </span>
               </div>
-              <p className="text-[11px] text-muted-foreground">10% OFF em qualquer pedido acima de R$ 50</p>
+              <p className="text-[11px] text-muted-foreground">
+                10% OFF em qualquer pedido acima de R$ 50
+              </p>
             </div>
             <Button
               variant="outline"
               size="sm"
-              onClick={() => handleCopyCoupon('DENGO10')}
+              onClick={() => handleCopyCoupon("DENGO10")}
               className="text-xs font-bold shrink-0"
             >
-              {copiedCoupon === 'DENGO10' ? <Check className="h-3.5 w-3.5 text-emerald-500" /> : <Copy className="h-3.5 w-3.5" />}
-              <span>{copiedCoupon === 'DENGO10' ? 'Copiado!' : 'Copiar'}</span>
+              {copiedCoupon === "DENGO10" ? (
+                <Check className="h-3.5 w-3.5 text-emerald-500" />
+              ) : (
+                <Copy className="h-3.5 w-3.5" />
+              )}
+              <span>{copiedCoupon === "DENGO10" ? "Copiado!" : "Copiar"}</span>
             </Button>
           </div>
 
@@ -81,16 +94,22 @@ export const OffersPage: React.FC = () => {
                   CANDY25
                 </span>
               </div>
-              <p className="text-[11px] text-muted-foreground">R$ 25 OFF em compras acima de R$ 150</p>
+              <p className="text-[11px] text-muted-foreground">
+                R$ 25 OFF em compras acima de R$ 150
+              </p>
             </div>
             <Button
               variant="outline"
               size="sm"
-              onClick={() => handleCopyCoupon('CANDY25')}
+              onClick={() => handleCopyCoupon("CANDY25")}
               className="text-xs font-bold shrink-0"
             >
-              {copiedCoupon === 'CANDY25' ? <Check className="h-3.5 w-3.5 text-emerald-500" /> : <Copy className="h-3.5 w-3.5" />}
-              <span>{copiedCoupon === 'CANDY25' ? 'Copiado!' : 'Copiar'}</span>
+              {copiedCoupon === "CANDY25" ? (
+                <Check className="h-3.5 w-3.5 text-emerald-500" />
+              ) : (
+                <Copy className="h-3.5 w-3.5" />
+              )}
+              <span>{copiedCoupon === "CANDY25" ? "Copiado!" : "Copiar"}</span>
             </Button>
           </div>
 
@@ -102,16 +121,24 @@ export const OffersPage: React.FC = () => {
                   FRETEGRATIS
                 </span>
               </div>
-              <p className="text-[11px] text-muted-foreground">Frete Grátis acima de R$ 199 para todo Brasil</p>
+              <p className="text-[11px] text-muted-foreground">
+                Frete Grátis acima de R$ 199 para todo Brasil
+              </p>
             </div>
             <Button
               variant="outline"
               size="sm"
-              onClick={() => handleCopyCoupon('FRETEGRATIS')}
+              onClick={() => handleCopyCoupon("FRETEGRATIS")}
               className="text-xs font-bold shrink-0"
             >
-              {copiedCoupon === 'FRETEGRATIS' ? <Check className="h-3.5 w-3.5 text-emerald-500" /> : <Copy className="h-3.5 w-3.5" />}
-              <span>{copiedCoupon === 'FRETEGRATIS' ? 'Copiado!' : 'Copiar'}</span>
+              {copiedCoupon === "FRETEGRATIS" ? (
+                <Check className="h-3.5 w-3.5 text-emerald-500" />
+              ) : (
+                <Copy className="h-3.5 w-3.5" />
+              )}
+              <span>
+                {copiedCoupon === "FRETEGRATIS" ? "Copiado!" : "Copiar"}
+              </span>
             </Button>
           </div>
         </div>
