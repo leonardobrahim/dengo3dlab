@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from"react";
 import {
   Search,
   Heart,
@@ -17,25 +17,25 @@ import {
   ArrowRight,
   Flame,
   Tag,
-} from "lucide-react";
-import { DengoLogo } from "@/src/components/brand/DengoLogo";
-import { Button } from "@/src/components/ui/Button";
-import { Badge } from "@/src/components/ui/Badge";
+} from"lucide-react";
+import { DengoLogo } from"@/src/components/brand/DengoLogo";
+import { Button } from"@/src/components/ui/Button";
+import { Badge } from"@/src/components/ui/Badge";
 import {
   Dropdown,
   DropdownItem,
   DropdownSeparator,
-} from "@/src/components/ui/Dropdown";
-import { Avatar } from "@/src/components/ui/Avatar";
-import { Drawer } from "@/src/components/ui/Drawer";
-import { ProductSearchWithSuggestions } from "@/src/components/business/ProductSearchWithSuggestions";
-import { useUIStore } from "@/src/stores/uiStore";
-import { useAuthStore } from "@/src/stores/authStore";
-import { useCartStore } from "@/src/stores/cartStore";
-import { useWishlistStore } from "@/src/stores/wishlistStore";
-import { useNavigationStore } from "@/src/stores/navigationStore";
-import { mockCategories } from "@/src/mocks/categories";
-import { siteConfig } from "@/src/config/site";
+} from"@/src/components/ui/Dropdown";
+import { Avatar } from"@/src/components/ui/Avatar";
+import { Drawer } from"@/src/components/ui/Drawer";
+import { ProductSearchWithSuggestions } from"@/src/components/business/ProductSearchWithSuggestions";
+import { useUIStore } from"@/src/stores/uiStore";
+import { useAuthStore } from"@/src/stores/authStore";
+import { useCartStore } from"@/src/stores/cartStore";
+import { useWishlistStore } from"@/src/stores/wishlistStore";
+import { useNavigationStore } from"@/src/stores/navigationStore";
+import { mockCategories } from"@/src/mocks/categories";
+import { siteConfig } from"@/src/config/site";
 
 export const StoreHeader: React.FC = () => {
   const { setCartDrawerOpen } = useUIStore();
@@ -90,9 +90,9 @@ export const StoreHeader: React.FC = () => {
           <button
             onClick={() => navigate("/")}
             className={`px-3.5 py-2 rounded-xl transition-all cursor-pointer select-none ${
-              currentPath === "/"
-                ? "bg-white/20 text-white shadow-sm font-bold"
-                : "text-white/90 hover:text-white hover:bg-white/10"
+              currentPath ==="/"
+                ?"bg-white/20 text-white shadow-sm font-bold"
+                :"text-white/90 hover:text-white hover:bg-white/10"
             }`}
           >
             Início
@@ -101,8 +101,8 @@ export const StoreHeader: React.FC = () => {
             onClick={() => navigate("/produtos")}
             className={`px-3.5 py-2 rounded-xl transition-all cursor-pointer select-none ${
               currentPath.startsWith("/produtos")
-                ? "bg-white/20 text-white shadow-sm font-bold"
-                : "text-white/90 hover:text-white hover:bg-white/10"
+                ?"bg-white/20 text-white shadow-sm font-bold"
+                :"text-white/90 hover:text-white hover:bg-white/10"
             }`}
           >
             Produtos
@@ -114,8 +114,8 @@ export const StoreHeader: React.FC = () => {
               <button
                 className={`px-3.5 py-2 rounded-xl transition-all cursor-pointer select-none inline-flex items-center gap-1 ${
                   currentPath.startsWith("/categorias")
-                    ? "bg-white/20 text-white shadow-sm font-bold"
-                    : "text-white/90 hover:text-white hover:bg-white/10"
+                    ?"bg-white/20 text-white shadow-sm font-bold"
+                    :"text-white/90 hover:text-white hover:bg-white/10"
                 }`}
               >
                 <span>Categorias</span>
@@ -124,7 +124,7 @@ export const StoreHeader: React.FC = () => {
             }
           >
             <DropdownItem onClick={() => navigate("/categorias")}>
-              <span className="font-bold text-pink-600 dark:text-pink-400">
+              <span className="font-bold text-pink-600">
                 Ver Todas as Categorias
               </span>
             </DropdownItem>
@@ -140,7 +140,7 @@ export const StoreHeader: React.FC = () => {
               >
                 <div className="flex items-center justify-between w-full">
                   <span>{cat.name}</span>
-                  <span className="text-[10px] text-muted-foreground bg-pink-50 dark:bg-pink-950/60 px-1.5 py-0.5 rounded-full">
+                  <span className="text-[10px] text-muted-foreground bg-pink-50  px-1.5 py-0.5 rounded-full">
                     {cat.productCount}
                   </span>
                 </div>
@@ -151,9 +151,9 @@ export const StoreHeader: React.FC = () => {
           <button
             onClick={() => navigate("/ofertas")}
             className={`px-3.5 py-2 rounded-xl transition-all cursor-pointer select-none inline-flex items-center gap-1.5 ${
-              currentPath === "/ofertas"
-                ? "bg-white/20 text-white shadow-sm font-bold"
-                : "text-white/90 hover:text-white hover:bg-white/10"
+              currentPath ==="/ofertas"
+                ?"bg-white/20 text-white shadow-sm font-bold"
+                :"text-white/90 hover:text-white hover:bg-white/10"
             }`}
           >
             <Flame className="h-3.5 w-3.5 fill-current" />
@@ -207,9 +207,9 @@ export const StoreHeader: React.FC = () => {
               >
                 <Avatar
                   src={user?.avatarUrl}
-                  name={user?.name || "Visitante"}
+                  name={user?.name ||"Visitante"}
                   size="sm"
-                  status={isAuthenticated ? "online" : "offline"}
+                  status={isAuthenticated ?"online" :"offline"}
                 />
               </button>
             }
@@ -255,16 +255,16 @@ export const StoreHeader: React.FC = () => {
                   <span>Configurações</span>
                 </DropdownItem>
 
-                {(user.role === "admin" ||
-                  user.role === "superadmin" ||
-                  user.role === "support" ||
-                  user.role === "production" ||
-                  user.role === "stock") && (
+                {(user.role ==="admin" ||
+                  user.role ==="superadmin" ||
+                  user.role ==="support" ||
+                  user.role ==="production" ||
+                  user.role ==="stock") && (
                   <>
                     <DropdownSeparator />
                     <DropdownItem onClick={() => navigate("/admin")}>
                       <ShieldAlert className="h-3.5 w-3.5 mr-2 text-purple-500" />
-                      <span className="font-bold text-purple-600 dark:text-purple-400">
+                      <span className="font-bold text-purple-600">
                         Painel Administrativo
                       </span>
                     </DropdownItem>
@@ -325,7 +325,7 @@ export const StoreHeader: React.FC = () => {
 
       {/* Mobile Expandable Search Bar */}
       {isSearchExpandedMobile && (
-        <div className="md:hidden px-4 pb-3 border-t border-pink-100 dark:border-pink-900/30 pt-2 bg-background">
+        <div className="md:hidden px-4 pb-3 border-t border-pink-100  pt-2 bg-background">
           <ProductSearchWithSuggestions
             autoFocus
             onSearchSubmit={() => setIsSearchExpandedMobile(false)}
@@ -353,10 +353,10 @@ export const StoreHeader: React.FC = () => {
                 navigate("/produtos");
                 setMobileMenuOpen(false);
               }}
-              className="w-full flex items-center justify-between p-3 rounded-2xl text-xs font-bold text-foreground hover:bg-pink-50 dark:hover:bg-pink-950/40 transition-colors"
+              className="w-full flex items-center justify-between p-3 rounded-2xl text-xs font-bold text-foreground hover:bg-pink-50  transition-colors"
             >
               <div className="flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-pink-100 dark:bg-pink-950 text-pink-600">
+                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-pink-100  text-pink-600">
                   <Package className="h-4 w-4" />
                 </span>
                 <span>Todos os Produtos</span>
@@ -369,10 +369,10 @@ export const StoreHeader: React.FC = () => {
                 navigate("/categorias");
                 setMobileMenuOpen(false);
               }}
-              className="w-full flex items-center justify-between p-3 rounded-2xl text-xs font-bold text-foreground hover:bg-pink-50 dark:hover:bg-pink-950/40 transition-colors"
+              className="w-full flex items-center justify-between p-3 rounded-2xl text-xs font-bold text-foreground hover:bg-pink-50  transition-colors"
             >
               <div className="flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-sky-100 dark:bg-sky-950 text-sky-600">
+                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-sky-100  text-sky-600">
                   <Layers className="h-4 w-4" />
                 </span>
                 <span>Categorias</span>
@@ -385,10 +385,10 @@ export const StoreHeader: React.FC = () => {
                 navigate("/ofertas");
                 setMobileMenuOpen(false);
               }}
-              className="w-full flex items-center justify-between p-3 rounded-2xl text-xs font-bold text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors"
+              className="w-full flex items-center justify-between p-3 rounded-2xl text-xs font-bold text-rose-600  hover:bg-rose-50  transition-colors"
             >
               <div className="flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-rose-100 dark:bg-rose-950 text-rose-600">
+                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-rose-100  text-rose-600">
                   <Flame className="h-4 w-4" />
                 </span>
                 <span>Ofertas & Cupons</span>
@@ -406,7 +406,7 @@ export const StoreHeader: React.FC = () => {
                   navigate("/minha-conta");
                   setMobileMenuOpen(false);
                 }}
-                className="w-full flex items-center gap-3 p-3 rounded-2xl text-xs font-medium text-foreground hover:bg-pink-50 dark:hover:bg-pink-950/40 transition-colors"
+                className="w-full flex items-center gap-3 p-3 rounded-2xl text-xs font-medium text-foreground hover:bg-pink-50  transition-colors"
               >
                 <User className="h-4 w-4 text-pink-500" />
                 <span>Minha conta</span>
@@ -417,7 +417,7 @@ export const StoreHeader: React.FC = () => {
                   navigate("/minha-conta/favoritos");
                   setMobileMenuOpen(false);
                 }}
-                className="w-full flex items-center justify-between p-3 rounded-2xl text-xs font-medium text-foreground hover:bg-pink-50 dark:hover:bg-pink-950/40 transition-colors"
+                className="w-full flex items-center justify-between p-3 rounded-2xl text-xs font-medium text-foreground hover:bg-pink-50  transition-colors"
               >
                 <div className="flex items-center gap-3">
                   <Heart className="h-4 w-4 text-pink-500" />
@@ -433,7 +433,7 @@ export const StoreHeader: React.FC = () => {
                   navigate("/contato");
                   setMobileMenuOpen(false);
                 }}
-                className="w-full flex items-center gap-3 p-3 rounded-2xl text-xs font-medium text-foreground hover:bg-pink-50 dark:hover:bg-pink-950/40 transition-colors"
+                className="w-full flex items-center gap-3 p-3 rounded-2xl text-xs font-medium text-foreground hover:bg-pink-50  transition-colors"
               >
                 <HelpCircle className="h-4 w-4 text-sky-500" />
                 <span>Suporte & Dúvidas</span>
@@ -444,7 +444,7 @@ export const StoreHeader: React.FC = () => {
                   navigate("/admin");
                   setMobileMenuOpen(false);
                 }}
-                className="w-full flex items-center gap-3 p-3 rounded-2xl text-xs font-medium text-purple-600 dark:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-950/40 transition-colors"
+                className="w-full flex items-center gap-3 p-3 rounded-2xl text-xs font-medium text-purple-600  hover:bg-purple-50  transition-colors"
               >
                 <ShieldAlert className="h-4 w-4" />
                 <span>Painel Admin</span>

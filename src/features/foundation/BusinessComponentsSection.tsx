@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from"react";
 import {
   ProductCard,
   PriceDisplay,
@@ -7,9 +7,9 @@ import {
   QuantitySelector,
   OrderStatusBadge,
   OrderTimeline,
-} from "@/src/components/business";
-import { mockProducts, mockOrders } from "@/src/mocks";
-import { OrderStatus, InventoryStatus } from "@/src/types";
+} from"@/src/components/business";
+import { mockProducts, mockOrders } from"@/src/mocks";
+import { OrderStatus, InventoryStatus } from"@/src/types";
 import {
   Box,
   Layers,
@@ -17,37 +17,24 @@ import {
   ShieldCheck,
   CheckCircle2,
   Clock,
-} from "lucide-react";
+} from"lucide-react";
 import {
   Card,
   CardHeader,
   CardTitle,
   CardContent,
-} from "@/src/components/ui/Card";
-import { Button } from "@/src/components/ui/Button";
+} from"@/src/components/ui/Card";
+import { Button } from"@/src/components/ui/Button";
 
 export const BusinessComponentsSection: React.FC = () => {
   const [demoQty, setDemoQty] = React.useState(2);
   const [selectedTimelineStatus, setSelectedTimelineStatus] =
     React.useState<OrderStatus>("in_production");
 
-  const orderStatuses: OrderStatus[] = [
-    "pending",
-    "confirmed",
-    "in_production",
-    "in_production",
-    "ready_to_ship",
-    "shipped",
-    "delivered",
-    "cancelled",
+  const orderStatuses: OrderStatus[] = ["pending","confirmed","in_production","in_production","ready_to_ship","shipped","delivered","cancelled",
   ];
 
-  const inventoryStatuses: InventoryStatus[] = [
-    "in_stock",
-    "low_stock",
-    "out_of_stock",
-    "made_to_order",
-    "pre_order",
+  const inventoryStatuses: InventoryStatus[] = ["in_stock","low_stock","out_of_stock","made_to_order","pre_order",
   ];
 
   return (
@@ -228,26 +215,21 @@ export const BusinessComponentsSection: React.FC = () => {
               Simular Etapa:
             </span>
             {(
-              [
-                "confirmed",
-                "in_production",
-                "ready_to_ship",
-                "shipped",
-                "delivered",
+              ["confirmed","in_production","ready_to_ship","shipped","delivered",
               ] as OrderStatus[]
             ).map((st) => (
               <Button
                 key={st}
-                variant={selectedTimelineStatus === st ? "default" : "outline"}
+                variant={selectedTimelineStatus === st ?"default" :"outline"}
                 size="sm"
                 className="h-7 text-[11px] px-2"
                 onClick={() => setSelectedTimelineStatus(st)}
               >
-                {st === "confirmed" && "Pago"}
-                {st === "in_production" && "Em Impressão 3D"}
-                {st === "ready_to_ship" && "Qualidade"}
-                {st === "shipped" && "Em Trânsito"}
-                {st === "delivered" && "Entregue"}
+                {st ==="confirmed" &&"Pago"}
+                {st ==="in_production" &&"Em Impressão 3D"}
+                {st ==="ready_to_ship" &&"Qualidade"}
+                {st ==="shipped" &&"Em Trânsito"}
+                {st ==="delivered" &&"Entregue"}
               </Button>
             ))}
           </div>

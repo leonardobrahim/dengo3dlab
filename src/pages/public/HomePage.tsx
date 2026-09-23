@@ -1,16 +1,16 @@
-import * as React from "react";
-import { StoreLayout } from "@/src/layouts/store/StoreLayout";
-import { ProductCard } from "@/src/components/business/ProductCard";
-import { ProductGrid } from "@/src/components/business/ProductGrid";
-import { DengoLogo } from "@/src/components/brand/DengoLogo";
-import { Button } from "@/src/components/ui/Button";
-import { Badge } from "@/src/components/ui/Badge";
-import { Input } from "@/src/components/ui/Input";
-import { Rating } from "@/src/components/business/Rating";
-import { mockProducts } from "@/src/mocks/products";
-import { mockCategories } from "@/src/mocks/categories";
-import { useNavigationStore } from "@/src/stores/navigationStore";
-import { useToast } from "@/src/hooks/useToast";
+import * as React from"react";
+import { StoreLayout } from"@/src/layouts/store/StoreLayout";
+import { ProductCard } from"@/src/components/business/ProductCard";
+import { ProductGrid } from"@/src/components/business/ProductGrid";
+import { DengoLogo } from"@/src/components/brand/DengoLogo";
+import { Button } from"@/src/components/ui/Button";
+import { Badge } from"@/src/components/ui/Badge";
+import { Input } from"@/src/components/ui/Input";
+import { Rating } from"@/src/components/business/Rating";
+import { mockProducts } from"@/src/mocks/products";
+import { mockCategories } from"@/src/mocks/categories";
+import { useNavigationStore } from"@/src/stores/navigationStore";
+import { useToast } from"@/src/hooks/useToast";
 import {
   Sparkles,
   ArrowRight,
@@ -35,7 +35,7 @@ import {
   Clock,
   Printer,
   Sparkle,
-} from "lucide-react";
+} from"lucide-react";
 
 export const HomePage: React.FC = () => {
   const { navigate } = useNavigationStore();
@@ -48,7 +48,7 @@ export const HomePage: React.FC = () => {
   const featuredProducts = mockProducts.filter((p) => p.isFeatured).slice(0, 8);
   const bestSellers = mockProducts.filter((p) => p.isBestSeller).slice(0, 8);
   const newArrivals = mockProducts
-    .filter((p) => p.isNew || p.createdAt >= "2026-03-01")
+    .filter((p) => p.isNew || p.createdAt >="2026-03-01")
     .slice(0, 8);
   const promoProducts = mockProducts
     .filter(
@@ -59,8 +59,7 @@ export const HomePage: React.FC = () => {
   const handleCopyCoupon = (code: string) => {
     navigator.clipboard.writeText(code);
     setCopiedCoupon(true);
-    toast.success(
-      "Cupom copiado! 🎁",
+    toast.success("Cupom copiado! 🎁",
       `Código ${code} pronto para colar no carrinho.`,
     );
     setTimeout(() => setCopiedCoupon(false), 3000);
@@ -70,9 +69,7 @@ export const HomePage: React.FC = () => {
     e.preventDefault();
     if (newsletterEmail.trim()) {
       setNewsletterSubscribed(true);
-      toast.success(
-        "Bem-vindo ao Dengo Club! 💌",
-        "Você ganhou 10% OFF com o cupom DENGO10.",
+      toast.success("Bem-vindo ao Dengo Club! 💌","Você ganhou 10% OFF com o cupom DENGO10.",
       );
     }
   };
@@ -83,16 +80,16 @@ export const HomePage: React.FC = () => {
         {/* ==========================================
             1. HERO SECTION PREMIUM
            ========================================== */}
-        <section className="relative overflow-hidden rounded-3xl sm:rounded-[36px] border border-pink-200/90 dark:border-pink-900/50 bg-linear-to-br from-pink-100/90 via-pink-50/40 to-sky-100/80 dark:from-pink-950/40 dark:via-card dark:to-sky-950/40 p-6 sm:p-12 lg:p-16 shadow-sm">
+        <section className="relative overflow-hidden rounded-3xl sm:rounded-[36px] border border-pink-200/90  bg-linear-to-br from-pink-100/90 via-pink-50/40 to-sky-100/80    p-6 sm:p-12 lg:p-16 shadow-sm">
           {/* Subtle Background Glow Circles */}
-          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-pink-300/30 dark:bg-pink-600/10 blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-24 -right-24 w-80 h-80 rounded-full bg-sky-300/30 dark:bg-sky-600/10 blur-3xl pointer-events-none" />
+          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-pink-300/30  blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-24 -right-24 w-80 h-80 rounded-full bg-sky-300/30  blur-3xl pointer-events-none" />
 
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-6 text-left">
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-foreground tracking-tight leading-[1.12]">
-                O Estúdio de Impressão 3D{" "}
+                O Estúdio de Impressão 3D{""}
                 <span className="text-transparent bg-clip-text bg-linear-to-r from-pink-500 via-rose-500 to-sky-500">
                   Mais Fofo do Brasil!
                 </span>
@@ -119,8 +116,8 @@ export const HomePage: React.FC = () => {
                 <Button
                   variant="outline"
                   size="lg"
-                  onClick={() => navigate("/produtos", { sort: "newest" })}
-                  className="h-12 px-6 text-sm gap-2 border-pink-200 dark:border-pink-900/60 font-bold bg-white/70 dark:bg-card/70 hover:bg-pink-50 transition-all cursor-pointer"
+                  onClick={() => navigate("/produtos", { sort:"newest" })}
+                  className="h-12 px-6 text-sm gap-2 border-pink-200  font-bold bg-white/70  hover:bg-pink-50 transition-all cursor-pointer"
                 >
                   <Flame className="h-4 w-4 text-rose-500" />
                   <span>Ver Novidades</span>
@@ -128,7 +125,7 @@ export const HomePage: React.FC = () => {
               </div>
 
               {/* Trust Badges Bar */}
-              <div className="pt-6 grid grid-cols-2 sm:grid-cols-3 gap-3 border-t border-pink-200/60 dark:border-pink-900/40 text-xs font-semibold text-muted-foreground">
+              <div className="pt-6 grid grid-cols-2 sm:grid-cols-3 gap-3 border-t border-pink-200/60  text-xs font-semibold text-muted-foreground">
                 <div className="flex items-center gap-2">
                   <div className="flex h-6 w-6 rounded-full bg-pink-500 items-center justify-center text-white shadow-sm">
                     <Leaf className="h-3.5 w-3.5" />
@@ -175,7 +172,7 @@ export const HomePage: React.FC = () => {
         <section className="space-y-6 text-left">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
             <div>
-              <div className="inline-flex items-center gap-1.5 text-xs font-bold text-pink-600 dark:text-pink-400 uppercase tracking-wider mb-1">
+              <div className="inline-flex items-center gap-1.5 text-xs font-bold text-pink-600  uppercase tracking-wider mb-1">
                 <Layers className="h-3.5 w-3.5" />
                 <span>Navegue por Universo</span>
               </div>
@@ -187,7 +184,7 @@ export const HomePage: React.FC = () => {
               variant="ghost"
               size="sm"
               onClick={() => navigate("/categorias")}
-              className="text-xs font-bold text-pink-600 dark:text-pink-400 gap-1 hover:bg-pink-50 dark:hover:bg-pink-950/40 self-start sm:self-auto"
+              className="text-xs font-bold text-pink-600  gap-1 hover:bg-pink-50  self-start sm:self-auto"
             >
               <span>Ver todas as {mockCategories.length} categorias</span>
               <ArrowRight className="h-3.5 w-3.5" />
@@ -203,9 +200,9 @@ export const HomePage: React.FC = () => {
                     categorySlug: cat.slug,
                   })
                 }
-                className="group relative overflow-hidden rounded-2xl sm:rounded-3xl border border-pink-200/80 dark:border-pink-900/40 bg-card p-3 sm:p-4 text-center transition-all duration-300 hover:border-pink-400 hover:shadow-lg hover:shadow-pink-500/10 hover:-translate-y-1 cursor-pointer select-none"
+                className="group relative overflow-hidden rounded-2xl sm:rounded-3xl border border-pink-200/80  bg-card p-3 sm:p-4 text-center transition-all duration-300 hover:border-pink-400 hover:shadow-lg hover:shadow-pink-500/10 hover:-translate-y-1 cursor-pointer select-none"
               >
-                <div className="aspect-square w-full rounded-xl sm:rounded-2xl overflow-hidden bg-pink-50 dark:bg-muted/40 mb-3 border border-pink-100 dark:border-border">
+                <div className="aspect-square w-full rounded-xl sm:rounded-2xl overflow-hidden bg-pink-50  mb-3 border border-pink-100">
                   <img
                     src={cat.imageUrl}
                     alt={cat.name}
@@ -213,7 +210,7 @@ export const HomePage: React.FC = () => {
                     loading="lazy"
                   />
                 </div>
-                <h3 className="font-bold text-xs text-foreground line-clamp-1 group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">
+                <h3 className="font-bold text-xs text-foreground line-clamp-1 group-hover:text-pink-600  transition-colors">
                   {cat.name}
                 </h3>
                 <p className="text-[10px] text-muted-foreground mt-0.5 font-medium">
@@ -230,7 +227,7 @@ export const HomePage: React.FC = () => {
         <section className="space-y-6 text-left">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
             <div>
-              <div className="inline-flex items-center gap-1.5 text-xs font-bold text-pink-600 dark:text-pink-400 uppercase tracking-wider mb-1">
+              <div className="inline-flex items-center gap-1.5 text-xs font-bold text-pink-600  uppercase tracking-wider mb-1">
                 <Sparkles className="h-3.5 w-3.5" />
                 <span>Curadoria Dengo Lab</span>
               </div>
@@ -241,8 +238,8 @@ export const HomePage: React.FC = () => {
             <Button
               variant="outline"
               size="sm"
-              onClick={() => navigate("/produtos", { sort: "featured" })}
-              className="text-xs font-bold gap-1 border-pink-200 dark:border-pink-900/60 self-start sm:self-auto"
+              onClick={() => navigate("/produtos", { sort:"featured" })}
+              className="text-xs font-bold gap-1 border-pink-200  self-start sm:self-auto"
             >
               <span>Ver catálogo completo</span>
               <ChevronRight className="h-3.5 w-3.5" />
@@ -255,7 +252,7 @@ export const HomePage: React.FC = () => {
         {/* ==========================================
             4. BANNER DE CUPOM PROMOCIONAL
            ========================================== */}
-        <section className="relative overflow-hidden rounded-3xl border border-pink-300 dark:border-pink-800 bg-linear-to-r from-pink-500 via-rose-500 to-sky-500 p-6 sm:p-10 text-white shadow-md">
+        <section className="relative overflow-hidden rounded-3xl border border-pink-300  bg-linear-to-r from-pink-500 via-rose-500 to-sky-500 p-6 sm:p-10 text-white shadow-md">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
             <div className="md:col-span-8 space-y-2 text-left">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-black backdrop-blur-xs">
@@ -303,7 +300,7 @@ export const HomePage: React.FC = () => {
         <section className="space-y-6 text-left">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
             <div>
-              <div className="inline-flex items-center gap-1.5 text-xs font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider mb-1">
+              <div className="inline-flex items-center gap-1.5 text-xs font-bold text-rose-600  uppercase tracking-wider mb-1">
                 <Flame className="h-3.5 w-3.5 fill-current" />
                 <span>Mais Amados pela Comunidade</span>
               </div>
@@ -314,8 +311,8 @@ export const HomePage: React.FC = () => {
             <Button
               variant="outline"
               size="sm"
-              onClick={() => navigate("/produtos", { sort: "bestseller" })}
-              className="text-xs font-bold gap-1 border-pink-200 dark:border-pink-900/60 self-start sm:self-auto"
+              onClick={() => navigate("/produtos", { sort:"bestseller" })}
+              className="text-xs font-bold gap-1 border-pink-200  self-start sm:self-auto"
             >
               <span>Ver ranking</span>
               <ChevronRight className="h-3.5 w-3.5" />
@@ -328,7 +325,7 @@ export const HomePage: React.FC = () => {
         {/* ==========================================
             6. PROCESSO DE FABRICAÇÃO 3D (INTERATIVO)
            ========================================== */}
-        <section className="rounded-3xl sm:rounded-[36px] border border-pink-200/80 dark:border-pink-900/50 bg-linear-to-b from-card to-pink-50/30 dark:to-pink-950/20 p-6 sm:p-12 text-left space-y-8">
+        <section className="rounded-3xl sm:rounded-[36px] border border-pink-200/80  bg-linear-to-b from-card to-pink-50/30  p-6 sm:p-12 text-left space-y-8">
           <div className="text-center max-w-2xl mx-auto space-y-2">
             <Badge
               variant="default"
@@ -347,7 +344,7 @@ export const HomePage: React.FC = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Step 1 */}
-            <div className="p-5 rounded-2xl border border-pink-200/60 dark:border-pink-900/40 bg-card space-y-3 shadow-2xs hover:border-pink-300 transition-colors">
+            <div className="p-5 rounded-2xl border border-pink-200/60  bg-card space-y-3 shadow-2xs hover:border-pink-300 transition-colors">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-pink-500 text-white shadow-sm font-black text-base">
                 1
               </div>
@@ -362,7 +359,7 @@ export const HomePage: React.FC = () => {
             </div>
 
             {/* Step 2 */}
-            <div className="p-5 rounded-2xl border border-pink-200/60 dark:border-pink-900/40 bg-card space-y-3 shadow-2xs hover:border-pink-300 transition-colors">
+            <div className="p-5 rounded-2xl border border-pink-200/60  bg-card space-y-3 shadow-2xs hover:border-pink-300 transition-colors">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-500 text-white shadow-sm font-black text-base">
                 2
               </div>
@@ -377,7 +374,7 @@ export const HomePage: React.FC = () => {
             </div>
 
             {/* Step 3 */}
-            <div className="p-5 rounded-2xl border border-pink-200/60 dark:border-pink-900/40 bg-card space-y-3 shadow-2xs hover:border-pink-300 transition-colors">
+            <div className="p-5 rounded-2xl border border-pink-200/60  bg-card space-y-3 shadow-2xs hover:border-pink-300 transition-colors">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-purple-500 text-white shadow-sm font-black text-base">
                 3
               </div>
@@ -392,7 +389,7 @@ export const HomePage: React.FC = () => {
             </div>
 
             {/* Step 4 */}
-            <div className="p-5 rounded-2xl border border-pink-200/60 dark:border-pink-900/40 bg-card space-y-3 shadow-2xs hover:border-pink-300 transition-colors">
+            <div className="p-5 rounded-2xl border border-pink-200/60  bg-card space-y-3 shadow-2xs hover:border-pink-300 transition-colors">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-500 text-white shadow-sm font-black text-base">
                 4
               </div>
@@ -414,7 +411,7 @@ export const HomePage: React.FC = () => {
         <section className="space-y-6 text-left">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
             <div>
-              <div className="inline-flex items-center gap-1.5 text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider mb-1">
+              <div className="inline-flex items-center gap-1.5 text-xs font-bold text-sky-600  uppercase tracking-wider mb-1">
                 <Sparkles className="h-3.5 w-3.5" />
                 <span>Recém-Saídos da Mesa de Impressão</span>
               </div>
@@ -425,8 +422,8 @@ export const HomePage: React.FC = () => {
             <Button
               variant="outline"
               size="sm"
-              onClick={() => navigate("/produtos", { sort: "newest" })}
-              className="text-xs font-bold gap-1 border-pink-200 dark:border-pink-900/60 self-start sm:self-auto"
+              onClick={() => navigate("/produtos", { sort:"newest" })}
+              className="text-xs font-bold gap-1 border-pink-200  self-start sm:self-auto"
             >
               <span>Ver todas novidades</span>
               <ChevronRight className="h-3.5 w-3.5" />
@@ -440,7 +437,7 @@ export const HomePage: React.FC = () => {
             8. DIFERENCIAIS E BENEFÍCIOS
            ========================================== */}
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
-          <div className="p-6 rounded-3xl border border-pink-200/70 dark:border-pink-900/40 bg-card space-y-2 shadow-2xs">
+          <div className="p-6 rounded-3xl border border-pink-200/70  bg-card space-y-2 shadow-2xs">
             <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-pink-500 text-white shadow-sm">
               <Leaf className="h-5 w-5" />
             </div>
@@ -453,7 +450,7 @@ export const HomePage: React.FC = () => {
             </p>
           </div>
 
-          <div className="p-6 rounded-3xl border border-pink-200/70 dark:border-pink-900/40 bg-card space-y-2 shadow-2xs">
+          <div className="p-6 rounded-3xl border border-pink-200/70  bg-card space-y-2 shadow-2xs">
             <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-sky-500 text-white shadow-sm">
               <Truck className="h-5 w-5" />
             </div>
@@ -466,7 +463,7 @@ export const HomePage: React.FC = () => {
             </p>
           </div>
 
-          <div className="p-6 rounded-3xl border border-pink-200/70 dark:border-pink-900/40 bg-card space-y-2 shadow-2xs">
+          <div className="p-6 rounded-3xl border border-pink-200/70  bg-card space-y-2 shadow-2xs">
             <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-purple-500 text-white shadow-sm">
               <Wand2 className="h-5 w-5" />
             </div>
@@ -479,7 +476,7 @@ export const HomePage: React.FC = () => {
             </p>
           </div>
 
-          <div className="p-6 rounded-3xl border border-pink-200/70 dark:border-pink-900/40 bg-card space-y-2 shadow-2xs">
+          <div className="p-6 rounded-3xl border border-pink-200/70  bg-card space-y-2 shadow-2xs">
             <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-rose-500 text-white shadow-sm">
               <ShieldCheck className="h-5 w-5" />
             </div>
@@ -514,7 +511,7 @@ export const HomePage: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Review 1 */}
-            <div className="p-6 rounded-3xl border border-pink-200/80 dark:border-pink-900/40 bg-card space-y-4 shadow-2xs flex flex-col justify-between">
+            <div className="p-6 rounded-3xl border border-pink-200/80  bg-card space-y-4 shadow-2xs flex flex-col justify-between">
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <Rating value={5} size="sm" />
@@ -522,15 +519,14 @@ export const HomePage: React.FC = () => {
                     Compra Verificada
                   </span>
                 </div>
-                <p className="text-xs text-foreground/90 leading-relaxed italic">
-                  "O Dragão Cristalino e a Lontrinha são inacreditáveis! A
+                <p className="text-xs text-foreground/90 leading-relaxed italic">"O Dragão Cristalino e a Lontrinha são inacreditáveis! A
                   articulação é super suave e a cor Candy Sunset tem um brilho
                   acetinado que parece joia. Chegou em 3 dias com cheirinho de
                   chiclete!"
                 </p>
               </div>
 
-              <div className="flex items-center gap-3 pt-3 border-t border-pink-100 dark:border-border/60">
+              <div className="flex items-center gap-3 pt-3 border-t border-pink-100">
                 <img
                   src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80"
                   alt="Mariana Costa"
@@ -548,7 +544,7 @@ export const HomePage: React.FC = () => {
             </div>
 
             {/* Review 2 */}
-            <div className="p-6 rounded-3xl border border-pink-200/80 dark:border-pink-900/40 bg-card space-y-4 shadow-2xs flex flex-col justify-between">
+            <div className="p-6 rounded-3xl border border-pink-200/80  bg-card space-y-4 shadow-2xs flex flex-col justify-between">
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <Rating value={5} size="sm" />
@@ -556,14 +552,13 @@ export const HomePage: React.FC = () => {
                     Compra Verificada
                   </span>
                 </div>
-                <p className="text-xs text-foreground/90 leading-relaxed italic">
-                  "Comprei o suporte de headset do astronauta para meu setup e o
+                <p className="text-xs text-foreground/90 leading-relaxed italic">"Comprei o suporte de headset do astronauta para meu setup e o
                   acabamento é perfeito, sem nenhuma linha aparente. É pesado e
                   não tomba de jeito nenhum. Nota 10!"
                 </p>
               </div>
 
-              <div className="flex items-center gap-3 pt-3 border-t border-pink-100 dark:border-border/60">
+              <div className="flex items-center gap-3 pt-3 border-t border-pink-100">
                 <img
                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80"
                   alt="Lucas Ferreira"
@@ -581,7 +576,7 @@ export const HomePage: React.FC = () => {
             </div>
 
             {/* Review 3 */}
-            <div className="p-6 rounded-3xl border border-pink-200/80 dark:border-pink-900/40 bg-card space-y-4 shadow-2xs flex flex-col justify-between">
+            <div className="p-6 rounded-3xl border border-pink-200/80  bg-card space-y-4 shadow-2xs flex flex-col justify-between">
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <Rating value={5} size="sm" />
@@ -589,14 +584,13 @@ export const HomePage: React.FC = () => {
                     Compra Verificada
                   </span>
                 </div>
-                <p className="text-xs text-foreground/90 leading-relaxed italic">
-                  "Os filamentos PLA Rosa Bebê e Lavanda da Dengo são os
+                <p className="text-xs text-foreground/90 leading-relaxed italic">"Os filamentos PLA Rosa Bebê e Lavanda da Dengo são os
                   melhores do mercado. Zero entupimento na minha Bambu Lab e
                   adesão fantástica. Já sou cliente fiel!"
                 </p>
               </div>
 
-              <div className="flex items-center gap-3 pt-3 border-t border-pink-100 dark:border-border/60">
+              <div className="flex items-center gap-3 pt-3 border-t border-pink-100">
                 <img
                   src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80"
                   alt="Camila Rocha"
@@ -618,9 +612,9 @@ export const HomePage: React.FC = () => {
         {/* ==========================================
             10. NEWSLETTER DENGO CLUB
            ========================================== */}
-        <section className="rounded-3xl border border-pink-200/80 dark:border-pink-900/50 bg-linear-to-tr from-pink-100/60 via-pink-50/40 to-sky-100/60 dark:from-pink-950/30 dark:via-card dark:to-sky-950/30 p-8 sm:p-12 text-center space-y-6">
+        <section className="rounded-3xl border border-pink-200/80  bg-linear-to-tr from-pink-100/60 via-pink-50/40 to-sky-100/60    p-8 sm:p-12 text-center space-y-6">
           <div className="max-w-xl mx-auto space-y-2">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white dark:bg-card shadow-xs text-pink-500 mx-auto">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white  shadow-xs text-pink-500 mx-auto">
               <Send className="h-6 w-6" />
             </div>
             <h2 className="text-2xl sm:text-3xl font-black text-foreground">
@@ -633,7 +627,7 @@ export const HomePage: React.FC = () => {
           </div>
 
           {newsletterSubscribed ? (
-            <div className="max-w-md mx-auto p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 text-emerald-700 dark:text-emerald-300 text-xs font-bold flex items-center justify-center gap-2">
+            <div className="max-w-md mx-auto p-4 rounded-2xl bg-emerald-50  border border-emerald-200 text-emerald-700  text-xs font-bold flex items-center justify-center gap-2">
               <Check className="h-4 w-4" />
               <span>
                 Inscrição confirmada! Use o cupom DENGO10 para 10% OFF.
@@ -650,7 +644,7 @@ export const HomePage: React.FC = () => {
                 value={newsletterEmail}
                 onChange={(e) => setNewsletterEmail(e.target.value)}
                 required
-                className="h-11 rounded-2xl border-pink-200 text-xs bg-white dark:bg-card"
+                className="h-11 rounded-2xl border-pink-200 text-xs bg-white"
               />
               <Button
                 type="submit"

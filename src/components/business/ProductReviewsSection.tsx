@@ -253,7 +253,7 @@ export const ProductReviewsSection: React.FC<ProductReviewsSectionProps> = ({
         )}
       </div>
 
-      {/* "Escrever Avaliação" Dialog Modal */}
+      {/*"Escrever Avaliação" Dialog Modal */}
       <Dialog
         open={isModalOpen}
         onOpenChange={setIsModalOpen}

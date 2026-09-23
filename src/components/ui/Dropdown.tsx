@@ -1,6 +1,6 @@
-import * as React from "react";
-import { motion, AnimatePresence } from "motion/react";
-import { cn } from "@/src/lib/utils";
+import * as React from"react";
+import { motion, AnimatePresence } from"motion/react";
+import { cn } from"@/src/lib/utils";
 
 export interface DropdownItemProps {
   onClick?: () => void;
@@ -24,12 +24,11 @@ export const DropdownItem: React.FC<DropdownItemProps> = ({
       type="button"
       disabled={disabled}
       onClick={onClick}
-      className={cn(
-        "flex w-full items-center gap-2 px-3 py-2 text-sm font-medium rounded-sm text-left transition-colors cursor-pointer select-none",
+      className={cn("flex w-full items-center gap-2 px-3 py-2 text-sm font-medium rounded-sm text-left transition-colors cursor-pointer select-none",
         destructive
-          ? "text-destructive hover:bg-destructive/10"
-          : "text-foreground hover:bg-muted hover:text-foreground",
-        disabled && "opacity-50 pointer-events-none cursor-not-allowed",
+          ?"text-destructive hover:bg-destructive/10"
+          :"text-foreground hover:bg-muted hover:text-foreground",
+        disabled &&"opacity-50 pointer-events-none cursor-not-allowed",
         className,
       )}
     >
@@ -46,14 +45,14 @@ export const DropdownSeparator: React.FC = () => (
 export interface DropdownProps {
   trigger: React.ReactNode;
   children: React.ReactNode;
-  align?: "left" | "right";
+  align?:"left" |"right";
   className?: string;
 }
 
 export const Dropdown: React.FC<DropdownProps> = ({
   trigger,
   children,
-  align = "right",
+  align ="right",
   className,
 }) => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -84,9 +83,8 @@ export const Dropdown: React.FC<DropdownProps> = ({
             exit={{ opacity: 0, scale: 0.95, y: -4 }}
             transition={{ duration: 0.15 }}
             onClick={() => setIsOpen(false)}
-            className={cn(
-              "absolute z-50 mt-1 min-w-50 rounded-2xl border border-pink-200 bg-white p-1.5 text-slate-800 shadow-xl focus:outline-none ring-1 ring-black/5",
-              align === "right" ? "right-0" : "left-0",
+            className={cn("absolute z-50 mt-1 min-w-50 rounded-2xl border border-pink-200 bg-white p-1.5 text-slate-800 shadow-xl focus:outline-none ring-1 ring-black/5",
+              align ==="right" ?"right-0" :"left-0",
               className,
             )}
           >

@@ -1,25 +1,25 @@
-import * as React from "react";
-import { StoreLayout } from "@/src/layouts/store/StoreLayout";
-import { Breadcrumb } from "@/src/components/ui/Breadcrumb";
-import { Button } from "@/src/components/ui/Button";
-import { Badge } from "@/src/components/ui/Badge";
-import { Rating } from "@/src/components/business/Rating";
-import { PriceDisplay } from "@/src/components/business/PriceDisplay";
-import { QuantitySelector } from "@/src/components/business/QuantitySelector";
-import { ProductCard } from "@/src/components/business/ProductCard";
-import { ProductGallery } from "@/src/components/business/ProductGallery";
-import { ShippingCalculator } from "@/src/components/business/ShippingCalculator";
-import { ProductReviewsSection } from "@/src/components/business/ProductReviewsSection";
-import { ProductDetailSkeleton } from "@/src/components/feedback/ProductDetailSkeleton";
-import { NotFoundState } from "@/src/components/feedback/NotFoundState";
-import { Dialog } from "@/src/components/ui/Dialog";
-import { mockProducts } from "@/src/mocks/products";
-import { getReviewsByProductId } from "@/src/mocks/reviews";
-import { useNavigationStore } from "@/src/stores/navigationStore";
-import { useCartStore } from "@/src/stores/cartStore";
-import { useWishlistStore } from "@/src/stores/wishlistStore";
-import { useUIStore } from "@/src/stores/uiStore";
-import { useToast } from "@/src/components/ui/Toast";
+import * as React from"react";
+import { StoreLayout } from"@/src/layouts/store/StoreLayout";
+import { Breadcrumb } from"@/src/components/ui/Breadcrumb";
+import { Button } from"@/src/components/ui/Button";
+import { Badge } from"@/src/components/ui/Badge";
+import { Rating } from"@/src/components/business/Rating";
+import { PriceDisplay } from"@/src/components/business/PriceDisplay";
+import { QuantitySelector } from"@/src/components/business/QuantitySelector";
+import { ProductCard } from"@/src/components/business/ProductCard";
+import { ProductGallery } from"@/src/components/business/ProductGallery";
+import { ShippingCalculator } from"@/src/components/business/ShippingCalculator";
+import { ProductReviewsSection } from"@/src/components/business/ProductReviewsSection";
+import { ProductDetailSkeleton } from"@/src/components/feedback/ProductDetailSkeleton";
+import { NotFoundState } from"@/src/components/feedback/NotFoundState";
+import { Dialog } from"@/src/components/ui/Dialog";
+import { mockProducts } from"@/src/mocks/products";
+import { getReviewsByProductId } from"@/src/mocks/reviews";
+import { useNavigationStore } from"@/src/stores/navigationStore";
+import { useCartStore } from"@/src/stores/cartStore";
+import { useWishlistStore } from"@/src/stores/wishlistStore";
+import { useUIStore } from"@/src/stores/uiStore";
+import { useToast } from"@/src/components/ui/Toast";
 import {
   Heart,
   ShoppingBag,
@@ -40,10 +40,10 @@ import {
   AlertTriangle,
   BellRing,
   HelpCircle,
-} from "lucide-react";
-import { formatCurrency } from "@/src/utils/formatters";
-import { cn } from "@/src/lib/utils";
-import { Product, ProductVariant } from "@/src/types";
+} from"lucide-react";
+import { formatCurrency } from"@/src/utils/formatters";
+import { cn } from"@/src/lib/utils";
+import { Product, ProductVariant } from"@/src/types";
 
 export interface ProductDetailPageProps {
   slug?: string;
@@ -52,63 +52,59 @@ export interface ProductDetailPageProps {
 // Available Material Options with technical descriptions & price multipliers
 const MATERIAL_OPTIONS = [
   {
-    id: "pla-silk",
-    name: "PLA Silk Premium",
-    badge: "Brilho Sedoso",
-    description:
-      "Acabamento acetinado brilhante com reflexos sedosos. Perfeito para decoração.",
+    id:"pla-silk",
+    name:"PLA Silk Premium",
+    badge:"Brilho Sedoso",
+    description:"Acabamento acetinado brilhante com reflexos sedosos. Perfeito para decoração.",
     priceMultiplier: 1.0,
-    technology: "FDM Ultra-High Res",
+    technology:"FDM Ultra-High Res",
   },
   {
-    id: "pla-plus",
-    name: "PLA+ Resistente",
-    badge: "Alta Tenacidade",
-    description:
-      "Fórmula reforçada com resistência a impactos 2.5x maior que o PLA comum.",
+    id:"pla-plus",
+    name:"PLA+ Resistente",
+    badge:"Alta Tenacidade",
+    description:"Fórmula reforçada com resistência a impactos 2.5x maior que o PLA comum.",
     priceMultiplier: 1.08,
-    technology: "FDM Reforçado",
+    technology:"FDM Reforçado",
   },
   {
-    id: "petg",
-    name: "PETG Durável",
-    badge: "Resistência Térmica",
-    description:
-      "Suporta temperaturas de até 75°C e umidade. Ideal para suportes e uso diário.",
+    id:"petg",
+    name:"PETG Durável",
+    badge:"Resistência Térmica",
+    description:"Suporta temperaturas de até 75°C e umidade. Ideal para suportes e uso diário.",
     priceMultiplier: 1.15,
-    technology: "FDM Industrial",
+    technology:"FDM Industrial",
   },
   {
-    id: "resina-8k",
-    name: "Resina 8K Foto-curável",
-    badge: "Hiper-Detalhado",
-    description:
-      "Definição microscópica sem linhas visíveis. Ideal para miniaturas e colecionáveis.",
+    id:"resina-8k",
+    name:"Resina 8K Foto-curável",
+    badge:"Hiper-Detalhado",
+    description:"Definição microscópica sem linhas visíveis. Ideal para miniaturas e colecionáveis.",
     priceMultiplier: 1.35,
-    technology: "SLA / MSLA 8K",
+    technology:"SLA / MSLA 8K",
   },
 ];
 
 // Available Size Scales with dimension & weight multipliers
 const SIZE_OPTIONS = [
   {
-    id: "p",
-    label: "P (10 cm)",
-    dimensions: "10 x 6.5 x 5.0 cm",
+    id:"p",
+    label:"P (10 cm)",
+    dimensions:"10 x 6.5 x 5.0 cm",
     weightGrams: 75,
     priceMultiplier: 0.85,
   },
   {
-    id: "m",
-    label: "M (15 cm - Padrão)",
-    dimensions: "15 x 9.5 x 7.5 cm",
+    id:"m",
+    label:"M (15 cm - Padrão)",
+    dimensions:"15 x 9.5 x 7.5 cm",
     weightGrams: 140,
     priceMultiplier: 1.0,
   },
   {
-    id: "g",
-    label: "G (20 cm)",
-    dimensions: "20 x 13.0 x 10.0 cm",
+    id:"g",
+    label:"G (20 cm)",
+    dimensions:"20 x 13.0 x 10.0 cm",
     weightGrams: 260,
     priceMultiplier: 1.45,
   },
@@ -116,13 +112,13 @@ const SIZE_OPTIONS = [
 
 // Color palette options
 const COLOR_OPTIONS = [
-  { id: "candy-pink", name: "Rosa Candy", hex: "#FF69B4", inStock: true },
-  { id: "sky-blue", name: "Azul Céu", hex: "#60A5FA", inStock: true },
-  { id: "pastel-lilac", name: "Lilás Pastel", hex: "#C084FC", inStock: true },
-  { id: "mint-green", name: "Menta Doce", hex: "#6EE7B7", inStock: true },
-  { id: "silk-gold", name: "Dourado Silk", hex: "#FCD34D", inStock: true },
-  { id: "snow-white", name: "Branco Neve", hex: "#F8FAFC", inStock: true },
-  { id: "onyx-black", name: "Preto Ônix", hex: "#1E293B", inStock: false }, // simulated out-of-stock
+  { id:"candy-pink", name:"Rosa Candy", hex:"#FF69B4", inStock: true },
+  { id:"sky-blue", name:"Azul Céu", hex:"#60A5FA", inStock: true },
+  { id:"pastel-lilac", name:"Lilás Pastel", hex:"#C084FC", inStock: true },
+  { id:"mint-green", name:"Menta Doce", hex:"#6EE7B7", inStock: true },
+  { id:"silk-gold", name:"Dourado Silk", hex:"#FCD34D", inStock: true },
+  { id:"snow-white", name:"Branco Neve", hex:"#F8FAFC", inStock: true },
+  { id:"onyx-black", name:"Preto Ônix", hex:"#1E293B", inStock: false }, // simulated out-of-stock
 ];
 
 export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
@@ -135,14 +131,13 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
   const { toast } = useToast();
 
   const [isLoading, setIsLoading] = React.useState(true);
-  const [activeTab, setActiveTab] = React.useState<
-    "desc" | "specs" | "materials" | "production" | "reviews"
+  const [activeTab, setActiveTab] = React.useState<"desc" |"specs" |"materials" |"production" |"reviews"
   >("desc");
   const [notifyModalOpen, setNotifyModalOpen] = React.useState(false);
   const [notifyEmail, setNotifyEmail] = React.useState("");
 
   const currentSlug =
-    propSlug || params.slug || "mascote-lontrinha-dengo-3d-articulada";
+    propSlug || params.slug ||"mascote-lontrinha-dengo-3d-articulada";
   const product = mockProducts.find((p) => p.slug === currentSlug);
 
   // Configuration state for variations
@@ -249,8 +244,8 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
 
   // Breadcrumb items
   const breadcrumbItems = [
-    { label: "Início", href: "/" },
-    { label: "Catálogo", href: "/produtos" },
+    { label:"Início", href:"/" },
+    { label:"Catálogo", href:"/produtos" },
     ...(primaryCategory
       ? [
           {
@@ -269,11 +264,11 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
       return;
     }
 
-    const variantNameFormatted = selectedVariant?.name || "Padrão";
+    const variantNameFormatted = selectedVariant?.name ||"Padrão";
 
     addItem({
       productId: product.id,
-      variantId: selectedVariant?.id || "default",
+      variantId: selectedVariant?.id ||"default",
       productName: product.name,
       productSlug: product.slug,
       variantName: variantNameFormatted,
@@ -303,8 +298,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
   const handleShare = () => {
     if (navigator.clipboard) {
       navigator.clipboard.writeText(window.location.href);
-      toast.info(
-        "Link do produto copiado com sucesso para a área de transferência!",
+      toast.info("Link do produto copiado com sucesso para a área de transferência!",
       );
     } else {
       toast.info("Compartilhe o link deste produto com seus amigos makers!");
@@ -317,9 +311,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
     if (notifyEmail.trim()) {
       setNotifyModalOpen(false);
       setNotifyEmail("");
-      toast.success(
-        "E-mail cadastrado com sucesso!",
-        "Avisaremos você assim que esta variação for produzida em nosso Lab.",
+      toast.success("E-mail cadastrado com sucesso!","Avisaremos você assim que esta variação for produzida em nosso Lab.",
       );
     }
   };
@@ -345,8 +337,8 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 toggleWishlist(product.id);
                 toast.success(
                   isFav
-                    ? "Removido dos favoritos"
-                    : "Adicionado aos seus favoritos do Dengo Lab!",
+                    ?"Removido dos favoritos"
+                    :"Adicionado aos seus favoritos do Dengo Lab!",
                 );
               }}
               onShare={handleShare}
@@ -390,7 +382,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
             <div className="space-y-2">
               <div className="flex items-center justify-between gap-2 flex-wrap">
                 <span className="text-xs font-bold text-pink-600 uppercase tracking-widest">
-                  {product.brand || "Dengo 3D Lab Exclusive"}
+                  {product.brand ||"Dengo 3D Lab Exclusive"}
                 </span>
                 <span className="text-xs text-slate-600 font-mono">
                   SKU: <strong className="text-slate-700">{dynamicSku}</strong>
@@ -413,7 +405,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                     setActiveTab("reviews");
                     document
                       .getElementById("product-tabs-section")
-                      ?.scrollIntoView({ behavior: "smooth" });
+                      ?.scrollIntoView({ behavior:"smooth" });
                   }}
                   className="text-xs font-semibold text-pink-600 hover:text-pink-700 hover:underline cursor-pointer"
                 >
@@ -445,10 +437,10 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 <p className="flex items-center gap-1.5 font-medium">
                   <Sparkles className="h-3.5 w-3.5 text-pink-500 shrink-0" />
                   <span>
-                    ou{" "}
+                    ou{""}
                     <strong className="text-slate-800">
                       3x de {formatCurrency(currentPrice / 3)}
-                    </strong>{" "}
+                    </strong>{""}
                     sem juros no cartão de crédito
                   </span>
                 </p>
@@ -476,9 +468,9 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-xs">
                       <span className="font-bold text-slate-800">
-                        Selecione a Variação:{" "}
+                        Selecione a Variação:{""}
                         <span className="text-pink-600 font-semibold">
-                          {selectedVariant?.name || "Padrão"}
+                          {selectedVariant?.name ||"Padrão"}
                         </span>
                       </span>
                     </div>
@@ -494,13 +486,11 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                             type="button"
                             onClick={() => isInStock && setSelectedVariant(v)}
                             disabled={!isInStock}
-                            className={cn(
-                              "p-3 rounded-2xl border text-left transition-all cursor-pointer space-y-1",
+                            className={cn("p-3 rounded-2xl border text-left transition-all cursor-pointer space-y-1",
                               isSelected
-                                ? "border-pink-500 bg-pink-50/60 ring-2 ring-pink-300/30 shadow-xs"
-                                : "border-pink-100 bg-white hover:border-pink-200",
-                              !isInStock &&
-                                "opacity-50 cursor-not-allowed bg-slate-50",
+                                ?"border-pink-500 bg-pink-50/60 ring-2 ring-pink-300/30 shadow-xs"
+                                :"border-pink-100 bg-white hover:border-pink-200",
+                              !isInStock &&"opacity-50 cursor-not-allowed bg-slate-50",
                             )}
                           >
                             <div className="flex items-center justify-between">
@@ -521,10 +511,10 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                             </div>
                             <p className="text-[10px] text-slate-600 line-clamp-1">
                               {!isInStock
-                                ? "Esgotado"
+                                ?"Esgotado"
                                 : v.price > 0
-                                  ? `Por R$ ${v.price.toFixed(2).replace(".", ",")}`
-                                  : "Grátis"}
+                                  ? `Por R$ ${v.price.toFixed(2).replace(".",",")}`
+                                  :"Grátis"}
                             </p>
                           </button>
                         );
@@ -595,7 +585,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 </Button>
               </div>
 
-              {/* "Comprar Agora" Direct Checkout Button */}
+              {/*"Comprar Agora" Direct Checkout Button */}
               <Button
                 id="product-buy-now-btn"
                 variant="outline"
@@ -629,27 +619,27 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
           <div className="flex items-center gap-2 overflow-x-auto pb-2 border-b border-pink-100 scrollbar-none">
             {[
               {
-                id: "desc",
-                label: "Descrição Completa",
+                id:"desc",
+                label:"Descrição Completa",
                 icon: <Layers className="h-4 w-4" />,
               },
               {
-                id: "specs",
-                label: "Especificações Técnicas",
+                id:"specs",
+                label:"Especificações Técnicas",
                 icon: <Cpu className="h-4 w-4" />,
               },
               {
-                id: "materials",
-                label: "Materiais & Cuidados",
+                id:"materials",
+                label:"Materiais & Cuidados",
                 icon: <Leaf className="h-4 w-4" />,
               },
               {
-                id: "production",
-                label: "Produção 3D & Prazos",
+                id:"production",
+                label:"Produção 3D & Prazos",
                 icon: <Clock className="h-4 w-4" />,
               },
               {
-                id: "reviews",
+                id:"reviews",
                 label: `Avaliações (${reviews.length})`,
                 icon: <Sparkles className="h-4 w-4" />,
               },
@@ -658,11 +648,10 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 key={tab.id}
                 id={`tab-btn-${tab.id}`}
                 onClick={() => setActiveTab(tab.id as any)}
-                className={cn(
-                  "inline-flex items-center gap-2 px-5 py-3 rounded-2xl text-xs sm:text-sm font-bold transition-all whitespace-nowrap cursor-pointer",
+                className={cn("inline-flex items-center gap-2 px-5 py-3 rounded-2xl text-xs sm:text-sm font-bold transition-all whitespace-nowrap cursor-pointer",
                   activeTab === tab.id
-                    ? "bg-pink-500 text-white shadow-xs"
-                    : "bg-white border border-pink-200 text-slate-700 hover:border-pink-300 hover:text-slate-900",
+                    ?"bg-pink-500 text-white shadow-xs"
+                    :"bg-white border border-pink-200 text-slate-700 hover:border-pink-300 hover:text-slate-900",
                 )}
               >
                 {tab.icon}
@@ -672,7 +661,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
           </div>
 
           {/* Tab 1: Full Rich Description */}
-          {activeTab === "desc" && (
+          {activeTab ==="desc" && (
             <div className="p-6 sm:p-8 rounded-3xl border border-pink-100 bg-white space-y-6 text-slate-700 shadow-2xs animate-in fade-in duration-200">
               <div className="space-y-3">
                 <h3 className="text-lg font-black text-slate-900">
@@ -722,7 +711,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
           )}
 
           {/* Tab 2: Technical Specifications Table */}
-          {activeTab === "specs" && (
+          {activeTab ==="specs" && (
             <div className="p-6 sm:p-8 rounded-3xl border border-pink-100 bg-white space-y-6 text-slate-700 shadow-2xs animate-in fade-in duration-200">
               <h3 className="text-lg font-black text-slate-900">
                 Ficha Técnica de Fabricação 3D
@@ -796,9 +785,9 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                         Resistência Térmica Máxima
                       </td>
                       <td className="p-3.5 text-slate-800">
-                        {MATERIAL_OPTIONS[0].id === "petg"
-                          ? "75°C (Suporta sol moderado)"
-                          : "55°C (Manter em ambiente interno)"}
+                        {MATERIAL_OPTIONS[0].id ==="petg"
+                          ?"75°C (Suporta sol moderado)"
+                          :"55°C (Manter em ambiente interno)"}
                       </td>
                     </tr>
                     <tr>
@@ -816,7 +805,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
           )}
 
           {/* Tab 3: Materials & Care */}
-          {activeTab === "materials" && (
+          {activeTab ==="materials" && (
             <div className="p-6 sm:p-8 rounded-3xl border border-pink-100 bg-white space-y-6 text-slate-700 shadow-2xs animate-in fade-in duration-200">
               <h3 className="text-lg font-black text-slate-900">
                 Guia de Materiais & Cuidados com sua Peça 3D
@@ -878,7 +867,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
           )}
 
           {/* Tab 4: 3D Production & Delivery Timelines */}
-          {activeTab === "production" && (
+          {activeTab ==="production" && (
             <div className="p-6 sm:p-8 rounded-3xl border border-pink-100 bg-white space-y-6 text-slate-700 shadow-2xs animate-in fade-in duration-200">
               <h3 className="text-lg font-black text-slate-900">
                 Como Funciona a Produção no Dengo Lab
@@ -886,7 +875,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
 
               <div className="space-y-4 text-xs sm:text-sm text-slate-600 leading-relaxed">
                 <p>
-                  Diferente do varejo industrial massivo, a{" "}
+                  Diferente do varejo industrial massivo, a{""}
                   <strong>Dengo 3D Lab</strong> combina impressão aditiva de
                   ponta com carinho artesanal maker. Cada modelo é fatiado
                   digitalmente e produzido com velocidade controlada para
@@ -948,7 +937,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
           )}
 
           {/* Tab 5: Complete Customer Reviews Suite */}
-          {activeTab === "reviews" && (
+          {activeTab ==="reviews" && (
             <div className="animate-in fade-in duration-200">
               <ProductReviewsSection
                 productId={product.id}
@@ -991,12 +980,12 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
           </div>
         </div>
 
-        {/* "Avise-me Quando Chegar" Dialog Modal */}
+        {/*"Avise-me Quando Chegar" Dialog Modal */}
         <Dialog
           open={notifyModalOpen}
           onOpenChange={setNotifyModalOpen}
           title="Avise-me quando estiver em estoque"
-          description={`Receba um e-mail imediato quando ${product.name} (${selectedVariant?.name || "Padrão"}) estiver disponível.`}
+          description={`Receba um e-mail imediato quando ${product.name} (${selectedVariant?.name ||"Padrão"}) estiver disponível.`}
         >
           <form
             onSubmit={handleNotifySubmit}
@@ -1013,7 +1002,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   {product.name}
                 </span>
                 <span className="text-slate-600 block">
-                  Variação: {selectedVariant?.name || "Padrão"}
+                  Variação: {selectedVariant?.name ||"Padrão"}
                 </span>
               </div>
             </div>

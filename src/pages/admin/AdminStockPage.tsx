@@ -1,10 +1,10 @@
-import * as React from "react";
-import { AdminLayout } from "@/src/layouts/admin/AdminLayout";
-import { Button } from "@/src/components/ui/Button";
-import { Input } from "@/src/components/ui/Input";
-import { Badge } from "@/src/components/ui/Badge";
-import { StatCard } from "@/src/components/business/StatCard";
-import { useToast } from "@/src/components/ui/Toast";
+import * as React from"react";
+import { AdminLayout } from"@/src/layouts/admin/AdminLayout";
+import { Button } from"@/src/components/ui/Button";
+import { Input } from"@/src/components/ui/Input";
+import { Badge } from"@/src/components/ui/Badge";
+import { StatCard } from"@/src/components/business/StatCard";
+import { useToast } from"@/src/components/ui/Toast";
 import {
   Search,
   Plus,
@@ -14,16 +14,15 @@ import {
   ArrowUpFromLine,
   RefreshCw,
   Box,
-} from "lucide-react";
-import { Dialog } from "@/src/components/ui/Dialog";
+} from"lucide-react";
+import { Dialog } from"@/src/components/ui/Dialog";
 
 export const AdminStockPage: React.FC = () => {
   const { toast } = useToast();
   const [searchTerm, setSearchTerm] = React.useState("");
 
   const [isMovementModalOpen, setIsMovementModalOpen] = React.useState(false);
-  const [movementType, setMovementType] = React.useState<
-    "in" | "out" | "adjust"
+  const [movementType, setMovementType] = React.useState<"in" |"out" |"adjust"
   >("in");
 
   const handleSaveMovement = () => {
@@ -34,47 +33,47 @@ export const AdminStockPage: React.FC = () => {
   const mockStock = [
     {
       id: 1,
-      name: "PLA Seda - Rosa Candy",
-      sku: "PLA-SILK-ROS-1KG",
-      type: "Filamento",
+      name:"PLA Seda - Rosa Candy",
+      sku:"PLA-SILK-ROS-1KG",
+      type:"Filamento",
       stock: 4,
       reserved: 1,
       available: 3,
       min: 2,
-      status: "warning",
+      status:"warning",
     },
     {
       id: 2,
-      name: "PETG - Preto Industrial",
-      sku: "PETG-BLK-1KG",
-      type: "Filamento",
+      name:"PETG - Preto Industrial",
+      sku:"PETG-BLK-1KG",
+      type:"Filamento",
       stock: 12,
       reserved: 0,
       available: 12,
       min: 3,
-      status: "good",
+      status:"good",
     },
     {
       id: 3,
-      name: "Mascote Lontrinha 3D",
-      sku: "DNG-LONTRA-PLA-ROS-M",
-      type: "Produto",
+      name:"Mascote Lontrinha 3D",
+      sku:"DNG-LONTRA-PLA-ROS-M",
+      type:"Produto",
       stock: 15,
       reserved: 2,
       available: 13,
       min: 5,
-      status: "good",
+      status:"good",
     },
     {
       id: 4,
-      name: "Dragão Articulado 45cm",
-      sku: "DNG-DRAG-PETG-BLK-G",
-      type: "Produto",
+      name:"Dragão Articulado 45cm",
+      sku:"DNG-DRAG-PETG-BLK-G",
+      type:"Produto",
       stock: 0,
       reserved: 0,
       available: 0,
       min: 2,
-      status: "danger",
+      status:"danger",
     },
   ];
 
@@ -175,20 +174,20 @@ export const AdminStockPage: React.FC = () => {
                   <td className="px-6 py-4 text-right text-muted-foreground">
                     {item.reserved}
                   </td>
-                  <td className="px-6 py-4 text-right font-bold text-sky-600 dark:text-sky-400">
+                  <td className="px-6 py-4 text-right font-bold text-sky-600">
                     {item.available}
                   </td>
                   <td className="px-6 py-4 text-right text-muted-foreground">
                     {item.min}
                   </td>
                   <td className="px-6 py-4 text-center">
-                    {item.status === "good" && (
+                    {item.status ==="good" && (
                       <Badge variant="inStock">Normal</Badge>
                     )}
-                    {item.status === "warning" && (
+                    {item.status ==="warning" && (
                       <Badge variant="warning">Baixo</Badge>
                     )}
-                    {item.status === "danger" && (
+                    {item.status ==="danger" && (
                       <Badge variant="cherry">Esgotado</Badge>
                     )}
                   </td>
@@ -207,21 +206,21 @@ export const AdminStockPage: React.FC = () => {
         <div className="space-y-4">
           <div className="flex gap-2">
             <Button
-              variant={movementType === "in" ? "dengo" : "outline"}
+              variant={movementType ==="in" ?"dengo" :"outline"}
               className="flex-1 gap-2"
               onClick={() => setMovementType("in")}
             >
               <ArrowDownToLine className="h-4 w-4" /> Entrada
             </Button>
             <Button
-              variant={movementType === "out" ? "destructive" : "outline"}
+              variant={movementType ==="out" ?"destructive" :"outline"}
               className="flex-1 gap-2"
               onClick={() => setMovementType("out")}
             >
               <ArrowUpFromLine className="h-4 w-4" /> Saída
             </Button>
             <Button
-              variant={movementType === "adjust" ? "secondary" : "outline"}
+              variant={movementType ==="adjust" ?"secondary" :"outline"}
               className="flex-1 gap-2"
               onClick={() => setMovementType("adjust")}
             >

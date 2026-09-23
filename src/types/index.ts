@@ -135,12 +135,12 @@ export interface ProductVariant {
 
 export interface TechnicalSpecs {
   technology?: PrintTechnology;
-  printTempRange?: string; // e.g. "200°C - 230°C"
-  bedTempRange?: string; // e.g. "50°C - 60°C"
-  fanSpeed?: string; // e.g. "100%"
-  density?: string; // e.g. "1.24 g/cm³"
-  tensileStrength?: string; // e.g. "50 MPa"
-  heatDeflectionTemp?: string; // e.g. "55°C"
+  printTempRange?: string; // e.g."200°C - 230°C"
+  bedTempRange?: string; // e.g."50°C - 60°C"
+  fanSpeed?: string; // e.g."100%"
+  density?: string; // e.g."1.24 g/cm³"
+  tensileStrength?: string; // e.g."50 MPa"
+  heatDeflectionTemp?: string; // e.g."55°C"
   spoolHubDiameterMm?: number;
   layerHeightRecommendation?: string;
   layerHeightMm?: number;
@@ -277,7 +277,7 @@ export interface TrackingEvent {
 export interface Shipment {
   id: string;
   orderId: string;
-  carrierName: string; // e.g. "Correios Sedex", "Jadlog Express", "Loggi"
+  carrierName: string; // e.g."Correios Sedex","Jadlog Express","Loggi"
   trackingCode: string;
   trackingUrl?: string;
   status: ShipmentStatus;
@@ -302,7 +302,7 @@ export interface ProductionOrder {
 
 export interface Order {
   id: string;
-  orderNumber: string; // e.g. "3DF-2026-9812"
+  orderNumber: string; // e.g."3DF-2026-9812"
   userId: string;
   customerName: string;
   customerEmail: string;
@@ -366,7 +366,7 @@ export interface InventoryItem {
   currentStock: number;
   reservedStock: number;
   minStockThreshold: number;
-  locationInWarehouse?: string; // e.g. "RACK-B-04"
+  locationInWarehouse?: string; // e.g."RACK-B-04"
   lastRestockedAt?: string;
 }
 

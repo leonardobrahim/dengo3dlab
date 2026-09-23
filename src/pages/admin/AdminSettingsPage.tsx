@@ -1,9 +1,9 @@
-import * as React from "react";
-import { AdminLayout } from "@/src/layouts/admin/AdminLayout";
-import { Button } from "@/src/components/ui/Button";
-import { Input } from "@/src/components/ui/Input";
-import { Badge } from "@/src/components/ui/Badge";
-import { useToast } from "@/src/components/ui/Toast";
+import * as React from"react";
+import { AdminLayout } from"@/src/layouts/admin/AdminLayout";
+import { Button } from"@/src/components/ui/Button";
+import { Input } from"@/src/components/ui/Input";
+import { Badge } from"@/src/components/ui/Badge";
+import { useToast } from"@/src/components/ui/Toast";
 import {
   Store,
   CreditCard,
@@ -13,7 +13,7 @@ import {
   Search,
   Shield,
   Save,
-} from "lucide-react";
+} from"lucide-react";
 
 export const AdminSettingsPage: React.FC = () => {
   const { toast } = useToast();
@@ -24,23 +24,23 @@ export const AdminSettingsPage: React.FC = () => {
   };
 
   const tabs = [
-    { id: "loja", label: "Loja", icon: <Store className="h-4 w-4" /> },
+    { id:"loja", label:"Loja", icon: <Store className="h-4 w-4" /> },
     {
-      id: "pagamento",
-      label: "Pagamento",
+      id:"pagamento",
+      label:"Pagamento",
       icon: <CreditCard className="h-4 w-4" />,
     },
-    { id: "frete", label: "Frete", icon: <Truck className="h-4 w-4" /> },
-    { id: "email", label: "E-mail", icon: <Mail className="h-4 w-4" /> },
+    { id:"frete", label:"Frete", icon: <Truck className="h-4 w-4" /> },
+    { id:"email", label:"E-mail", icon: <Mail className="h-4 w-4" /> },
     {
-      id: "notificacoes",
-      label: "Notificações",
+      id:"notificacoes",
+      label:"Notificações",
       icon: <Bell className="h-4 w-4" />,
     },
-    { id: "seo", label: "SEO", icon: <Search className="h-4 w-4" /> },
+    { id:"seo", label:"SEO", icon: <Search className="h-4 w-4" /> },
     {
-      id: "seguranca",
-      label: "Segurança",
+      id:"seguranca",
+      label:"Segurança",
       icon: <Shield className="h-4 w-4" />,
     },
   ];
@@ -76,8 +76,8 @@ export const AdminSettingsPage: React.FC = () => {
                 onClick={() => setActiveTab(tab.id)}
                 className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-bold transition-colors ${
                   activeTab === tab.id
-                    ? "bg-pink-100 text-pink-700 dark:bg-pink-900/30 dark:text-pink-400"
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                    ?"bg-pink-100 text-pink-700"
+                    :"text-muted-foreground hover:bg-muted hover:text-foreground"
                 }`}
               >
                 {tab.icon} {tab.label}
@@ -87,7 +87,7 @@ export const AdminSettingsPage: React.FC = () => {
 
           {/* Tab Content */}
           <div className="flex-1 bg-card border border-border rounded-3xl p-6 md:p-8">
-            {activeTab === "loja" && (
+            {activeTab ==="loja" && (
               <div className="space-y-6 max-w-2xl">
                 <div>
                   <h2 className="text-lg font-black text-foreground mb-4">
@@ -123,7 +123,7 @@ export const AdminSettingsPage: React.FC = () => {
               </div>
             )}
 
-            {activeTab === "pagamento" && (
+            {activeTab ==="pagamento" && (
               <div className="space-y-6 max-w-2xl">
                 <div>
                   <h2 className="text-lg font-black text-foreground mb-4">
@@ -153,7 +153,7 @@ export const AdminSettingsPage: React.FC = () => {
               </div>
             )}
 
-            {activeTab === "frete" && (
+            {activeTab ==="frete" && (
               <div className="space-y-6 max-w-2xl">
                 <div>
                   <h2 className="text-lg font-black text-foreground mb-4">
@@ -180,10 +180,10 @@ export const AdminSettingsPage: React.FC = () => {
               </div>
             )}
 
-            {(activeTab === "email" ||
-              activeTab === "notificacoes" ||
-              activeTab === "seo" ||
-              activeTab === "seguranca") && (
+            {(activeTab ==="email" ||
+              activeTab ==="notificacoes" ||
+              activeTab ==="seo" ||
+              activeTab ==="seguranca") && (
               <div className="space-y-6 max-w-2xl flex flex-col items-center justify-center py-10 text-center opacity-60">
                 <Store className="h-12 w-12 text-muted-foreground mb-2" />
                 <h2 className="text-lg font-bold">Módulo em Desenvolvimento</h2>

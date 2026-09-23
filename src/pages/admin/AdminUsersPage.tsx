@@ -1,13 +1,13 @@
-import * as React from "react";
-import { AdminLayout } from "@/src/layouts/admin/AdminLayout";
-import { Button } from "@/src/components/ui/Button";
-import { Badge } from "@/src/components/ui/Badge";
-import { Input } from "@/src/components/ui/Input";
-import { Dialog } from "@/src/components/ui/Dialog";
-import { Avatar } from "@/src/components/ui/Avatar";
-import { useToast } from "@/src/components/ui/Toast";
-import { Shield, Plus, Edit2, Lock, Unlock } from "lucide-react";
-import { formatDate } from "@/src/utils/formatters";
+import * as React from"react";
+import { AdminLayout } from"@/src/layouts/admin/AdminLayout";
+import { Button } from"@/src/components/ui/Button";
+import { Badge } from"@/src/components/ui/Badge";
+import { Input } from"@/src/components/ui/Input";
+import { Dialog } from"@/src/components/ui/Dialog";
+import { Avatar } from"@/src/components/ui/Avatar";
+import { useToast } from"@/src/components/ui/Toast";
+import { Shield, Plus, Edit2, Lock, Unlock } from"lucide-react";
+import { formatDate } from"@/src/utils/formatters";
 
 export const AdminUsersPage: React.FC = () => {
   const { toast } = useToast();
@@ -15,28 +15,28 @@ export const AdminUsersPage: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [users, setUsers] = React.useState([
     {
-      id: "adm-1",
-      name: "Leonardo Brahim",
-      email: "leonardobrahim@gmail.com",
-      role: "superadmin",
-      status: "active",
-      lastLogin: "2026-08-25T20:00:00Z",
+      id:"adm-1",
+      name:"Leonardo Brahim",
+      email:"leonardobrahim@gmail.com",
+      role:"superadmin",
+      status:"active",
+      lastLogin:"2026-08-25T20:00:00Z",
     },
     {
-      id: "adm-2",
-      name: "Dengo 3D Labs",
-      email: "admin@dengo3d.com",
-      role: "admin",
-      status: "active",
-      lastLogin: "2026-08-24T10:00:00Z",
+      id:"adm-2",
+      name:"Dengo 3D Labs",
+      email:"admin@dengo3d.com",
+      role:"admin",
+      status:"active",
+      lastLogin:"2026-08-24T10:00:00Z",
     },
     {
-      id: "adm-3",
-      name: "Operador Produção",
-      email: "print@dengo3d.com",
-      role: "operator",
-      status: "blocked",
-      lastLogin: "2026-07-15T09:00:00Z",
+      id:"adm-3",
+      name:"Operador Produção",
+      email:"print@dengo3d.com",
+      role:"operator",
+      status:"blocked",
+      lastLogin:"2026-07-15T09:00:00Z",
     },
   ]);
 
@@ -49,9 +49,9 @@ export const AdminUsersPage: React.FC = () => {
     setUsers((prev) =>
       prev.map((u) => {
         if (u.id === id) {
-          const newStatus = u.status === "active" ? "blocked" : "active";
+          const newStatus = u.status ==="active" ?"blocked" :"active";
           toast.success(
-            `Usuário ${newStatus === "active" ? "desbloqueado" : "bloqueado"}!`,
+            `Usuário ${newStatus ==="active" ?"desbloqueado" :"bloqueado"}!`,
           );
           return { ...u, status: newStatus };
         }
@@ -112,17 +112,17 @@ export const AdminUsersPage: React.FC = () => {
                     </div>
                   </td>
                   <td className="p-4 text-center">
-                    {user.role === "superadmin" && (
+                    {user.role ==="superadmin" && (
                       <Badge variant="cherry">
                         <Shield className="h-3 w-3 mr-1" /> Super Admin
                       </Badge>
                     )}
-                    {user.role === "admin" && (
+                    {user.role ==="admin" && (
                       <Badge variant="tip">
                         <Shield className="h-3 w-3 mr-1" /> Administrador
                       </Badge>
                     )}
-                    {user.role === "operator" && (
+                    {user.role ==="operator" && (
                       <Badge variant="caution">Operador</Badge>
                     )}
                   </td>
@@ -130,7 +130,7 @@ export const AdminUsersPage: React.FC = () => {
                     {formatDate(user.lastLogin)}
                   </td>
                   <td className="p-4 text-center">
-                    {user.status === "active" ? (
+                    {user.status ==="active" ? (
                       <Badge variant="success">Ativo</Badge>
                     ) : (
                       <Badge variant="destructive">Bloqueado</Badge>
@@ -146,9 +146,9 @@ export const AdminUsersPage: React.FC = () => {
                       </button>
                       <button
                         onClick={() => handleToggleBlock(user.id)}
-                        className={`p-1.5 bg-muted rounded-lg transition-colors ${user.status === "active" ? "text-muted-foreground hover:text-rose-600 hover:bg-rose-50" : "text-rose-600 hover:text-emerald-600 hover:bg-emerald-50"}`}
+                        className={`p-1.5 bg-muted rounded-lg transition-colors ${user.status ==="active" ?"text-muted-foreground hover:text-rose-600 hover:bg-rose-50" :"text-rose-600 hover:text-emerald-600 hover:bg-emerald-50"}`}
                       >
-                        {user.status === "active" ? (
+                        {user.status ==="active" ? (
                           <Unlock className="h-3.5 w-3.5" />
                         ) : (
                           <Lock className="h-3.5 w-3.5" />

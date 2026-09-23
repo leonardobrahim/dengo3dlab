@@ -1,9 +1,9 @@
-import * as React from "react";
-import { AdminLayout } from "@/src/layouts/admin/AdminLayout";
-import { Button } from "@/src/components/ui/Button";
-import { Badge } from "@/src/components/ui/Badge";
-import { Input } from "@/src/components/ui/Input";
-import { useToast } from "@/src/components/ui/Toast";
+import * as React from"react";
+import { AdminLayout } from"@/src/layouts/admin/AdminLayout";
+import { Button } from"@/src/components/ui/Button";
+import { Badge } from"@/src/components/ui/Badge";
+import { Input } from"@/src/components/ui/Input";
+import { useToast } from"@/src/components/ui/Toast";
 import {
   Truck,
   Search,
@@ -12,39 +12,39 @@ import {
   AlertTriangle,
   CheckCircle,
   ExternalLink,
-} from "lucide-react";
-import { formatDate } from "@/src/utils/formatters";
+} from"lucide-react";
+import { formatDate } from"@/src/utils/formatters";
 
 export const AdminShipmentsPage: React.FC = () => {
   const { toast } = useToast();
 
   const shipments = [
     {
-      id: "shp-1",
-      orderNumber: "DENGO-8942",
-      customerName: "Maria Maker Dengo",
-      carrier: "Correios (SEDEX)",
-      trackingCode: "",
-      status: "waiting", // waiting, shipped, in_transit, delivered, problem
-      date: "2026-08-24T14:20:00Z",
+      id:"shp-1",
+      orderNumber:"DENGO-8942",
+      customerName:"Maria Maker Dengo",
+      carrier:"Correios (SEDEX)",
+      trackingCode:"",
+      status:"waiting", // waiting, shipped, in_transit, delivered, problem
+      date:"2026-08-24T14:20:00Z",
     },
     {
-      id: "shp-2",
-      orderNumber: "DENGO-8941",
-      customerName: "Lucas Costa",
-      carrier: "Jadlog",
-      trackingCode: "JD123456789BR",
-      status: "in_transit",
-      date: "2026-08-23T10:00:00Z",
+      id:"shp-2",
+      orderNumber:"DENGO-8941",
+      customerName:"Lucas Costa",
+      carrier:"Jadlog",
+      trackingCode:"JD123456789BR",
+      status:"in_transit",
+      date:"2026-08-23T10:00:00Z",
     },
     {
-      id: "shp-3",
-      orderNumber: "DENGO-8930",
-      customerName: "Amanda Silva",
-      carrier: "Correios (PAC)",
-      trackingCode: "PB987654321BR",
-      status: "problem",
-      date: "2026-08-15T09:00:00Z",
+      id:"shp-3",
+      orderNumber:"DENGO-8930",
+      customerName:"Amanda Silva",
+      carrier:"Correios (PAC)",
+      trackingCode:"PB987654321BR",
+      status:"problem",
+      date:"2026-08-15T09:00:00Z",
     },
   ];
 
@@ -121,27 +121,27 @@ export const AdminShipmentsPage: React.FC = () => {
                     )}
                   </td>
                   <td className="p-4 text-center">
-                    {shipment.status === "waiting" && (
+                    {shipment.status ==="waiting" && (
                       <Badge variant="waiting">
                         <Package className="h-3 w-3 mr-1" /> Aguardando Envio
                       </Badge>
                     )}
-                    {shipment.status === "shipped" && (
+                    {shipment.status ==="shipped" && (
                       <Badge variant="shipped">
                         <Truck className="h-3 w-3 mr-1" /> Enviado
                       </Badge>
                     )}
-                    {shipment.status === "in_transit" && (
+                    {shipment.status ==="in_transit" && (
                       <Badge variant="in_transit">
                         <MapPin className="h-3 w-3 mr-1" /> Em Trânsito
                       </Badge>
                     )}
-                    {shipment.status === "delivered" && (
+                    {shipment.status ==="delivered" && (
                       <Badge variant="delivered">
                         <CheckCircle className="h-3 w-3 mr-1" /> Entregue
                       </Badge>
                     )}
-                    {shipment.status === "problem" && (
+                    {shipment.status ==="problem" && (
                       <Badge variant="problem">
                         <AlertTriangle className="h-3 w-3 mr-1" /> Problema
                       </Badge>

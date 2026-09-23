@@ -1,17 +1,17 @@
-import * as React from "react";
-import { Product, ProductVariant } from "@/src/types";
-import { Card } from "@/src/components/ui/Card";
-import { Button } from "@/src/components/ui/Button";
-import { Badge } from "@/src/components/ui/Badge";
-import { PriceDisplay } from "./PriceDisplay";
-import { Rating } from "./Rating";
-import { StatusBadge } from "./StatusBadge";
-import { Heart, ShoppingBag, Sparkles, Eye, Check } from "lucide-react";
-import { useCartStore } from "@/src/stores/cartStore";
-import { useWishlistStore } from "@/src/stores/wishlistStore";
-import { useNavigationStore } from "@/src/stores/navigationStore";
-import { useToast } from "@/src/hooks/useToast";
-import { cn } from "@/src/lib/utils";
+import * as React from"react";
+import { Product, ProductVariant } from"@/src/types";
+import { Card } from"@/src/components/ui/Card";
+import { Button } from"@/src/components/ui/Button";
+import { Badge } from"@/src/components/ui/Badge";
+import { PriceDisplay } from"./PriceDisplay";
+import { Rating } from"./Rating";
+import { StatusBadge } from"./StatusBadge";
+import { Heart, ShoppingBag, Sparkles, Eye, Check } from"lucide-react";
+import { useCartStore } from"@/src/stores/cartStore";
+import { useWishlistStore } from"@/src/stores/wishlistStore";
+import { useNavigationStore } from"@/src/stores/navigationStore";
+import { useToast } from"@/src/hooks/useToast";
+import { cn } from"@/src/lib/utils";
 
 export interface ProductCardProps {
   product: Product;
@@ -28,9 +28,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
   const [selectedVariant, setSelectedVariant] = React.useState<ProductVariant>(
     product.variants?.[0] || {
-      id: "default",
-      sku: "SKU",
-      name: "Padrão",
+      id:"default",
+      sku:"SKU",
+      name:"Padrão",
       price: product.basePrice,
       stockQuantity: product.stockTotal,
     },
@@ -81,15 +81,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       colorHex: selectedVariant.colorHex,
       material:
         selectedVariant.material ||
-        (product.type === "filament" ? "PLA Silk" : "PLA+"),
+        (product.type ==="filament" ?"PLA Silk" :"PLA+"),
       imageUrl: selectedVariant.imageUrl || product.featuredImage,
       unitPrice: currentPrice,
       quantity: 1,
       maxStock: selectedVariant.stockQuantity || product.stockTotal || 10,
       sku: selectedVariant.sku,
     });
-    toast.success(
-      "Adicionado com dengo! 💖",
+    toast.success("Adicionado com dengo! 💖",
       `${product.name} (${selectedVariant.name})`,
     );
   };
@@ -99,8 +98,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     toggleWishlist(product.id);
     toast.info(
       isFavorite
-        ? "Removido dos favoritos"
-        : "Salvo na sua Lista de Desejos 💖",
+        ?"Removido dos favoritos"
+        :"Salvo na sua Lista de Desejos 💖",
       product.name,
     );
   };
@@ -108,15 +107,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <Card
       id={`product-card-${product.id}`}
-      className={cn(
-        "group flex flex-col justify-between overflow-hidden rounded-3xl border border-pink-200/70 dark:border-pink-900/40 bg-card transition-all duration-300 hover:border-pink-400 dark:hover:border-pink-500/60 hover:shadow-xl hover:shadow-pink-500/10 hover:-translate-y-1 cursor-pointer select-none",
+      className={cn("group flex flex-col justify-between overflow-hidden rounded-3xl border border-pink-200/70  bg-card transition-all duration-300 hover:border-pink-400  hover:shadow-xl hover:shadow-pink-500/10 hover:-translate-y-1 cursor-pointer select-none",
         className,
       )}
       onClick={handleCardClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative aspect-square w-full overflow-hidden bg-linear-to-tr from-pink-50/60 via-white to-sky-50/60 dark:from-zinc-900 dark:to-zinc-800">
+      <div className="relative aspect-square w-full overflow-hidden bg-linear-to-tr from-pink-50/60 via-white to-sky-50/60">
         {/* Product Image with smooth skeleton backdrop */}
         <img
           src={
@@ -125,10 +123,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             product.images?.[0]
           }
           alt={product.name}
-          className={cn(
-            "h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-108",
-            !imageLoaded && "opacity-0 scale-95",
-            imageLoaded && "opacity-100 scale-100",
+          className={cn("h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-108",
+            !imageLoaded &&"opacity-0 scale-95",
+            imageLoaded &&"opacity-100 scale-100",
           )}
           loading="lazy"
           onLoad={() => setImageLoaded(true)}
@@ -175,20 +172,18 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <button
           type="button"
           onClick={handleToggleWishlist}
-          className={cn(
-            "absolute top-2.5 right-2.5 z-10 flex h-8.5 w-8.5 items-center justify-center rounded-full bg-white/95 dark:bg-card/95 backdrop-blur-xs shadow-xs transition-all hover:scale-115 cursor-pointer border border-pink-200/60 dark:border-pink-900/60",
+          className={cn("absolute top-2.5 right-2.5 z-10 flex h-8.5 w-8.5 items-center justify-center rounded-full bg-white/95  backdrop-blur-xs shadow-xs transition-all hover:scale-115 cursor-pointer border border-pink-200/60",
             isFavorite
-              ? "text-pink-500 fill-pink-500 ring-2 ring-pink-300"
-              : "text-muted-foreground hover:text-pink-500 hover:border-pink-300",
+              ?"text-pink-500 fill-pink-500 ring-2 ring-pink-300"
+              :"text-muted-foreground hover:text-pink-500 hover:border-pink-300",
           )}
           aria-label={
-            isFavorite ? "Remover dos favoritos" : "Favoritar produto"
+            isFavorite ?"Remover dos favoritos" :"Favoritar produto"
           }
         >
           <Heart
-            className={cn(
-              "h-4 w-4 transition-transform active:scale-125",
-              isFavorite && "fill-current text-pink-500",
+            className={cn("h-4 w-4 transition-transform active:scale-125",
+              isFavorite &&"fill-current text-pink-500",
             )}
           />
         </button>
@@ -196,7 +191,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         {/* Quick View Floating Hint on hover */}
         {showQuickView && (
           <div className="absolute inset-x-3 bottom-3 hidden sm:flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0 z-10">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 dark:bg-card/95 backdrop-blur-md text-[11px] font-bold text-foreground shadow-md border border-pink-200/80 dark:border-pink-900/60 hover:bg-pink-500 hover:text-white transition-colors">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95  backdrop-blur-md text-[11px] font-bold text-foreground shadow-md border border-pink-200/80  hover:bg-pink-500 hover:text-white transition-colors">
               <Eye className="h-3.5 w-3.5" />
               <span>Ver Detalhes</span>
             </span>
@@ -207,13 +202,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <div className="absolute bottom-2.5 left-2.5 z-5 sm:group-hover:opacity-0 transition-opacity">
           <Badge
             variant="outline"
-            className="bg-white/90 dark:bg-card/90 backdrop-blur-xs text-[10px] font-semibold border-pink-200/60 shadow-2xs"
+            className="bg-white/90  backdrop-blur-xs text-[10px] font-semibold border-pink-200/60 shadow-2xs"
           >
-            {product.type === "printed_model"
-              ? "Peça 3D Exclusiva"
-              : product.type === "filament"
-                ? "Filamento Silk"
-                : "Item Maker"}
+            {product.type ==="printed_model"
+              ?"Peça 3D Exclusiva"
+              : product.type ==="filament"
+                ?"Filamento Silk"
+                :"Item Maker"}
           </Badge>
         </div>
       </div>
@@ -223,24 +218,24 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <div>
           {/* Brand & Stock Status */}
           <div className="flex items-center justify-between text-[11px] text-muted-foreground mb-1 gap-2">
-            <span className="font-semibold text-pink-600 dark:text-pink-400 truncate">
-              {product.brand || "Dengo 3D Lab"}
+            <span className="font-semibold text-pink-600  truncate">
+              {product.brand ||"Dengo 3D Lab"}
             </span>
             <StatusBadge
               status={
                 !product.inStock || selectedVariant.stockQuantity === 0
-                  ? "out_of_stock"
+                  ?"out_of_stock"
                   : selectedVariant.stockQuantity !== null &&
                       selectedVariant.stockQuantity < 5
-                    ? "low_stock"
-                    : "in_stock"
+                    ?"low_stock"
+                    :"in_stock"
               }
               stockCount={selectedVariant.stockQuantity ?? undefined}
             />
           </div>
 
           {/* Product Title */}
-          <h3 className="font-bold text-xs sm:text-sm text-foreground line-clamp-2 leading-snug group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">
+          <h3 className="font-bold text-xs sm:text-sm text-foreground line-clamp-2 leading-snug group-hover:text-pink-600  transition-colors">
             {product.name}
           </h3>
 
@@ -258,7 +253,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
         {/* Variant Swatches (Color Pickers) */}
         {product.variants && product.variants.length > 1 && (
-          <div className="space-y-1 pt-1.5 border-t border-pink-100/70 dark:border-border/60">
+          <div className="space-y-1 pt-1.5 border-t border-pink-100/70">
             <div className="flex items-center justify-between text-[10px] text-muted-foreground">
               <span>Opções de cor:</span>
               <span className="font-semibold text-foreground truncate max-w-30">
@@ -274,13 +269,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                     e.stopPropagation();
                     setSelectedVariant(variant);
                   }}
-                  className={cn(
-                    "relative h-5 w-5 rounded-full border transition-all cursor-pointer shadow-2xs",
+                  className={cn("relative h-5 w-5 rounded-full border transition-all cursor-pointer shadow-2xs",
                     selectedVariant.id === variant.id
-                      ? "ring-2 ring-pink-500 ring-offset-1 scale-110"
-                      : "hover:scale-105 opacity-80",
+                      ?"ring-2 ring-pink-500 ring-offset-1 scale-110"
+                      :"hover:scale-105 opacity-80",
                   )}
-                  style={{ backgroundColor: variant.colorHex || "#F472B6" }}
+                  style={{ backgroundColor: variant.colorHex ||"#F472B6" }}
                   title={variant.name}
                   aria-label={`Selecionar cor ${variant.name}`}
                 />
@@ -290,7 +284,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         )}
 
         {/* Price & Action Button */}
-        <div className="pt-2 flex items-center justify-between gap-2 border-t border-pink-100/70 dark:border-border/60">
+        <div className="pt-2 flex items-center justify-between gap-2 border-t border-pink-100/70">
           <div>
             <PriceDisplay
               price={selectedVariant.price || product.basePrice}

@@ -1,37 +1,29 @@
-import * as React from "react";
-import { StoreLayout } from "@/src/layouts/store/StoreLayout";
-import { Breadcrumb } from "@/src/components/ui/Breadcrumb";
-import { ProductGrid } from "@/src/components/business/ProductGrid";
+import * as React from"react";
+import { StoreLayout } from"@/src/layouts/store/StoreLayout";
+import { Breadcrumb } from"@/src/components/ui/Breadcrumb";
+import { ProductGrid } from"@/src/components/business/ProductGrid";
 import {
   ProductFilters,
   FilterState,
-} from "@/src/components/business/ProductFilters";
-import { Pagination } from "@/src/components/ui/Pagination";
-import { Drawer } from "@/src/components/ui/Drawer";
-import { Badge } from "@/src/components/ui/Badge";
-import { Button } from "@/src/components/ui/Button";
-import { mockProducts } from "@/src/mocks/products";
-import { mockCategories } from "@/src/mocks/categories";
-import { useNavigationStore } from "@/src/stores/navigationStore";
-import { Search, X, Sparkles, Filter, ArrowUpDown } from "lucide-react";
-import { cn } from "@/src/lib/utils";
+} from"@/src/components/business/ProductFilters";
+import { Pagination } from"@/src/components/ui/Pagination";
+import { Drawer } from"@/src/components/ui/Drawer";
+import { Badge } from"@/src/components/ui/Badge";
+import { Button } from"@/src/components/ui/Button";
+import { mockProducts } from"@/src/mocks/products";
+import { mockCategories } from"@/src/mocks/categories";
+import { useNavigationStore } from"@/src/stores/navigationStore";
+import { Search, X, Sparkles, Filter, ArrowUpDown } from"lucide-react";
+import { cn } from"@/src/lib/utils";
 
 const ITEMS_PER_PAGE = 12;
 
-const POPULAR_SEARCH_TAGS = [
-  "Lontrinha",
-  "Dragão Articulado",
-  "Vaso Geométrico",
-  "Suporte Headset",
-  "Cortadores Candy",
-  "PLA Silk Rosa",
-  "Resina 8K",
-  "Organizador",
+const POPULAR_SEARCH_TAGS = ["Lontrinha","Dragão Articulado","Vaso Geométrico","Suporte Headset","Cortadores Candy","PLA Silk Rosa","Resina 8K","Organizador",
 ];
 
 export const SearchPage: React.FC = () => {
   const { params, navigate, setQueryParams } = useNavigationStore();
-  const rawQuery = params.query || params.q || "";
+  const rawQuery = params.query || params.q ||"";
   const [searchInput, setSearchInput] = React.useState(rawQuery);
   const [mobileFilterOpen, setMobileFilterOpen] = React.useState(false);
 
@@ -50,13 +42,13 @@ export const SearchPage: React.FC = () => {
     return () => clearTimeout(timer);
   }, [searchInput, rawQuery, setQueryParams]);
 
-  const currentCategory = params.categorySlug || params.category || "all";
-  const currentSort = params.sort || "featured";
+  const currentCategory = params.categorySlug || params.category ||"all";
+  const currentSort = params.sort ||"featured";
   const currentPage = Number(params.page) || 1;
   const currentMinPrice = params.minPrice ? Number(params.minPrice) : undefined;
   const currentMaxPrice = params.maxPrice ? Number(params.maxPrice) : undefined;
   const currentMinRating = params.rating ? Number(params.rating) : undefined;
-  const currentInStock = params.inStock === true || params.inStock === "true";
+  const currentInStock = params.inStock === true || params.inStock ==="true";
 
   const currentMaterials = React.useMemo(() => {
     if (!params.material) return [];
@@ -106,7 +98,7 @@ export const SearchPage: React.FC = () => {
     }
 
     // 2. Category Filter
-    if (filterState.category && filterState.category !== "all") {
+    if (filterState.category && filterState.category !=="all") {
       result = result.filter((p) =>
         p.categories.some(
           (c) =>
@@ -116,13 +108,13 @@ export const SearchPage: React.FC = () => {
     }
 
     // 3. Price Filter
-    if (filterState.minPrice !== undefined && filterState.minPrice !== "") {
+    if (filterState.minPrice !== undefined && filterState.minPrice !=="") {
       result = result.filter((p) => {
         const effectivePrice = p.basePromotionalPrice || p.basePrice;
         return effectivePrice >= Number(filterState.minPrice);
       });
     }
-    if (filterState.maxPrice !== undefined && filterState.maxPrice !== "") {
+    if (filterState.maxPrice !== undefined && filterState.maxPrice !=="") {
       result = result.filter((p) => {
         const effectivePrice = p.basePromotionalPrice || p.basePrice;
         return effectivePrice <= Number(filterState.maxPrice);
@@ -134,7 +126,7 @@ export const SearchPage: React.FC = () => {
       result = result.filter((p) => {
         return filterState.material.some((mat) => {
           const matLower = mat.toLowerCase();
-          const specMat = p.technicalSpecs?.material?.toLowerCase() || "";
+          const specMat = p.technicalSpecs?.material?.toLowerCase() ||"";
           const tagMat = p.tags.some((t) => t.toLowerCase().includes(matLower));
           const variantMat = p.variants?.some((v) =>
             v.material?.toLowerCase().includes(matLower),
@@ -180,19 +172,19 @@ export const SearchPage: React.FC = () => {
       const priceB = b.basePromotionalPrice || b.basePrice;
 
       switch (currentSort) {
-        case "price_asc":
+        case"price_asc":
           return priceA - priceB;
-        case "price_desc":
+        case"price_desc":
           return priceB - priceA;
-        case "rating_desc":
+        case"rating_desc":
           return (b.rating || 0) - (a.rating || 0);
-        case "bestseller":
+        case"bestseller":
           return (b.isBestSeller ? 1 : 0) - (a.isBestSeller ? 1 : 0);
-        case "newest":
+        case"newest":
           return (
             new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
           );
-        case "featured":
+        case"featured":
         default:
           return (b.isFeatured ? 1 : 0) - (a.isFeatured ? 1 : 0);
       }
@@ -209,9 +201,9 @@ export const SearchPage: React.FC = () => {
 
   const handleFilterChange = (newFilters: FilterState) => {
     setQueryParams({
-      category: newFilters.category === "all" ? undefined : newFilters.category,
+      category: newFilters.category ==="all" ? undefined : newFilters.category,
       categorySlug:
-        newFilters.category === "all" ? undefined : newFilters.category,
+        newFilters.category ==="all" ? undefined : newFilters.category,
       minPrice: newFilters.minPrice,
       maxPrice: newFilters.maxPrice,
       material:
@@ -241,8 +233,8 @@ export const SearchPage: React.FC = () => {
   };
 
   const breadcrumbs = [
-    { label: "Início", href: "/" },
-    { label: "Busca Global", isCurrent: true },
+    { label:"Início", href:"/" },
+    { label:"Busca Global", isCurrent: true },
   ];
 
   return (
@@ -251,7 +243,7 @@ export const SearchPage: React.FC = () => {
         <Breadcrumb items={breadcrumbs} onNavigate={navigate} />
 
         {/* Search Header Banner with Live Search Box */}
-        <div className="p-6 sm:p-8 rounded-3xl border border-pink-200/80 dark:border-pink-900/50 bg-linear-to-br from-pink-50/90 via-card to-sky-50/60 dark:from-pink-950/30 dark:to-card space-y-4 shadow-2xs">
+        <div className="p-6 sm:p-8 rounded-3xl border border-pink-200/80  bg-linear-to-br from-pink-50/90 via-card to-sky-50/60   space-y-4 shadow-2xs">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <h1 className="text-xl sm:text-2xl font-black text-foreground">
               Busca de Produtos
@@ -270,7 +262,7 @@ export const SearchPage: React.FC = () => {
               placeholder="Digite o que você procura (ex: lontra, rosa, dragão, filamento, vaso, suporte)..."
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
-              className="w-full h-12 pl-11 pr-10 text-xs sm:text-sm rounded-2xl border border-pink-200/90 dark:border-pink-900/70 bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-pink-400/20 shadow-inner"
+              className="w-full h-12 pl-11 pr-10 text-xs sm:text-sm rounded-2xl border border-pink-200/90  bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-pink-400/20 shadow-inner"
             />
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-pink-500" />
             {searchInput && (
@@ -295,7 +287,7 @@ export const SearchPage: React.FC = () => {
                 key={tag}
                 type="button"
                 onClick={() => setSearchInput(tag)}
-                className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white dark:bg-card border border-pink-200/60 dark:border-pink-900/40 text-pink-700 dark:text-pink-300 hover:bg-pink-100 hover:scale-105 transition-all cursor-pointer shadow-2xs"
+                className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white  border border-pink-200/60  text-pink-700  hover:bg-pink-100 hover:scale-105 transition-all cursor-pointer shadow-2xs"
               >
                 {tag}
               </button>
@@ -304,7 +296,7 @@ export const SearchPage: React.FC = () => {
         </div>
 
         {/* Controls Bar: Sort, View & Filter Drawer Trigger */}
-        <div className="flex items-center justify-between gap-4 pb-2 border-b border-pink-100 dark:border-border">
+        <div className="flex items-center justify-between gap-4 pb-2 border-b border-pink-100">
           <div className="flex items-center gap-2">
             <Button
               variant="outline"
@@ -317,8 +309,8 @@ export const SearchPage: React.FC = () => {
             </Button>
             <span className="text-xs text-muted-foreground font-semibold">
               {searchInput
-                ? `Resultados para "${searchInput}"`
-                : "Todos os produtos"}
+                ? `Resultados para"${searchInput}"`
+                :"Todos os produtos"}
             </span>
           </div>
 
@@ -331,7 +323,7 @@ export const SearchPage: React.FC = () => {
               onChange={(e) =>
                 setQueryParams({ sort: e.target.value, page: 1 })
               }
-              className="h-9 px-3 text-xs rounded-xl border border-pink-200/80 dark:border-pink-900/60 bg-card text-foreground font-semibold focus:outline-none focus:ring-1 focus:ring-pink-400 cursor-pointer shadow-2xs"
+              className="h-9 px-3 text-xs rounded-xl border border-pink-200/80  bg-card text-foreground font-semibold focus:outline-none focus:ring-1 focus:ring-pink-400 cursor-pointer shadow-2xs"
             >
               <option value="featured">✨ Em Destaque</option>
               <option value="bestseller">💖 Mais Vendidos</option>
@@ -346,7 +338,7 @@ export const SearchPage: React.FC = () => {
         {/* Layout: Sidebar + Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-2">
           {/* Desktop Left Filter Sidebar */}
-          <aside className="hidden lg:block lg:col-span-3 sticky top-24 p-5 rounded-3xl border border-pink-200/80 dark:border-pink-900/40 bg-card shadow-xs">
+          <aside className="hidden lg:block lg:col-span-3 sticky top-24 p-5 rounded-3xl border border-pink-200/80  bg-card shadow-xs">
             <ProductFilters
               filters={filterState}
               onFilterChange={handleFilterChange}
@@ -380,7 +372,7 @@ export const SearchPage: React.FC = () => {
             <ProductGrid
               products={paginatedProducts}
               columns={4}
-              emptyTitle={`Nenhum resultado para "${searchInput}"`}
+              emptyTitle={`Nenhum resultado para"${searchInput}"`}
               emptyDescription="Nossa lontrinha não localizou peças com esse termo de busca. Experimente termos como 'articulado', 'filamento', 'cortadores' ou redefina os filtros."
               emptyActionLabel="Ver Catálogo Completo"
               onEmptyAction={() => {
@@ -391,13 +383,13 @@ export const SearchPage: React.FC = () => {
             />
 
             {totalPages > 1 && (
-              <div className="pt-6 border-t border-pink-100 dark:border-border flex items-center justify-center">
+              <div className="pt-6 border-t border-pink-100  flex items-center justify-center">
                 <Pagination
                   currentPage={currentPage}
                   totalPages={totalPages}
                   onPageChange={(page) => {
                     setQueryParams({ page });
-                    window.scrollTo({ top: 180, behavior: "smooth" });
+                    window.scrollTo({ top: 180, behavior:"smooth" });
                   }}
                 />
               </div>

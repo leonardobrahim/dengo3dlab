@@ -38,13 +38,13 @@ export const ReviewsPage: React.FC = () => {
           {reviews.map((rev) => (
             <div
               key={rev.id}
-              className="p-5 rounded-3xl border border-pink-200/80 dark:border-pink-900/50 bg-card space-y-3 shadow-xs"
+              className="p-5 rounded-3xl border border-pink-200/80  bg-card space-y-3 shadow-xs"
             >
               <div className="flex items-center gap-3">
                 <img
                   src={rev.productImage}
                   alt={rev.productName}
-                  className="h-12 w-12 rounded-xl object-cover border border-pink-100 dark:border-border"
+                  className="h-12 w-12 rounded-xl object-cover border border-pink-100"
                 />
                 <div className="space-y-0.5">
                   <h3 className="text-xs font-bold text-foreground">{rev.productName}</h3>
@@ -55,8 +55,7 @@ export const ReviewsPage: React.FC = () => {
                 </div>
               </div>
 
-              <p className="text-xs text-muted-foreground italic bg-pink-50/40 dark:bg-card p-3 rounded-2xl border border-pink-100 dark:border-border">
-                "{rev.comment}"
+              <p className="text-xs text-muted-foreground italic bg-pink-50/40  p-3 rounded-2xl border border-pink-100">"{rev.comment}"
               </p>
             </div>
           ))}

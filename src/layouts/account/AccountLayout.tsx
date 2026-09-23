@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from"react";
 import {
   User,
   Package,
@@ -12,18 +12,18 @@ import {
   Sparkles,
   LayoutDashboard,
   ShieldAlert,
-} from "lucide-react";
-import { StoreHeader } from "@/src/layouts/store/StoreHeader";
-import { StoreFooter } from "@/src/layouts/store/StoreFooter";
-import { CartDrawer } from "@/src/features/foundation/CartDrawer";
-import { Breadcrumb } from "@/src/components/ui/Breadcrumb";
-import { Avatar } from "@/src/components/ui/Avatar";
-import { Badge } from "@/src/components/ui/Badge";
-import { Button } from "@/src/components/ui/Button";
-import { Drawer } from "@/src/components/ui/Drawer";
-import { useAuthStore } from "@/src/stores/authStore";
-import { useNavigationStore } from "@/src/stores/navigationStore";
-import { useWishlistStore } from "@/src/stores/wishlistStore";
+} from"lucide-react";
+import { StoreHeader } from"@/src/layouts/store/StoreHeader";
+import { StoreFooter } from"@/src/layouts/store/StoreFooter";
+import { CartDrawer } from"@/src/features/foundation/CartDrawer";
+import { Breadcrumb } from"@/src/components/ui/Breadcrumb";
+import { Avatar } from"@/src/components/ui/Avatar";
+import { Badge } from"@/src/components/ui/Badge";
+import { Button } from"@/src/components/ui/Button";
+import { Drawer } from"@/src/components/ui/Drawer";
+import { useAuthStore } from"@/src/stores/authStore";
+import { useNavigationStore } from"@/src/stores/navigationStore";
+import { useWishlistStore } from"@/src/stores/wishlistStore";
 
 export interface AccountLayoutProps {
   children: React.ReactNode;
@@ -32,27 +32,27 @@ export interface AccountLayoutProps {
 }
 
 const accountNavItems = [
-  { label: "Visão Geral", path: "/minha-conta", icon: LayoutDashboard },
-  { label: "Meu Perfil", path: "/minha-conta/perfil", icon: User },
-  { label: "Meus Pedidos", path: "/minha-conta/pedidos", icon: Package },
+  { label:"Visão Geral", path:"/minha-conta", icon: LayoutDashboard },
+  { label:"Meu Perfil", path:"/minha-conta/perfil", icon: User },
+  { label:"Meus Pedidos", path:"/minha-conta/pedidos", icon: Package },
   {
-    label: "Lista de Favoritos",
-    path: "/minha-conta/favoritos",
+    label:"Lista de Favoritos",
+    path:"/minha-conta/favoritos",
     icon: Heart,
     hasBadge: true,
   },
-  { label: "Meus Endereços", path: "/minha-conta/enderecos", icon: MapPin },
-  { label: "Minhas Avaliações", path: "/minha-conta/avaliacoes", icon: Star },
+  { label:"Meus Endereços", path:"/minha-conta/enderecos", icon: MapPin },
+  { label:"Minhas Avaliações", path:"/minha-conta/avaliacoes", icon: Star },
   {
-    label: "Configurações",
-    path: "/minha-conta/configuracoes",
+    label:"Configurações",
+    path:"/minha-conta/configuracoes",
     icon: Settings,
   },
 ];
 
 export const AccountLayout: React.FC<AccountLayoutProps> = ({
   children,
-  currentPageTitle = "Minha Conta",
+  currentPageTitle ="Minha Conta",
   currentPageBreadcrumb,
 }) => {
   const { user, isAuthenticated, isLoading, logout } = useAuthStore();
@@ -73,9 +73,9 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({
   const wishlistCount = productIds.length;
 
   const breadcrumbItems = [
-    { label: "Início", href: "/" },
-    { label: "Minha Conta", href: "/minha-conta" },
-    ...(currentPageBreadcrumb && currentPageBreadcrumb !== "Minha Conta"
+    { label:"Início", href:"/" },
+    { label:"Minha Conta", href:"/minha-conta" },
+    ...(currentPageBreadcrumb && currentPageBreadcrumb !=="Minha Conta"
       ? [{ label: currentPageBreadcrumb, isCurrent: true }]
       : []),
   ];
@@ -108,28 +108,23 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({
             <div className="flex items-center gap-3 pb-4 border-b border-pink-100">
               <Avatar
                 src={user?.avatarUrl}
-                name={user?.name || "Cliente Dengo"}
+                name={user?.name ||"Cliente Dengo"}
                 size="md"
-                status={isAuthenticated ? "online" : "offline"}
+                status={isAuthenticated ?"online" :"offline"}
               />
               <div className="min-w-0 flex-1">
                 <p className="text-sm font-bold text-slate-900 truncate">
-                  {user?.name || "Visitante"}
+                  {user?.name ||"Visitante"}
                 </p>
                 <p className="text-[11px] text-slate-500 truncate">
-                  {user?.email || "contato@dengo3d.com"}
+                  {user?.email ||"contato@dengo3d.com"}
                 </p>
                 <Badge variant="babyPink" className="mt-1 text-[9px] uppercase">
                   {user?.role &&
-                  [
-                    "admin",
-                    "superadmin",
-                    "production",
-                    "stock",
-                    "support",
+                  ["admin","superadmin","production","stock","support",
                   ].includes(user.role)
-                    ? "Administrador"
-                    : "Cliente VIP"}
+                    ?"Administrador"
+                    :"Cliente VIP"}
                 </Badge>
               </div>
             </div>
@@ -146,13 +141,13 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({
                     onClick={() => navigate(item.path)}
                     className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-xs font-semibold transition-all cursor-pointer ${
                       isActive
-                        ? "bg-linear-to-r from-pink-500 to-pink-400 text-white shadow-xs font-bold"
-                        : "text-slate-600 hover:text-slate-900 hover:bg-pink-50"
+                        ?"bg-linear-to-r from-pink-500 to-pink-400 text-white shadow-xs font-bold"
+                        :"text-slate-600 hover:text-slate-900 hover:bg-pink-50"
                     }`}
                   >
                     <div className="flex items-center gap-2.5">
                       <Icon
-                        className={`h-4 w-4 ${isActive ? "text-white" : "text-pink-500"}`}
+                        className={`h-4 w-4 ${isActive ?"text-white" :"text-pink-500"}`}
                       />
                       <span>{item.label}</span>
                     </div>
@@ -161,8 +156,8 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({
                       <span
                         className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold ${
                           isActive
-                            ? "bg-white text-pink-600"
-                            : "bg-pink-100 text-pink-600"
+                            ?"bg-white text-pink-600"
+                            :"bg-pink-100 text-pink-600"
                         }`}
                       >
                         {wishlistCount}
@@ -173,12 +168,7 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({
               })}
 
               {user?.role &&
-                [
-                  "admin",
-                  "superadmin",
-                  "production",
-                  "stock",
-                  "support",
+                ["admin","superadmin","production","stock","support",
                 ].includes(user.role) && (
                   <button
                     onClick={() => navigate("/admin")}
@@ -223,12 +213,12 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({
             <div className="flex items-center gap-3 p-3 rounded-2xl bg-pink-50/60 border border-pink-200/60">
               <Avatar
                 src={user?.avatarUrl}
-                name={user?.name || "Cliente"}
+                name={user?.name ||"Cliente"}
                 size="md"
               />
               <div className="min-w-0 flex-1 text-left">
                 <p className="text-xs font-bold text-slate-900 truncate">
-                  {user?.name || "Visitante"}
+                  {user?.name ||"Visitante"}
                 </p>
                 <p className="text-[10px] text-slate-500 truncate">
                   {user?.email}
@@ -251,8 +241,8 @@ export const AccountLayout: React.FC<AccountLayoutProps> = ({
                     }}
                     className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold cursor-pointer ${
                       isActive
-                        ? "bg-pink-500 text-white font-bold"
-                        : "text-slate-600 hover:text-slate-900 hover:bg-pink-50"
+                        ?"bg-pink-500 text-white font-bold"
+                        :"text-slate-600 hover:text-slate-900 hover:bg-pink-50"
                     }`}
                   >
                     <div className="flex items-center gap-2.5">

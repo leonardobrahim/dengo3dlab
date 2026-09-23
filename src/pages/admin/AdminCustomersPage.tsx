@@ -1,12 +1,12 @@
-import * as React from "react";
-import { AdminLayout } from "@/src/layouts/admin/AdminLayout";
-import { Avatar } from "@/src/components/ui/Avatar";
-import { Badge } from "@/src/components/ui/Badge";
-import { Button } from "@/src/components/ui/Button";
-import { Input } from "@/src/components/ui/Input";
-import { Mail, Search, Eye } from "lucide-react";
-import { formatCurrency, formatDate } from "@/src/utils/formatters";
-import { useNavigationStore } from "@/src/stores/navigationStore";
+import * as React from"react";
+import { AdminLayout } from"@/src/layouts/admin/AdminLayout";
+import { Avatar } from"@/src/components/ui/Avatar";
+import { Badge } from"@/src/components/ui/Badge";
+import { Button } from"@/src/components/ui/Button";
+import { Input } from"@/src/components/ui/Input";
+import { Mail, Search, Eye } from"lucide-react";
+import { formatCurrency, formatDate } from"@/src/utils/formatters";
+import { useNavigationStore } from"@/src/stores/navigationStore";
 
 export const AdminCustomersPage: React.FC = () => {
   const { navigate } = useNavigationStore();
@@ -14,36 +14,34 @@ export const AdminCustomersPage: React.FC = () => {
 
   const mockCustomers = [
     {
-      id: "usr-1",
-      name: "Maria Maker Dengo",
-      email: "maker@dengo3d.com",
-      createdAt: "2025-10-12T14:00:00Z",
+      id:"usr-1",
+      name:"Maria Maker Dengo",
+      email:"maker@dengo3d.com",
+      createdAt:"2025-10-12T14:00:00Z",
       ordersCount: 5,
       totalSpent: 642.5,
-      status: "active",
-      avatar:
-        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
+      status:"active",
+      avatar:"https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
     },
     {
-      id: "usr-2",
-      name: "Lucas Henrique Costa",
-      email: "lucas@gmail.com",
-      createdAt: "2026-02-20T09:30:00Z",
+      id:"usr-2",
+      name:"Lucas Henrique Costa",
+      email:"lucas@gmail.com",
+      createdAt:"2026-02-20T09:30:00Z",
       ordersCount: 2,
       totalSpent: 189.9,
-      status: "active",
-      avatar:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
+      status:"active",
+      avatar:"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
     },
     {
-      id: "usr-3",
-      name: "Amanda Silva",
-      email: "amanda@exemplo.com",
-      createdAt: "2026-08-01T11:15:00Z",
+      id:"usr-3",
+      name:"Amanda Silva",
+      email:"amanda@exemplo.com",
+      createdAt:"2026-08-01T11:15:00Z",
       ordersCount: 0,
       totalSpent: 0,
-      status: "inactive",
-      avatar: "",
+      status:"inactive",
+      avatar:"",
     },
   ];
 
@@ -120,7 +118,7 @@ export const AdminCustomersPage: React.FC = () => {
                     {formatCurrency(customer.totalSpent)}
                   </td>
                   <td className="p-4 text-center">
-                    {customer.status === "active" ? (
+                    {customer.status ==="active" ? (
                       <Badge variant="success">Ativo</Badge>
                     ) : (
                       <Badge variant="destructive">Inativo</Badge>

@@ -45,7 +45,7 @@ export const PriceDisplay: React.FC<PriceDisplayProps> = ({
             </span>
             <span
               className={cn(
-                'rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-semibold px-1.5 py-0.5',
+                'rounded bg-emerald-500/10 text-emerald-600  font-semibold px-1.5 py-0.5',
                 sizeClasses[size].disc
               )}
             >

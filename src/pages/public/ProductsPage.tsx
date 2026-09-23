@@ -1,18 +1,18 @@
-import * as React from "react";
-import { StoreLayout } from "@/src/layouts/store/StoreLayout";
-import { ProductGrid } from "@/src/components/business/ProductGrid";
+import * as React from"react";
+import { StoreLayout } from"@/src/layouts/store/StoreLayout";
+import { ProductGrid } from"@/src/components/business/ProductGrid";
 import {
   ProductFilters,
   FilterState,
-} from "@/src/components/business/ProductFilters";
-import { Pagination } from "@/src/components/ui/Pagination";
-import { Drawer } from "@/src/components/ui/Drawer";
-import { Badge } from "@/src/components/ui/Badge";
-import { Button } from "@/src/components/ui/Button";
-import { mockProducts } from "@/src/mocks/products";
-import { mockCategories } from "@/src/mocks/categories";
-import { useNavigationStore } from "@/src/stores/navigationStore";
-import { Product } from "@/src/types";
+} from"@/src/components/business/ProductFilters";
+import { Pagination } from"@/src/components/ui/Pagination";
+import { Drawer } from"@/src/components/ui/Drawer";
+import { Badge } from"@/src/components/ui/Badge";
+import { Button } from"@/src/components/ui/Button";
+import { mockProducts } from"@/src/mocks/products";
+import { mockCategories } from"@/src/mocks/categories";
+import { useNavigationStore } from"@/src/stores/navigationStore";
+import { Product } from"@/src/types";
 import {
   SlidersHorizontal,
   ArrowUpDown,
@@ -22,8 +22,8 @@ import {
   LayoutGrid,
   Grid,
   Filter,
-} from "lucide-react";
-import { cn } from "@/src/lib/utils";
+} from"lucide-react";
+import { cn } from"@/src/lib/utils";
 
 const ITEMS_PER_PAGE = 12;
 
@@ -33,13 +33,13 @@ export const ProductsPage: React.FC = () => {
   const [gridColumns, setGridColumns] = React.useState<3 | 4>(4);
 
   // Initialize filter state from route params
-  const currentCategory = params.categorySlug || params.category || "all";
-  const currentSort = params.sort || "featured";
+  const currentCategory = params.categorySlug || params.category ||"all";
+  const currentSort = params.sort ||"featured";
   const currentPage = Number(params.page) || 1;
   const currentMinPrice = params.minPrice ? Number(params.minPrice) : undefined;
   const currentMaxPrice = params.maxPrice ? Number(params.maxPrice) : undefined;
   const currentMinRating = params.rating ? Number(params.rating) : undefined;
-  const currentInStock = params.inStock === true || params.inStock === "true";
+  const currentInStock = params.inStock === true || params.inStock ==="true";
 
   const currentMaterials = React.useMemo(() => {
     if (!params.material) return [];
@@ -66,7 +66,7 @@ export const ProductsPage: React.FC = () => {
     let result = [...mockProducts];
 
     // 1. Category Filter
-    if (filterState.category && filterState.category !== "all") {
+    if (filterState.category && filterState.category !=="all") {
       result = result.filter((p) =>
         p.categories.some(
           (c) =>
@@ -76,13 +76,13 @@ export const ProductsPage: React.FC = () => {
     }
 
     // 2. Price Filter
-    if (filterState.minPrice !== undefined && filterState.minPrice !== "") {
+    if (filterState.minPrice !== undefined && filterState.minPrice !=="") {
       result = result.filter((p) => {
         const effectivePrice = p.basePromotionalPrice || p.basePrice;
         return effectivePrice >= Number(filterState.minPrice);
       });
     }
-    if (filterState.maxPrice !== undefined && filterState.maxPrice !== "") {
+    if (filterState.maxPrice !== undefined && filterState.maxPrice !=="") {
       result = result.filter((p) => {
         const effectivePrice = p.basePromotionalPrice || p.basePrice;
         return effectivePrice <= Number(filterState.maxPrice);
@@ -94,12 +94,12 @@ export const ProductsPage: React.FC = () => {
       result = result.filter((p) => {
         const matchesMaterial = filterState.material.some((mat) => {
           const matLower = mat.toLowerCase();
-          const specMat = p.technicalSpecs?.material?.toLowerCase() || "";
+          const specMat = p.technicalSpecs?.material?.toLowerCase() ||"";
           const tagMat = p.tags.some((t) => t.toLowerCase().includes(matLower));
           const variantMat = p.variants?.some((v) =>
             v.material?.toLowerCase().includes(matLower),
           );
-          const typeMat = p.type === "filament" && matLower.includes("pla");
+          const typeMat = p.type ==="filament" && matLower.includes("pla");
           return specMat.includes(matLower) || tagMat || variantMat || typeMat;
         });
         return matchesMaterial;
@@ -142,19 +142,19 @@ export const ProductsPage: React.FC = () => {
       const priceB = b.basePromotionalPrice || b.basePrice;
 
       switch (currentSort) {
-        case "price_asc":
+        case"price_asc":
           return priceA - priceB;
-        case "price_desc":
+        case"price_desc":
           return priceB - priceA;
-        case "rating_desc":
+        case"rating_desc":
           return (b.rating || 0) - (a.rating || 0);
-        case "bestseller":
+        case"bestseller":
           return (b.isBestSeller ? 1 : 0) - (a.isBestSeller ? 1 : 0);
-        case "newest":
+        case"newest":
           return (
             new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
           );
-        case "featured":
+        case"featured":
         default:
           return (b.isFeatured ? 1 : 0) - (a.isFeatured ? 1 : 0);
       }
@@ -181,9 +181,9 @@ export const ProductsPage: React.FC = () => {
 
   const handleFilterChange = (newFilters: FilterState) => {
     setQueryParams({
-      category: newFilters.category === "all" ? undefined : newFilters.category,
+      category: newFilters.category ==="all" ? undefined : newFilters.category,
       categorySlug:
-        newFilters.category === "all" ? undefined : newFilters.category,
+        newFilters.category ==="all" ? undefined : newFilters.category,
       minPrice: newFilters.minPrice,
       maxPrice: newFilters.maxPrice,
       material:
@@ -218,7 +218,7 @@ export const ProductsPage: React.FC = () => {
 
   const handlePageChange = (newPage: number) => {
     setQueryParams({ page: newPage });
-    window.scrollTo({ top: 180, behavior: "smooth" });
+    window.scrollTo({ top: 180, behavior:"smooth" });
   };
 
   // Find active category metadata if selected
@@ -245,21 +245,20 @@ export const ProductsPage: React.FC = () => {
           <span
             className={cn(
               activeCategoryObj
-                ? "hover:text-pink-600 cursor-pointer"
-                : "text-foreground font-semibold",
+                ?"hover:text-pink-600 cursor-pointer"
+                :"text-foreground font-semibold",
             )}
           >
             {activeCategoryObj ? (
               <button
                 type="button"
                 onClick={() =>
-                  handleFilterChange({ ...filterState, category: "all" })
+                  handleFilterChange({ ...filterState, category:"all" })
                 }
               >
                 Produtos
               </button>
-            ) : (
-              "Todos os Produtos"
+            ) : ("Todos os Produtos"
             )}
           </span>
           {activeCategoryObj && (
@@ -273,13 +272,13 @@ export const ProductsPage: React.FC = () => {
         </nav>
 
         {/* Page Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-pink-200/80 dark:border-pink-900/40">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-pink-200/80">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
               <h1 className="text-2xl sm:text-3xl font-black text-foreground">
                 {activeCategoryObj
                   ? activeCategoryObj.name
-                  : "Catálogo Completo 3D"}
+                  :"Catálogo Completo 3D"}
               </h1>
               <Badge variant="babyPink" className="text-xs font-bold">
                 {filteredProducts.length} itens
@@ -288,7 +287,7 @@ export const ProductsPage: React.FC = () => {
             <p className="text-xs sm:text-sm text-muted-foreground max-w-2xl">
               {activeCategoryObj
                 ? activeCategoryObj.description
-                : "Explore modelos articulados, filamentos silk, suportes organizadores e itens decorativos feitos no nosso laboratório de manufatura aditiva."}
+                :"Explore modelos articulados, filamentos silk, suportes organizadores e itens decorativos feitos no nosso laboratório de manufatura aditiva."}
             </p>
           </div>
 
@@ -313,7 +312,7 @@ export const ProductsPage: React.FC = () => {
               <select
                 value={currentSort}
                 onChange={(e) => handleSortChange(e.target.value)}
-                className="h-9 px-3 text-xs rounded-xl border border-pink-200/80 dark:border-pink-900/60 bg-card text-foreground font-semibold focus:outline-none focus:ring-1 focus:ring-pink-400 cursor-pointer shadow-2xs"
+                className="h-9 px-3 text-xs rounded-xl border border-pink-200/80  bg-card text-foreground font-semibold focus:outline-none focus:ring-1 focus:ring-pink-400 cursor-pointer shadow-2xs"
               >
                 <option value="featured">✨ Em Destaque</option>
                 <option value="bestseller">💖 Mais Vendidos</option>
@@ -325,15 +324,14 @@ export const ProductsPage: React.FC = () => {
             </div>
 
             {/* Grid Density Toggle (Desktop) */}
-            <div className="hidden sm:flex items-center border border-pink-200/80 dark:border-border rounded-xl p-0.5 bg-card">
+            <div className="hidden sm:flex items-center border border-pink-200/80  rounded-xl p-0.5 bg-card">
               <button
                 type="button"
                 onClick={() => setGridColumns(3)}
-                className={cn(
-                  "p-1.5 rounded-lg transition-colors cursor-pointer",
+                className={cn("p-1.5 rounded-lg transition-colors cursor-pointer",
                   gridColumns === 3
-                    ? "bg-pink-100 dark:bg-pink-950 text-pink-600 font-bold"
-                    : "text-muted-foreground hover:text-foreground",
+                    ?"bg-pink-100  text-pink-600 font-bold"
+                    :"text-muted-foreground hover:text-foreground",
                 )}
                 title="3 Colunas"
               >
@@ -342,11 +340,10 @@ export const ProductsPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setGridColumns(4)}
-                className={cn(
-                  "p-1.5 rounded-lg transition-colors cursor-pointer",
+                className={cn("p-1.5 rounded-lg transition-colors cursor-pointer",
                   gridColumns === 4
-                    ? "bg-pink-100 dark:bg-pink-950 text-pink-600 font-bold"
-                    : "text-muted-foreground hover:text-foreground",
+                    ?"bg-pink-100  text-pink-600 font-bold"
+                    :"text-muted-foreground hover:text-foreground",
                 )}
                 title="4 Colunas"
               >
@@ -357,7 +354,7 @@ export const ProductsPage: React.FC = () => {
         </div>
 
         {/* Active Filters Chips Bar */}
-        {(filterState.category !== "all" ||
+        {(filterState.category !=="all" ||
           filterState.minPrice ||
           filterState.maxPrice ||
           filterState.material.length > 0 ||
@@ -369,7 +366,7 @@ export const ProductsPage: React.FC = () => {
               Filtros ativos:
             </span>
 
-            {filterState.category !== "all" && (
+            {filterState.category !=="all" && (
               <Badge variant="babyPink" className="gap-1 text-xs">
                 <span>
                   Cat: {activeCategoryObj?.name || filterState.category}
@@ -377,7 +374,7 @@ export const ProductsPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() =>
-                    handleFilterChange({ ...filterState, category: "all" })
+                    handleFilterChange({ ...filterState, category:"all" })
                   }
                   className="hover:text-foreground cursor-pointer"
                 >
@@ -389,8 +386,8 @@ export const ProductsPage: React.FC = () => {
             {(filterState.minPrice || filterState.maxPrice) && (
               <Badge variant="babyPink" className="gap-1 text-xs">
                 <span>
-                  Preço: R$ {filterState.minPrice || 0} -{" "}
-                  {filterState.maxPrice ? `R$ ${filterState.maxPrice}` : "∞"}
+                  Preço: R$ {filterState.minPrice || 0} -{""}
+                  {filterState.maxPrice ? `R$ ${filterState.maxPrice}` :"∞"}
                 </span>
                 <button
                   type="button"
@@ -491,7 +488,7 @@ export const ProductsPage: React.FC = () => {
         {/* Main Content Layout: Sidebar + Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-2">
           {/* Desktop Left Filter Sidebar */}
-          <aside className="hidden lg:block lg:col-span-3 sticky top-24 p-5 rounded-3xl border border-pink-200/80 dark:border-pink-900/40 bg-card shadow-xs">
+          <aside className="hidden lg:block lg:col-span-3 sticky top-24 p-5 rounded-3xl border border-pink-200/80  bg-card shadow-xs">
             <ProductFilters
               filters={filterState}
               onFilterChange={handleFilterChange}
@@ -533,7 +530,7 @@ export const ProductsPage: React.FC = () => {
 
             {/* Pagination Controls */}
             {totalPages > 1 && (
-              <div className="pt-6 border-t border-pink-100 dark:border-border flex items-center justify-center">
+              <div className="pt-6 border-t border-pink-100  flex items-center justify-center">
                 <Pagination
                   currentPage={currentPage}
                   totalPages={totalPages}

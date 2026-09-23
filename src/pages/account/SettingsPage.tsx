@@ -1,26 +1,26 @@
-import * as React from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { AccountLayout } from "@/src/layouts/account/AccountLayout";
-import { Button } from "@/src/components/ui/Button";
-import { Switch } from "@/src/components/ui/Switch";
-import { Input } from "@/src/components/ui/Input";
-import { Dialog } from "@/src/components/ui/Dialog";
-import { useToast } from "@/src/components/ui/Toast";
-import { Bell, Lock, Shield } from "lucide-react";
-import { useUIStore } from "@/src/stores/uiStore";
+import * as React from"react";
+import { useForm } from"react-hook-form";
+import { z } from"zod";
+import { zodResolver } from"@hookform/resolvers/zod";
+import { AccountLayout } from"@/src/layouts/account/AccountLayout";
+import { Button } from"@/src/components/ui/Button";
+import { Switch } from"@/src/components/ui/Switch";
+import { Input } from"@/src/components/ui/Input";
+import { Dialog } from"@/src/components/ui/Dialog";
+import { useToast } from"@/src/components/ui/Toast";
+import { Bell, Lock, Shield } from"lucide-react";
+import { useUIStore } from"@/src/stores/uiStore";
 
 const passwordSchema = z
   .object({
-    currentPassword: z.string().min(1, "Senha atual é obrigatória"),
+    currentPassword: z.string().min(1,"Senha atual é obrigatória"),
     newPassword: z
       .string()
-      .min(8, "A nova senha deve ter no mínimo 8 caracteres"),
-    confirmPassword: z.string().min(1, "Confirmação é obrigatória"),
+      .min(8,"A nova senha deve ter no mínimo 8 caracteres"),
+    confirmPassword: z.string().min(1,"Confirmação é obrigatória"),
   })
   .refine((data) => data.newPassword === data.confirmPassword, {
-    message: "As senhas não coincidem",
+    message:"As senhas não coincidem",
     path: ["confirmPassword"],
   });
 

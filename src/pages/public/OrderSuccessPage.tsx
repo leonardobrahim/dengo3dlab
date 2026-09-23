@@ -1,7 +1,7 @@
-import * as React from "react";
-import { StoreLayout } from "@/src/layouts/store/StoreLayout";
-import { Button } from "@/src/components/ui/Button";
-import { Badge } from "@/src/components/ui/Badge";
+import * as React from"react";
+import { StoreLayout } from"@/src/layouts/store/StoreLayout";
+import { Button } from"@/src/components/ui/Button";
+import { Badge } from"@/src/components/ui/Badge";
 import {
   CheckCircle2,
   Package,
@@ -9,15 +9,15 @@ import {
   CreditCard,
   ArrowRight,
   Truck,
-} from "lucide-react";
-import { useNavigationStore } from "@/src/stores/navigationStore";
-import { orderService } from "@/src/services/orders/orderService";
-import { OrderTimeline } from "@/src/components/business/OrderTimeline";
-import { formatCurrency } from "@/src/utils/formatters";
-import { Order } from "@/src/types";
+} from"lucide-react";
+import { useNavigationStore } from"@/src/stores/navigationStore";
+import { orderService } from"@/src/services/orders/orderService";
+import { OrderTimeline } from"@/src/components/business/OrderTimeline";
+import { formatCurrency } from"@/src/utils/formatters";
+import { Order } from"@/src/types";
 
 export const OrderSuccessPage: React.FC<{ orderId?: string }> = ({
-  orderId = "000000",
+  orderId ="000000",
 }) => {
   const { navigate } = useNavigationStore();
 
@@ -121,17 +121,17 @@ export const OrderSuccessPage: React.FC<{ orderId?: string }> = ({
                 <CreditCard className="h-4 w-4 text-sky-500" /> Pagamento
               </div>
               <p className="text-xs text-muted-foreground leading-relaxed">
-                {order.payment?.method === "pix"
-                  ? "PIX"
-                  : order.payment?.method === "boleto"
-                    ? "Boleto"
-                    : "Cartão de Crédito"}
+                {order.payment?.method ==="pix"
+                  ?"PIX"
+                  : order.payment?.method ==="boleto"
+                    ?"Boleto"
+                    :"Cartão de Crédito"}
                 <br />
                 {formatCurrency(order.total)}
                 <br />
-                {order.payment?.status === "paid"
-                  ? "Aprovado"
-                  : "Aguardando Pagamento"}
+                {order.payment?.status ==="paid"
+                  ?"Aprovado"
+                  :"Aguardando Pagamento"}
               </p>
             </div>
 

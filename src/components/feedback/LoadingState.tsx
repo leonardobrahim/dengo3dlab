@@ -19,7 +19,7 @@ export const LoadingState: React.FC<LoadingStateProps> = ({
   return (
     <div
       className={cn(
-        'flex flex-col items-center justify-center p-8 sm:p-12 text-center rounded-3xl border border-pink-200/50 dark:border-pink-900/40 bg-card/60 backdrop-blur-xs space-y-4 my-6',
+        'flex flex-col items-center justify-center p-8 sm:p-12 text-center rounded-3xl border border-pink-200/50  bg-card/60 backdrop-blur-xs space-y-4 my-6',
         className
       )}
     >
@@ -27,7 +27,7 @@ export const LoadingState: React.FC<LoadingStateProps> = ({
         <DengoLogo size={size === 'sm' ? 'sm' : size === 'lg' ? 'lg' : 'md'} variant="icon" />
       </div>
 
-      <div className="flex items-center gap-2 text-pink-600 dark:text-pink-400 font-bold text-sm">
+      <div className="flex items-center gap-2 text-pink-600  font-bold text-sm">
         <Loader2 className="h-4 w-4 animate-spin" />
         <span>{message}</span>
       </div>

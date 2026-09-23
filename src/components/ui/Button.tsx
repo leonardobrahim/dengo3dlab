@@ -11,7 +11,7 @@ export const buttonVariants = cva(
         default:
           'bg-primary text-primary-foreground shadow-sm hover:bg-pink-600 hover:shadow-md hover:shadow-pink-500/20',
         secondary:
-          'bg-sky-100 text-sky-900 dark:bg-sky-950/80 dark:text-sky-200 shadow-xs hover:bg-sky-200 dark:hover:bg-sky-900 border border-sky-200 dark:border-sky-800',
+          'bg-sky-100 text-sky-900   shadow-xs hover:bg-sky-200  border border-sky-200 ',
         dengo:
           'bg-gradient-to-r from-pink-500 via-pink-400 to-sky-400 text-white font-bold shadow-md shadow-pink-500/20 hover:shadow-lg hover:shadow-pink-500/30 hover:opacity-95',
         babyBlue:
@@ -19,12 +19,12 @@ export const buttonVariants = cva(
         babyPink:
           'bg-pink-400 text-white font-semibold shadow-sm hover:bg-pink-500 hover:shadow-md hover:shadow-pink-400/25',
         outline:
-          'border border-pink-200 dark:border-border bg-background hover:bg-pink-50 dark:hover:bg-pink-950/30 hover:text-pink-600 dark:hover:text-pink-300 hover:border-pink-300',
-        ghost: 'hover:bg-pink-50 dark:hover:bg-pink-950/30 hover:text-pink-600 dark:hover:text-pink-300',
+          'border border-pink-200  bg-background hover:bg-pink-50  hover:text-pink-600  hover:border-pink-300',
+        ghost: 'hover:bg-pink-50  hover:text-pink-600 ',
         destructive:
           'bg-rose-500 text-white shadow-sm hover:bg-rose-600',
         industrial:
-          'bg-zinc-900 dark:bg-zinc-100 text-zinc-50 dark:text-zinc-900 border border-zinc-700 dark:border-zinc-300 hover:bg-zinc-800 dark:hover:bg-zinc-200 font-semibold tracking-wide text-xs',
+          'bg-zinc-900  text-zinc-50  border border-zinc-700  hover:bg-zinc-800  font-semibold tracking-wide text-xs',
         link: 'text-primary underline-offset-4 hover:underline p-0 h-auto',
       },
       size: {

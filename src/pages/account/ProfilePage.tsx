@@ -1,19 +1,19 @@
-import * as React from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { AccountLayout } from "@/src/layouts/account/AccountLayout";
-import { Button } from "@/src/components/ui/Button";
-import { Input } from "@/src/components/ui/Input";
-import { Avatar } from "@/src/components/ui/Avatar";
-import { useAuthStore } from "@/src/stores/authStore";
-import { useToast } from "@/src/components/ui/Toast";
-import { Save, Camera } from "lucide-react";
+import * as React from"react";
+import { useForm } from"react-hook-form";
+import { z } from"zod";
+import { zodResolver } from"@hookform/resolvers/zod";
+import { AccountLayout } from"@/src/layouts/account/AccountLayout";
+import { Button } from"@/src/components/ui/Button";
+import { Input } from"@/src/components/ui/Input";
+import { Avatar } from"@/src/components/ui/Avatar";
+import { useAuthStore } from"@/src/stores/authStore";
+import { useToast } from"@/src/components/ui/Toast";
+import { Save, Camera } from"lucide-react";
 
 const profileSchema = z.object({
-  name: z.string().min(2, "Nome deve ter pelo menos 2 caracteres"),
-  lastName: z.string().min(2, "Sobrenome deve ter pelo menos 2 caracteres"),
-  phone: z.string().min(10, "Telefone inválido"),
+  name: z.string().min(2,"Nome deve ter pelo menos 2 caracteres"),
+  lastName: z.string().min(2,"Sobrenome deve ter pelo menos 2 caracteres"),
+  phone: z.string().min(10,"Telefone inválido"),
 });
 
 type ProfileData = z.infer<typeof profileSchema>;
@@ -25,9 +25,9 @@ export const ProfilePage: React.FC = () => {
   const [isSaving, setIsSaving] = React.useState(false);
 
   // Derive first and last name from user.name if needed
-  const nameParts = user?.name ? user.name.split(" ") : [""];
-  const firstName = nameParts[0] || "";
-  const lastName = nameParts.slice(1).join(" ") || "";
+  const nameParts = user?.name ? user.name.split("") : [""];
+  const firstName = nameParts[0] ||"";
+  const lastName = nameParts.slice(1).join("") ||"";
 
   const {
     register,
@@ -38,7 +38,7 @@ export const ProfilePage: React.FC = () => {
     defaultValues: {
       name: firstName,
       lastName: lastName,
-      phone: user?.phone || "",
+      phone: user?.phone ||"",
     },
   });
 
@@ -50,15 +50,13 @@ export const ProfilePage: React.FC = () => {
       phone: data.phone,
     });
     setIsSaving(false);
-    toast.success(
-      "Perfil atualizado com carinho!",
-      "Alterações salvas com sucesso.",
+    toast.success("Perfil atualizado com carinho!","Alterações salvas com sucesso.",
     );
   };
 
   const maskedCpf = user?.cpf
-    ? user.cpf.replace(/(\d{3})\.(\d{3})\.(\d{3})-(\d{2})/, "***.$2.$3-**")
-    : "Não informado";
+    ? user.cpf.replace(/(\d{3})\.(\d{3})\.(\d{3})-(\d{2})/,"***.$2.$3-**")
+    :"Não informado";
 
   return (
     <AccountLayout
@@ -84,7 +82,7 @@ export const ProfilePage: React.FC = () => {
           <div className="flex items-center gap-4 pb-4 border-b border-pink-100">
             <Avatar
               src={user?.avatarUrl}
-              name={user?.name || "Cliente"}
+              name={user?.name ||"Cliente"}
               size="lg"
               status="online"
             />
@@ -120,7 +118,7 @@ export const ProfilePage: React.FC = () => {
               <input
                 type="email"
                 disabled
-                value={user?.email || ""}
+                value={user?.email ||""}
                 className="w-full h-10 px-3 text-xs rounded-xl border border-slate-200 bg-slate-50 text-slate-500 cursor-not-allowed"
               />
               <p className="text-[10px] text-slate-500">

@@ -71,7 +71,7 @@ export const CartPage: React.FC = () => {
       <div className="space-y-8 text-left">
         <Breadcrumb items={breadcrumbs} onNavigate={navigate} />
 
-        <div className="flex items-center justify-between pb-2 border-b border-pink-100 dark:border-pink-950/60">
+        <div className="flex items-center justify-between pb-2 border-b border-pink-100">
           <h1 className="text-2xl sm:text-3xl font-black text-slate-900">
             Meu Carrinho ({items.length} itens)
           </h1>

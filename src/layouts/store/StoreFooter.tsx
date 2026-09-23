@@ -1,8 +1,8 @@
-import * as React from "react";
-import { DengoLogo } from "@/src/components/brand/DengoLogo";
-import { Button } from "@/src/components/ui/Button";
-import { useNavigationStore } from "@/src/stores/navigationStore";
-import { useToast } from "@/src/components/ui/Toast";
+import * as React from"react";
+import { DengoLogo } from"@/src/components/brand/DengoLogo";
+import { Button } from"@/src/components/ui/Button";
+import { useNavigationStore } from"@/src/stores/navigationStore";
+import { useToast } from"@/src/components/ui/Toast";
 import {
   Send,
   Heart,
@@ -17,8 +17,8 @@ import {
   MessageCircle,
   HelpCircle,
   Clock,
-} from "lucide-react";
-import { siteConfig } from "@/src/config/site";
+} from"lucide-react";
+import { siteConfig } from"@/src/config/site";
 
 export const StoreFooter: React.FC = () => {
   const { navigate } = useNavigationStore();
@@ -34,16 +34,15 @@ export const StoreFooter: React.FC = () => {
     }
 
     setIsSubscribed(true);
-    toast.success(
-      "Oba! Você ganhou 15% OFF com o cupom CANDY15 no seu primeiro pedido!",
+    toast.success("Oba! Você ganhou 15% OFF com o cupom CANDY15 no seu primeiro pedido!",
     );
     setNewsletterEmail("");
   };
 
   return (
-    <footer className="w-full border-t border-pink-200/60 dark:border-pink-900/40 bg-card text-foreground transition-colors mt-auto">
+    <footer className="w-full border-t border-pink-200/60  bg-card text-foreground transition-colors mt-auto">
       {/* Value Proposition Strip (Candy Style) */}
-      <div className="border-b border-pink-100 dark:border-pink-950/60 bg-linear-to-r from-pink-50/70 via-background to-sky-50/70 dark:from-pink-950/20 dark:via-card dark:to-sky-950/20 py-8 px-4 sm:px-6 lg:px-8">
+      <div className="border-b border-pink-100  bg-linear-to-r from-pink-50/70 via-background to-sky-50/70    py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center sm:text-left">
           <div className="flex flex-col sm:flex-row items-center gap-3">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-pink-500 text-white shadow-sm">
@@ -148,7 +147,7 @@ export const StoreFooter: React.FC = () => {
 
           {/* 1. Empresa */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-pink-600 dark:text-pink-400">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-pink-600">
               Empresa
             </h4>
             <ul className="space-y-2 text-xs text-muted-foreground">
@@ -179,7 +178,7 @@ export const StoreFooter: React.FC = () => {
               <li>
                 <button
                   onClick={() => navigate("/admin")}
-                  className="hover:text-purple-500 transition-colors text-left font-semibold text-purple-600 dark:text-purple-400"
+                  className="hover:text-purple-500 transition-colors text-left font-semibold text-purple-600"
                 >
                   Acesso Admin
                 </button>
@@ -189,7 +188,7 @@ export const StoreFooter: React.FC = () => {
 
           {/* 2. Produtos */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-sky-600">
               Produtos
             </h4>
             <ul className="space-y-2 text-xs text-muted-foreground">
@@ -240,7 +239,7 @@ export const StoreFooter: React.FC = () => {
 
           {/* 3. Suporte & Ajuda */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-pink-600 dark:text-pink-400">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-pink-600">
               Suporte
             </h4>
             <ul className="space-y-2 text-xs text-muted-foreground">
@@ -281,7 +280,7 @@ export const StoreFooter: React.FC = () => {
 
           {/* 4. Conta & Políticas */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-sky-600">
               Políticas & Conta
             </h4>
             <ul className="space-y-2 text-xs text-muted-foreground">
@@ -322,7 +321,7 @@ export const StoreFooter: React.FC = () => {
         </div>
 
         {/* Newsletter Section */}
-        <div className="rounded-3xl border border-pink-200/80 dark:border-pink-900/50 bg-linear-to-r from-pink-50/80 via-white to-sky-50/80 dark:from-pink-950/30 dark:via-card dark:to-sky-950/30 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="rounded-3xl border border-pink-200/80  bg-linear-to-r from-pink-50/80 via-white to-sky-50/80    p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-1 text-center md:text-left">
             <div className="flex items-center justify-center md:justify-start gap-2">
               <Sparkles className="h-4 w-4 text-pink-500" />
@@ -345,7 +344,7 @@ export const StoreFooter: React.FC = () => {
               placeholder="Seu melhor e-mail..."
               value={newsletterEmail}
               onChange={(e) => setNewsletterEmail(e.target.value)}
-              className="w-full sm:w-72 h-10 px-4 text-xs rounded-2xl border border-pink-200 dark:border-pink-900 bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-pink-400/20"
+              className="w-full sm:w-72 h-10 px-4 text-xs rounded-2xl border border-pink-200  bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-pink-400/20"
             />
             <Button
               type="submit"
@@ -368,8 +367,8 @@ export const StoreFooter: React.FC = () => {
             </span>
             <span className="hidden sm:inline">•</span>
             <span className="flex items-center gap-1">
-              Feito com{" "}
-              <Heart className="h-3 w-3 text-pink-500 fill-current inline" />{" "}
+              Feito com{""}
+              <Heart className="h-3 w-3 text-pink-500 fill-current inline" />{""}
               para apaixonados por 3D
             </span>
           </div>
@@ -385,7 +384,7 @@ export const StoreFooter: React.FC = () => {
               <span>Cartão de Crédito</span>
             </span>
             <span>•</span>
-            <span className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-semibold">
+            <span className="flex items-center gap-1 text-emerald-600  font-semibold">
               <ShieldCheck className="h-3.5 w-3.5" />
               <span>SSL Seguro</span>
             </span>

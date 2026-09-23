@@ -133,7 +133,7 @@ export const ProductSearchWithSuggestions: React.FC<ProductSearchWithSuggestions
           onFocus={() => setIsOpen(true)}
           placeholder={placeholder}
           autoFocus={autoFocus}
-          className="w-full h-10.5 pl-10 pr-9 text-xs sm:text-sm rounded-2xl border border-pink-200/90 dark:border-pink-900/60 bg-pink-50/40 dark:bg-card text-foreground placeholder:text-muted-foreground/70 focus:bg-background focus:border-pink-400 dark:focus:border-pink-500 focus:outline-none focus:ring-2 focus:ring-pink-400/20 transition-all shadow-2xs"
+          className="w-full h-10.5 pl-10 pr-9 text-xs sm:text-sm rounded-2xl border border-pink-200/90  bg-pink-50/40  text-foreground placeholder:text-muted-foreground/70 focus:bg-background focus:border-pink-400  focus:outline-none focus:ring-2 focus:ring-pink-400/20 transition-all shadow-2xs"
         />
 
         <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-pink-400" />
@@ -170,7 +170,7 @@ export const ProductSearchWithSuggestions: React.FC<ProductSearchWithSuggestions
                     key={tag}
                     type="button"
                     onClick={() => handleSelectTag(tag)}
-                    className="px-2.5 py-1 rounded-full text-xs font-medium bg-pink-50 dark:bg-muted/40 text-pink-700 dark:text-pink-300 hover:bg-pink-100 hover:scale-105 transition-all cursor-pointer border border-pink-200/40"
+                    className="px-2.5 py-1 rounded-full text-xs font-medium bg-pink-50  text-pink-700  hover:bg-pink-100 hover:scale-105 transition-all cursor-pointer border border-pink-200/40"
                   >
                     {tag}
                   </button>
@@ -179,10 +179,10 @@ export const ProductSearchWithSuggestions: React.FC<ProductSearchWithSuggestions
             </div>
           ) : (
             /* Search Results Breakdown */
-            <div className="max-h-96 overflow-y-auto divide-y divide-pink-100 dark:divide-border/60">
+            <div className="max-h-96 overflow-y-auto divide-y divide-pink-100">
               {/* Matching Categories */}
               {matchingCategories.length > 0 && (
-                <div className="p-3 bg-pink-50/30 dark:bg-muted/20">
+                <div className="p-3 bg-pink-50/30">
                   <div className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider mb-2 flex items-center gap-1.5">
                     <Layers className="h-3 w-3 text-sky-500" />
                     <span>Categorias</span>
@@ -193,12 +193,12 @@ export const ProductSearchWithSuggestions: React.FC<ProductSearchWithSuggestions
                         key={cat.id}
                         type="button"
                         onClick={() => handleSelectCategory(cat.slug)}
-                        className="w-full flex items-center justify-between p-2 rounded-xl text-xs hover:bg-pink-100/60 dark:hover:bg-pink-950/40 transition-colors cursor-pointer text-left group"
+                        className="w-full flex items-center justify-between p-2 rounded-xl text-xs hover:bg-pink-100/60  transition-colors cursor-pointer text-left group"
                       >
-                        <span className="font-semibold text-foreground group-hover:text-pink-600 dark:group-hover:text-pink-400">
+                        <span className="font-semibold text-foreground group-hover:text-pink-600">
                           {cat.name}
                         </span>
-                        <span className="text-[10px] text-muted-foreground bg-white dark:bg-card px-2 py-0.5 rounded-full border border-pink-200/40">
+                        <span className="text-[10px] text-muted-foreground bg-white  px-2 py-0.5 rounded-full border border-pink-200/40">
                           {cat.productCount} itens
                         </span>
                       </button>
@@ -220,7 +220,7 @@ export const ProductSearchWithSuggestions: React.FC<ProductSearchWithSuggestions
                         key={prod.id}
                         type="button"
                         onClick={() => handleSelectProduct(prod.slug)}
-                        className="w-full flex items-center gap-3 p-2 rounded-xl hover:bg-pink-50 dark:hover:bg-muted/40 transition-all cursor-pointer text-left group"
+                        className="w-full flex items-center gap-3 p-2 rounded-xl hover:bg-pink-50  transition-all cursor-pointer text-left group"
                       >
                         <img
                           src={prod.featuredImage}
@@ -228,7 +228,7 @@ export const ProductSearchWithSuggestions: React.FC<ProductSearchWithSuggestions
                           className="h-11 w-11 rounded-lg object-cover bg-muted shrink-0 border border-pink-100"
                         />
                         <div className="flex-1 min-w-0">
-                          <h4 className="font-bold text-xs text-foreground truncate group-hover:text-pink-600 dark:group-hover:text-pink-400">
+                          <h4 className="font-bold text-xs text-foreground truncate group-hover:text-pink-600">
                             {prod.name}
                           </h4>
                           <p className="text-[11px] text-muted-foreground truncate">
@@ -248,19 +248,19 @@ export const ProductSearchWithSuggestions: React.FC<ProductSearchWithSuggestions
                 </div>
               ) : matchingCategories.length === 0 ? (
                 <div className="p-6 text-center text-xs text-muted-foreground space-y-1">
-                  <p className="font-semibold text-foreground">Nenhum resultado direto para "{query}"</p>
+                  <p className="font-semibold text-foreground">Nenhum resultado direto para"{query}"</p>
                   <p>Pressione Enter para ver todos os resultados e sugestões na página de busca.</p>
                 </div>
               ) : null}
 
               {/* View all results footer */}
-              <div className="p-2.5 bg-pink-50/50 dark:bg-card">
+              <div className="p-2.5 bg-pink-50/50">
                 <button
                   type="button"
                   onClick={() => handleSubmit()}
                   className="w-full py-2 px-3 rounded-xl bg-pink-500 hover:bg-pink-600 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer shadow-xs"
                 >
-                  <span>Ver todos os resultados para "{query}"</span>
+                  <span>Ver todos os resultados para"{query}"</span>
                   <ArrowRight className="h-3.5 w-3.5" />
                 </button>
               </div>
