@@ -3,8 +3,6 @@ import {
   Menu,
   Search,
   Bell,
-  Sun,
-  Moon,
   Store,
   User,
   ShieldCheck,
@@ -18,7 +16,7 @@ import { Button } from '@/src/components/ui/Button';
 import { Dropdown, DropdownItem, DropdownSeparator } from '@/src/components/ui/Dropdown';
 import { Avatar } from '@/src/components/ui/Avatar';
 import { Badge } from '@/src/components/ui/Badge';
-import { useUIStore } from '@/src/stores/uiStore';
+
 import { useAuthStore } from '@/src/stores/authStore';
 import { useNavigationStore } from '@/src/stores/navigationStore';
 
@@ -27,7 +25,7 @@ export interface AdminHeaderProps {
 }
 
 export const AdminHeader: React.FC<AdminHeaderProps> = ({ onMenuToggle }) => {
-  const { theme, toggleTheme } = useUIStore();
+
   const { user, logout } = useAuthStore();
   const { navigate } = useNavigationStore();
   const [adminSearch, setAdminSearch] = React.useState('');
@@ -63,14 +61,14 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({ onMenuToggle }) => {
   ];
 
   return (
-    <header className="sticky top-0 z-30 h-16 border-b border-pink-200/60 dark:border-pink-900/40 bg-card/95 backdrop-blur-md px-4 sm:px-6 flex items-center justify-between gap-4">
+    <header className="sticky top-0 z-30 h-16 border-b border-pink-200/60  bg-card/95 backdrop-blur-md px-4 sm:px-6 flex items-center justify-between gap-4">
       {/* Left: Mobile Toggle & Quick Search */}
       <div className="flex items-center gap-3 flex-1">
         <Button
           variant="ghost"
           size="icon-sm"
           onClick={onMenuToggle}
-          className="lg:hidden hover:bg-pink-50 dark:hover:bg-pink-950/40"
+          className="lg:hidden hover:bg-pink-50"
           aria-label="Abrir menu lateral do painel"
         >
           <Menu className="h-5 w-5 text-pink-500" />
@@ -83,7 +81,7 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({ onMenuToggle }) => {
             placeholder="Buscar por ID de pedido, cliente, SKU ou arquivo 3D..."
             value={adminSearch}
             onChange={(e) => setAdminSearch(e.target.value)}
-            className="w-full h-9 pl-9 pr-4 text-xs rounded-xl border border-pink-200/80 dark:border-pink-900/50 bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-pink-400/20"
+            className="w-full h-9 pl-9 pr-4 text-xs rounded-xl border border-pink-200/80  bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-pink-400/20"
           />
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-pink-400" />
         </div>
@@ -96,25 +94,10 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({ onMenuToggle }) => {
           variant="outline"
           size="sm"
           onClick={() => navigate('/')}
-          className="text-xs font-bold gap-1.5 border-sky-200 text-sky-700 hover:bg-sky-50 dark:border-sky-900 dark:text-sky-300 dark:hover:bg-sky-950/40"
+          className="text-xs font-bold gap-1.5 border-sky-200 text-sky-700 hover:bg-sky-50"
         >
           <Store className="h-3.5 w-3.5 text-sky-500" />
           <span className="hidden sm:inline">Ver Loja</span>
-        </Button>
-
-        {/* Theme Switcher */}
-        <Button
-          variant="ghost"
-          size="icon-sm"
-          onClick={toggleTheme}
-          aria-label="Alternar tema"
-          className="hover:bg-pink-50 dark:hover:bg-pink-950/40"
-        >
-          {theme === 'dark' ? (
-            <Sun className="h-4 w-4 text-amber-300" />
-          ) : (
-            <Moon className="h-4 w-4 text-sky-600" />
-          )}
         </Button>
 
         {/* Notifications Dropdown */}
@@ -123,7 +106,7 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({ onMenuToggle }) => {
           trigger={
             <button
               type="button"
-              className="relative p-2 rounded-xl text-muted-foreground hover:text-foreground hover:bg-pink-50 dark:hover:bg-pink-950/40 transition-colors cursor-pointer"
+              className="relative p-2 rounded-xl text-muted-foreground hover:text-foreground hover:bg-pink-50  transition-colors cursor-pointer"
               aria-label="Notificações do Laboratório"
             >
               <Bell className="h-4 w-4 text-pink-500" />
@@ -142,8 +125,8 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({ onMenuToggle }) => {
               return (
                 <div
                   key={n.id}
-                  className={`p-3 border-b border-border/40 text-left hover:bg-pink-50/50 dark:hover:bg-pink-950/30 transition-colors ${
-                    n.unread ? 'bg-pink-50/20 dark:bg-pink-950/20' : ''
+                  className={`p-3 border-b border-border/40 text-left hover:bg-pink-50/50  transition-colors ${
+                    n.unread ? 'bg-pink-50/20 ' : ''
                   }`}
                 >
                   <div className="flex items-start gap-2.5">
@@ -165,7 +148,7 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({ onMenuToggle }) => {
           </div>
 
           <DropdownItem onClick={() => navigate('/admin/producao')}>
-            <span className="text-[11px] font-bold text-pink-600 dark:text-pink-400 text-center w-full block">
+            <span className="text-[11px] font-bold text-pink-600  text-center w-full block">
               Ver Fila de Produção Completa ➔
             </span>
           </DropdownItem>
@@ -177,7 +160,7 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({ onMenuToggle }) => {
           trigger={
             <button
               type="button"
-              className="flex items-center gap-2 p-1.5 rounded-2xl hover:bg-pink-50 dark:hover:bg-pink-950/40 transition-all cursor-pointer"
+              className="flex items-center gap-2 p-1.5 rounded-2xl hover:bg-pink-50  transition-all cursor-pointer"
             >
               <Avatar
                 src={user?.avatarUrl}

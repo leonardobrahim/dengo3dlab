@@ -24,27 +24,27 @@ export const StatCard: React.FC<StatCardProps> = ({
   return (
     <div
       className={cn(
-        'p-5 rounded-3xl border border-pink-200/80 dark:border-pink-900/50 bg-card shadow-2xs space-y-3',
+        'p-5 rounded-3xl border border-pink-200/80  bg-white  shadow-2xs space-y-3',
         className
       )}
     >
       <div className="flex items-center justify-between">
-        <span className="text-xs font-bold text-muted-foreground">{title}</span>
+        <span className="text-xs font-bold text-slate-500">{title}</span>
         {icon && (
-          <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-pink-100/80 dark:bg-pink-950/80 text-pink-600">
+          <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-pink-100/80  text-pink-600">
             {icon}
           </div>
         )}
       </div>
 
       <div className="space-y-1">
-        <p className="text-xl sm:text-2xl font-black text-foreground">{value}</p>
+        <p className="text-xl sm:text-2xl font-black text-slate-900">{value}</p>
         <div className="flex items-center gap-2 text-xs">
           {change && (
             <span
               className={cn(
                 'inline-flex items-center font-bold',
-                trend === 'up' ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-500'
+                trend === 'up' ? 'text-emerald-600 ' : 'text-rose-500'
               )}
             >
               {trend === 'up' ? (
@@ -55,7 +55,7 @@ export const StatCard: React.FC<StatCardProps> = ({
               {change}
             </span>
           )}
-          {description && <span className="text-muted-foreground">{description}</span>}
+          {description && <span className="text-slate-500">{description}</span>}
         </div>
       </div>
     </div>

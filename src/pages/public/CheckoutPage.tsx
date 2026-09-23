@@ -510,7 +510,7 @@ export const CheckoutPage: React.FC = () => {
               )}
               <div className="flex justify-between">
                 <span>Frete {selectedShipping ? `(${selectedShipping.name})` : ''}</span>
-                <span className={shippingCost === 0 ? "text-emerald-600 font-bold" : "text-slate-900 font-semibold"}>
+                <span className={shippingCost === 0 ?"text-emerald-600 font-bold" :"text-slate-900 font-semibold"}>
                   {shippingCost === 0 ? 'Grátis ou a calcular' : formatCurrency(shippingCost)}
                 </span>
               </div>

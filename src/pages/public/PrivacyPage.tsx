@@ -25,7 +25,7 @@ export const PrivacyPage: React.FC = () => {
           </p>
         </div>
 
-        <div className="p-6 rounded-3xl border border-pink-200/80 dark:border-pink-900/50 bg-card space-y-4 text-xs text-muted-foreground leading-relaxed">
+        <div className="p-6 rounded-3xl border border-pink-200/80  bg-card space-y-4 text-xs text-muted-foreground leading-relaxed">
           <p>
             No <strong>Dengo 3D Lab</strong>, privacidade e segurança são prioridades. Seus dados cadastrais (nome, endereço e CPF) são utilizados exclusivamente para emissão de nota fiscal e envio dos pacotes.
           </p>

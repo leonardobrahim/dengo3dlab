@@ -1,10 +1,10 @@
-import * as React from "react";
-import { AdminLayout } from "@/src/layouts/admin/AdminLayout";
-import { Avatar } from "@/src/components/ui/Avatar";
-import { Button } from "@/src/components/ui/Button";
-import { Badge } from "@/src/components/ui/Badge";
-import { useNavigationStore } from "@/src/stores/navigationStore";
-import { formatCurrency, formatDate } from "@/src/utils/formatters";
+import * as React from"react";
+import { AdminLayout } from"@/src/layouts/admin/AdminLayout";
+import { Avatar } from"@/src/components/ui/Avatar";
+import { Button } from"@/src/components/ui/Button";
+import { Badge } from"@/src/components/ui/Badge";
+import { useNavigationStore } from"@/src/stores/navigationStore";
+import { formatCurrency, formatDate } from"@/src/utils/formatters";
 import {
   ArrowLeft,
   Mail,
@@ -13,7 +13,7 @@ import {
   ShoppingBag,
   Calendar,
   Lock,
-} from "lucide-react";
+} from"lucide-react";
 
 export interface AdminCustomerDetailPageProps {
   id?: string;
@@ -27,13 +27,12 @@ export const AdminCustomerDetailPage: React.FC<
 
   const mockCustomer = {
     id: customerId,
-    name: "Maria Maker Dengo",
-    email: "maker@dengo3d.com",
-    phone: "(11) 98765-4321",
-    createdAt: "2025-10-12T14:00:00Z",
-    status: "active",
-    avatar:
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
+    name:"Maria Maker Dengo",
+    email:"maker@dengo3d.com",
+    phone:"(11) 98765-4321",
+    createdAt:"2025-10-12T14:00:00Z",
+    status:"active",
+    avatar:"https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
     stats: {
       totalOrders: 5,
       totalSpent: 642.5,
@@ -42,27 +41,27 @@ export const AdminCustomerDetailPage: React.FC<
     addresses: [
       {
         id: 1,
-        type: "Casa",
-        street: "Rua das Flores",
-        number: "123",
-        city: "São Paulo",
-        state: "SP",
-        zip: "01234-567",
+        type:"Casa",
+        street:"Rua das Flores",
+        number:"123",
+        city:"São Paulo",
+        state:"SP",
+        zip:"01234-567",
         default: true,
       },
     ],
     recentOrders: [
       {
-        id: "DENGO-8942",
-        date: "2026-08-24T14:20:00Z",
+        id:"DENGO-8942",
+        date:"2026-08-24T14:20:00Z",
         total: 164.8,
-        status: "in_production",
+        status:"in_production",
       },
       {
-        id: "DENGO-8120",
-        date: "2026-06-15T10:00:00Z",
+        id:"DENGO-8120",
+        date:"2026-06-15T10:00:00Z",
         total: 120.0,
-        status: "delivered",
+        status:"delivered",
       },
     ],
   };
@@ -89,7 +88,7 @@ export const AdminCustomerDetailPage: React.FC<
               <div>
                 <h1 className="text-2xl font-black text-foreground flex items-center gap-2">
                   {mockCustomer.name}
-                  {mockCustomer.status === "active" ? (
+                  {mockCustomer.status ==="active" ? (
                     <Badge variant="success">Ativo</Badge>
                   ) : (
                     <Badge variant="destructive">Inativo</Badge>

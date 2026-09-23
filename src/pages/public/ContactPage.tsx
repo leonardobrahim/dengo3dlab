@@ -40,7 +40,7 @@ export const ContactPage: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-          <div className="md:col-span-7 p-6 sm:p-8 rounded-3xl border border-pink-200/80 dark:border-pink-900/50 bg-card space-y-4 shadow-xs">
+          <div className="md:col-span-7 p-6 sm:p-8 rounded-3xl border border-pink-200/80  bg-card space-y-4 shadow-xs">
             <form onSubmit={handleSubmit} className="space-y-4">
               <Input label="Seu Nome" placeholder="Como podemos te chamar?" required />
               <Input label="Seu E-mail" type="email" placeholder="seu@email.com" required />
@@ -54,8 +54,8 @@ export const ContactPage: React.FC = () => {
           </div>
 
           <div className="md:col-span-5 space-y-4">
-            <div className="p-5 rounded-3xl border border-emerald-200 dark:border-emerald-900/50 bg-emerald-50/40 dark:bg-emerald-950/20 space-y-2">
-              <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-bold text-xs">
+            <div className="p-5 rounded-3xl border border-emerald-200  bg-emerald-50/40  space-y-2">
+              <div className="flex items-center gap-2 text-emerald-600  font-bold text-xs">
                 <MessageCircle className="h-4 w-4" />
                 <span>Atendimento Rápido via WhatsApp</span>
               </div>
@@ -64,8 +64,8 @@ export const ContactPage: React.FC = () => {
               </p>
             </div>
 
-            <div className="p-5 rounded-3xl border border-pink-100 dark:border-pink-950 bg-card space-y-2">
-              <div className="flex items-center gap-2 text-pink-600 dark:text-pink-400 font-bold text-xs">
+            <div className="p-5 rounded-3xl border border-pink-100  bg-card space-y-2">
+              <div className="flex items-center gap-2 text-pink-600  font-bold text-xs">
                 <Mail className="h-4 w-4" />
                 <span>E-mail Oficial</span>
               </div>
@@ -74,8 +74,8 @@ export const ContactPage: React.FC = () => {
               </p>
             </div>
 
-            <div className="p-5 rounded-3xl border border-sky-100 dark:border-sky-950 bg-card space-y-2">
-              <div className="flex items-center gap-2 text-sky-600 dark:text-sky-400 font-bold text-xs">
+            <div className="p-5 rounded-3xl border border-sky-100  bg-card space-y-2">
+              <div className="flex items-center gap-2 text-sky-600  font-bold text-xs">
                 <Clock className="h-4 w-4" />
                 <span>Prazo de Resposta</span>
               </div>

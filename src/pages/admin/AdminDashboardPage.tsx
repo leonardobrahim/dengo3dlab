@@ -1,12 +1,12 @@
-import * as React from "react";
-import { AdminLayout } from "@/src/layouts/admin/AdminLayout";
-import { StatCard } from "@/src/components/business/StatCard";
-import { OrderStatusBadge } from "@/src/components/business/OrderStatusBadge";
-import { Button } from "@/src/components/ui/Button";
-import { useNavigationStore } from "@/src/stores/navigationStore";
-import { useAuthStore } from "@/src/stores/authStore";
-import { mockOrders } from "@/src/mocks/orders";
-import { formatCurrency, formatDate, formatTime } from "@/src/utils/formatters";
+import * as React from"react";
+import { AdminLayout } from"@/src/layouts/admin/AdminLayout";
+import { StatCard } from"@/src/components/business/StatCard";
+import { OrderStatusBadge } from"@/src/components/business/OrderStatusBadge";
+import { Button } from"@/src/components/ui/Button";
+import { useNavigationStore } from"@/src/stores/navigationStore";
+import { useAuthStore } from"@/src/stores/authStore";
+import { mockOrders } from"@/src/mocks/orders";
+import { formatCurrency, formatDate, formatTime } from"@/src/utils/formatters";
 import {
   DollarSign,
   ShoppingBag,
@@ -20,7 +20,7 @@ import {
   AlertTriangle,
   ChevronDown,
   LineChart as LineChartIcon,
-} from "lucide-react";
+} from"lucide-react";
 import {
   AreaChart,
   Area,
@@ -34,69 +34,69 @@ import {
   PieChart,
   Pie,
   Cell,
-} from "recharts";
+} from"recharts";
 
 // --- MOCK DATA FOR CHARTS ---
 const revenueData = [
-  { name: "1 Ago", revenue: 1200, orders: 12 },
-  { name: "5 Ago", revenue: 2100, orders: 18 },
-  { name: "10 Ago", revenue: 1800, orders: 15 },
-  { name: "15 Ago", revenue: 3200, orders: 25 },
-  { name: "20 Ago", revenue: 2800, orders: 22 },
-  { name: "25 Ago", revenue: 4100, orders: 35 },
+  { name:"1 Ago", revenue: 1200, orders: 12 },
+  { name:"5 Ago", revenue: 2100, orders: 18 },
+  { name:"10 Ago", revenue: 1800, orders: 15 },
+  { name:"15 Ago", revenue: 3200, orders: 25 },
+  { name:"20 Ago", revenue: 2800, orders: 22 },
+  { name:"25 Ago", revenue: 4100, orders: 35 },
 ];
 
 const categoryData = [
-  { name: "Decoração", value: 45 },
-  { name: "Utilitários", value: 25 },
-  { name: "Colecionáveis", value: 20 },
-  { name: "Insumos", value: 10 },
+  { name:"Decoração", value: 45 },
+  { name:"Utilitários", value: 25 },
+  { name:"Colecionáveis", value: 20 },
+  { name:"Insumos", value: 10 },
 ];
-const COLORS = ["#f472b6", "#38bdf8", "#c084fc", "#34d399"];
+const COLORS = ["#f472b6","#38bdf8","#c084fc","#34d399"];
 
 const topProducts = [
-  { name: "Mascote Lontrinha 3D", sales: 145, revenue: 12890 },
-  { name: "Vaso Bob Sentadinho", sales: 98, revenue: 4400 },
-  { name: "Dragão Articulado", sales: 76, revenue: 26500 },
-  { name: "Suporte Notebook", sales: 65, revenue: 3575 },
+  { name:"Mascote Lontrinha 3D", sales: 145, revenue: 12890 },
+  { name:"Vaso Bob Sentadinho", sales: 98, revenue: 4400 },
+  { name:"Dragão Articulado", sales: 76, revenue: 26500 },
+  { name:"Suporte Notebook", sales: 65, revenue: 3575 },
 ];
 
 const notifications = [
   {
     id: 1,
-    type: "order",
-    title: "Novo Pedido #3DF-0010",
-    time: "Há 5 min",
+    type:"order",
+    title:"Novo Pedido #3DF-0010",
+    time:"Há 5 min",
     icon: ShoppingBag,
-    color: "text-sky-500",
-    bg: "bg-sky-100 dark:bg-sky-900/50",
+    color:"text-sky-500",
+    bg:"bg-sky-100",
   },
   {
     id: 2,
-    type: "payment",
-    title: "Pagamento Aprovado #3DF-0008",
-    time: "Há 12 min",
+    type:"payment",
+    title:"Pagamento Aprovado #3DF-0008",
+    time:"Há 12 min",
     icon: DollarSign,
-    color: "text-emerald-500",
-    bg: "bg-emerald-100 dark:bg-emerald-900/50",
+    color:"text-emerald-500",
+    bg:"bg-emerald-100",
   },
   {
     id: 3,
-    type: "production",
-    title: "Impressão Concluída (Lote A)",
-    time: "Há 25 min",
+    type:"production",
+    title:"Impressão Concluída (Lote A)",
+    time:"Há 25 min",
     icon: CheckCircle2,
-    color: "text-pink-500",
-    bg: "bg-pink-100 dark:bg-pink-900/50",
+    color:"text-pink-500",
+    bg:"bg-pink-100",
   },
   {
     id: 4,
-    type: "stock",
-    title: "Estoque Baixo: PLA Preto",
-    time: "Há 1 hora",
+    type:"stock",
+    title:"Estoque Baixo: PLA Preto",
+    time:"Há 1 hora",
     icon: AlertTriangle,
-    color: "text-amber-500",
-    bg: "bg-amber-100 dark:bg-amber-900/50",
+    color:"text-amber-500",
+    bg:"bg-amber-100",
   },
 ];
 
@@ -106,8 +106,8 @@ export const AdminDashboardPage: React.FC = () => {
   const [period, setPeriod] = React.useState("30 dias");
 
   const role = user?.role as string;
-  const isProduction = role === "production";
-  const isStock = role === "stock";
+  const isProduction = role ==="production";
+  const isStock = role ==="stock";
 
   const recentOrders = mockOrders.slice(0, 5);
 
@@ -117,7 +117,7 @@ export const AdminDashboardPage: React.FC = () => {
         {/* Dashboard Header & Filters */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-black text-slate-900 dark:text-white">
+            <h1 className="text-2xl font-black text-slate-900">
               Visão Geral
             </h1>
             <p className="text-sm text-slate-500">
@@ -130,7 +130,7 @@ export const AdminDashboardPage: React.FC = () => {
               <select
                 value={period}
                 onChange={(e) => setPeriod(e.target.value)}
-                className="appearance-none bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-2 pr-10 text-sm font-semibold text-slate-900 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-pink-500/20 focus:border-pink-500 cursor-pointer"
+                className="appearance-none bg-white  border border-slate-200  rounded-xl px-4 py-2 pr-10 text-sm font-semibold text-slate-900  focus:outline-none focus:ring-2 focus:ring-pink-500/20 focus:border-pink-500 cursor-pointer"
               >
                 <option value="Hoje">Hoje</option>
                 <option value="7 dias">Últimos 7 dias</option>
@@ -203,9 +203,9 @@ export const AdminDashboardPage: React.FC = () => {
           {!isProduction && !isStock && (
             <div className="lg:col-span-2 space-y-6">
               {/* Revenue Area Chart */}
-              <div className="bg-white dark:bg-card border border-slate-200 dark:border-slate-800 rounded-3xl p-5 sm:p-6 shadow-sm">
+              <div className="bg-white  border border-slate-200  rounded-3xl p-5 sm:p-6 shadow-sm">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className="font-bold text-slate-900 text-base">
+                  <h3 className="font-bold text-slate-900  text-base">
                     Evolução do Faturamento
                   </h3>
                 </div>
@@ -244,23 +244,22 @@ export const AdminDashboardPage: React.FC = () => {
                         dataKey="name"
                         axisLine={false}
                         tickLine={false}
-                        tick={{ fontSize: 12, fill: "#64748b" }}
+                        tick={{ fontSize: 12, fill:"#64748b" }}
                         dy={10}
                       />
                       <YAxis
                         axisLine={false}
                         tickLine={false}
-                        tick={{ fontSize: 12, fill: "#64748b" }}
+                        tick={{ fontSize: 12, fill:"#64748b" }}
                       />
                       <Tooltip
                         contentStyle={{
-                          borderRadius: "12px",
-                          border: "none",
-                          boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
+                          borderRadius:"12px",
+                          border:"none",
+                          boxShadow:"0 4px 6px -1px rgb(0 0 0 / 0.1)",
                         }}
                         formatter={(value) => [
-                          `R$ ${value ?? 0}`,
-                          "Faturamento",
+                          `R$ ${value ?? 0}`,"Faturamento",
                         ]}
                       />
                       <Area
@@ -278,7 +277,7 @@ export const AdminDashboardPage: React.FC = () => {
 
               {/* Top Products & Category Mix */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-white dark:bg-card border border-slate-200 dark:border-slate-800 rounded-3xl p-5 shadow-sm">
+                <div className="bg-white  border border-slate-200  rounded-3xl p-5 shadow-sm">
                   <h3 className="font-bold text-slate-900  text-sm mb-4">
                     Vendas por Categoria
                   </h3>
@@ -309,7 +308,7 @@ export const AdminDashboardPage: React.FC = () => {
                     {categoryData.map((entry, index) => (
                       <div
                         key={entry.name}
-                        className="flex items-center gap-1.5 text-xs text-slate-600 -400"
+                        className="flex items-center gap-1.5 text-xs text-slate-600"
                       >
                         <span
                           className="h-2 w-2 rounded-full"
@@ -321,7 +320,7 @@ export const AdminDashboardPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="bg-white dark:bg-card border border-slate-200 dark:border-slate-800 rounded-3xl p-5 shadow-sm">
+                <div className="bg-white  border border-slate-200  rounded-3xl p-5 shadow-sm">
                   <h3 className="font-bold text-slate-900  text-sm mb-4">
                     Produtos Mais Vendidos
                   </h3>
@@ -332,7 +331,7 @@ export const AdminDashboardPage: React.FC = () => {
                         className="flex items-center justify-between"
                       >
                         <div className="min-w-0 flex-1 pr-4">
-                          <p className="text-sm font-bold text-slate-700 -200 truncate">
+                          <p className="text-sm font-bold text-slate-700  truncate">
                             {prod.name}
                           </p>
                           <p className="text-xs text-slate-500">
@@ -352,10 +351,10 @@ export const AdminDashboardPage: React.FC = () => {
 
           {/* Right Sidebar: Notifications & Recent Orders */}
           <div
-            className={`space-y-6 ${isProduction || isStock ? "lg:col-span-3" : "lg:col-span-1"}`}
+            className={`space-y-6 ${isProduction || isStock ?"lg:col-span-3" :"lg:col-span-1"}`}
           >
             {/* Notification Center */}
-            <div className="bg-white dark:bg-card border border-slate-200 dark:border-slate-800 rounded-3xl p-5 shadow-sm">
+            <div className="bg-white  border border-slate-200  rounded-3xl p-5 shadow-sm">
               <div className="flex items-center justify-between mb-5">
                 <h3 className="font-bold text-slate-900  text-sm flex items-center gap-2">
                   <Bell className="h-4 w-4 text-amber-500" /> Notificações
@@ -373,7 +372,7 @@ export const AdminDashboardPage: React.FC = () => {
                       <notif.icon className="h-4 w-4" />
                     </div>
                     <div>
-                      <p className="text-xs font-bold text-slate-700 -300">
+                      <p className="text-xs font-bold text-slate-700">
                         {notif.title}
                       </p>
                       <p className="text-[10px] text-slate-500 flex items-center gap-1 mt-0.5">
@@ -386,32 +385,32 @@ export const AdminDashboardPage: React.FC = () => {
             </div>
 
             {/* Farm Status */}
-            <div className="bg-white dark:bg-card border border-slate-200 dark:border-slate-800 rounded-3xl p-5 shadow-sm">
+            <div className="bg-white  border border-slate-200  rounded-3xl p-5 shadow-sm">
               <h3 className="font-bold text-slate-900  text-sm mb-4 flex items-center gap-2">
                 <Printer className="h-4 w-4 text-sky-500" /> Produção Ativa
               </h3>
               <div className="space-y-3 text-xs">
-                <div className="p-3 rounded-2xl bg-sky-50/50 dark:bg-sky-950/20 border border-sky-100 dark:border-sky-900/40">
-                  <div className="flex justify-between font-bold text-slate-700 -200 mb-1">
+                <div className="p-3 rounded-2xl bg-sky-50/50  border border-sky-100">
+                  <div className="flex justify-between font-bold text-slate-700  mb-1">
                     <span>Bambu Lab X1C</span>
                     <span className="text-pink-600">84%</span>
                   </div>
-                  <div className="w-full bg-slate-200 dark:bg-slate-700 h-1.5 rounded-full overflow-hidden mt-2">
+                  <div className="w-full bg-slate-200  h-1.5 rounded-full overflow-hidden mt-2">
                     <div
                       className="bg-pink-500 h-full rounded-full"
-                      style={{ width: "84%" }}
+                      style={{ width:"84%" }}
                     />
                   </div>
                 </div>
-                <div className="p-3 rounded-2xl bg-sky-50/50 dark:bg-sky-950/20 border border-sky-100 dark:border-sky-900/40">
-                  <div className="flex justify-between font-bold text-slate-700 -200 mb-1">
+                <div className="p-3 rounded-2xl bg-sky-50/50  border border-sky-100">
+                  <div className="flex justify-between font-bold text-slate-700  mb-1">
                     <span>K1 Max</span>
                     <span className="text-sky-600">42%</span>
                   </div>
-                  <div className="w-full bg-slate-200 dark:bg-slate-700 h-1.5 rounded-full overflow-hidden mt-2">
+                  <div className="w-full bg-slate-200  h-1.5 rounded-full overflow-hidden mt-2">
                     <div
                       className="bg-sky-500 h-full rounded-full"
-                      style={{ width: "42%" }}
+                      style={{ width:"42%" }}
                     />
                   </div>
                 </div>
@@ -421,8 +420,8 @@ export const AdminDashboardPage: React.FC = () => {
         </div>
 
         {/* Full width Recent Orders Table */}
-        <div className="bg-white dark:bg-card border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden shadow-sm">
-          <div className="p-5 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <div className="bg-white  border border-slate-200  rounded-3xl overflow-hidden shadow-sm">
+          <div className="p-5 border-b border-slate-100  flex items-center justify-between">
             <h3 className="font-bold text-slate-900  text-base flex items-center gap-2">
               <Package className="h-5 w-5 text-pink-500" /> Pedidos Recentes
             </h3>
@@ -438,7 +437,7 @@ export const AdminDashboardPage: React.FC = () => {
 
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm whitespace-nowrap">
-              <thead className="bg-slate-50 dark:bg-slate-900/50 text-slate-100  text-xs">
+              <thead className="bg-slate-50  text-slate-600  text-xs">
                 <tr>
                   <th className="px-6 py-4 font-semibold">Pedido</th>
                   <th className="px-6 py-4 font-semibold">Cliente</th>
@@ -451,19 +450,19 @@ export const AdminDashboardPage: React.FC = () => {
                   )}
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+              <tbody className="divide-y divide-slate-100">
                 {recentOrders.map((order) => (
                   <tr
                     key={order.id}
-                    className="hover:bg-slate-50/50 dark:hover:bg-slate-900/30 transition-colors"
+                    className="hover:bg-slate-50/50  transition-colors"
                   >
                     <td className="px-6 py-4">
-                      <span className="font-mono font-bold text-slate-900 ">
+                      <span className="font-mono font-bold text-slate-900">
                         {order.orderNumber}
                       </span>
                     </td>
                     <td className="px-6 py-4">
-                      <div className="font-medium text-slate-700 -300">
+                      <div className="font-medium text-slate-700">
                         {order.customerName}
                       </div>
                       <div className="text-xs text-slate-500">
@@ -471,14 +470,14 @@ export const AdminDashboardPage: React.FC = () => {
                       </div>
                     </td>
                     <td className="px-6 py-4 text-slate-500 text-xs">
-                      {formatDate(order.createdAt)} <br />{" "}
+                      {formatDate(order.createdAt)} <br />{""}
                       {formatTime(order.createdAt)}
                     </td>
                     <td className="px-6 py-4">
                       <OrderStatusBadge status={order.status} />
                     </td>
                     {!isProduction && (
-                      <td className="px-6 py-4 text-right font-bold text-slate-900 ">
+                      <td className="px-6 py-4 text-right font-bold text-slate-900">
                         {formatCurrency(order.total)}
                       </td>
                     )}

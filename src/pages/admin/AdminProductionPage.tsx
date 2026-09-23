@@ -10,9 +10,9 @@ export const AdminProductionPage: React.FC = () => {
 
   const columns = [
     { id: 'fila', title: 'Fila', color: 'border-slate-200' },
-    { id: 'imprimindo', title: 'Imprimindo', color: 'border-sky-200 bg-sky-50/50 dark:bg-sky-950/20' },
-    { id: 'acabamento', title: 'Acabamento', color: 'border-amber-200 bg-amber-50/50 dark:bg-amber-950/20' },
-    { id: 'pronto', title: 'Pronto', color: 'border-emerald-200 bg-emerald-50/50 dark:bg-emerald-950/20' },
+    { id: 'imprimindo', title: 'Imprimindo', color: 'border-sky-200 bg-sky-50/50 ' },
+    { id: 'acabamento', title: 'Acabamento', color: 'border-amber-200 bg-amber-50/50 ' },
+    { id: 'pronto', title: 'Pronto', color: 'border-emerald-200 bg-emerald-50/50 ' },
   ];
 
   const initialCards = [

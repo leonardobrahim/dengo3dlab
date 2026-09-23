@@ -25,7 +25,7 @@ export const TermsPage: React.FC = () => {
           </p>
         </div>
 
-        <div className="p-6 rounded-3xl border border-pink-200/80 dark:border-pink-900/50 bg-card space-y-4 text-xs text-muted-foreground leading-relaxed">
+        <div className="p-6 rounded-3xl border border-pink-200/80  bg-card space-y-4 text-xs text-muted-foreground leading-relaxed">
           <p>
             Bem-vindo à plataforma e-commerce do <strong>Dengo 3D Lab</strong>. Ao acessar este site e realizar compras, você concorda com os presentes termos.
           </p>

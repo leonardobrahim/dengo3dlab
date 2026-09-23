@@ -1,14 +1,14 @@
-import * as React from "react";
-import { StoreLayout } from "@/src/layouts/store/StoreLayout";
-import { Breadcrumb } from "@/src/components/ui/Breadcrumb";
-import { useNavigationStore } from "@/src/stores/navigationStore";
+import * as React from"react";
+import { StoreLayout } from"@/src/layouts/store/StoreLayout";
+import { Breadcrumb } from"@/src/components/ui/Breadcrumb";
+import { useNavigationStore } from"@/src/stores/navigationStore";
 
 export const FaqPage: React.FC = () => {
   const { navigate } = useNavigationStore();
 
   const breadcrumbs = [
-    { label: "Início", href: "/" },
-    { label: "Perguntas Frequentes (FAQ)", isCurrent: true },
+    { label:"Início", href:"/" },
+    { label:"Perguntas Frequentes (FAQ)", isCurrent: true },
   ];
 
   return (

@@ -1,13 +1,13 @@
-import * as React from "react";
-import { AdminLayout } from "@/src/layouts/admin/AdminLayout";
-import { Button } from "@/src/components/ui/Button";
-import { Input } from "@/src/components/ui/Input";
-import { Badge } from "@/src/components/ui/Badge";
-import { mockProducts } from "@/src/mocks/products";
-import { useToast } from "@/src/components/ui/Toast";
-import { useNavigationStore } from "@/src/stores/navigationStore";
-import { Plus, Search, Edit2, Trash2, Copy, PowerOff } from "lucide-react";
-import { formatCurrency, formatDate } from "@/src/utils/formatters";
+import * as React from"react";
+import { AdminLayout } from"@/src/layouts/admin/AdminLayout";
+import { Button } from"@/src/components/ui/Button";
+import { Input } from"@/src/components/ui/Input";
+import { Badge } from"@/src/components/ui/Badge";
+import { mockProducts } from"@/src/mocks/products";
+import { useToast } from"@/src/components/ui/Toast";
+import { useNavigationStore } from"@/src/stores/navigationStore";
+import { Plus, Search, Edit2, Trash2, Copy, PowerOff } from"lucide-react";
+import { formatCurrency, formatDate } from"@/src/utils/formatters";
 
 export const AdminProductsPage: React.FC = () => {
   const { toast } = useToast();
@@ -56,7 +56,7 @@ export const AdminProductsPage: React.FC = () => {
         </div>
 
         {/* Filter bar */}
-        <div className="p-4 rounded-2xl border border-pink-200/70 dark:border-pink-900/40 bg-card">
+        <div className="p-4 rounded-2xl border border-pink-200/70  bg-card">
           <div className="relative max-w-md">
             <Input
               placeholder="Buscar por nome, categoria ou SKU..."
@@ -69,9 +69,9 @@ export const AdminProductsPage: React.FC = () => {
         </div>
 
         {/* Product Table */}
-        <div className="rounded-3xl border border-pink-200/80 dark:border-pink-900/50 bg-card overflow-x-auto shadow-xs">
+        <div className="rounded-3xl border border-pink-200/80  bg-card overflow-x-auto shadow-xs">
           <table className="w-full text-left text-xs whitespace-nowrap">
-            <thead className="bg-pink-50/50 dark:bg-card border-b border-border text-muted-foreground uppercase text-[10px] tracking-wider font-bold">
+            <thead className="bg-pink-50/50  border-b border-border text-muted-foreground uppercase text-[10px] tracking-wider font-bold">
               <tr>
                 <th className="p-4">Produto</th>
                 <th className="p-4">SKU / ID</th>
@@ -87,14 +87,14 @@ export const AdminProductsPage: React.FC = () => {
               {filtered.map((prod) => (
                 <tr
                   key={prod.id}
-                  className="hover:bg-pink-50/20 dark:hover:bg-card/50 transition-colors"
+                  className="hover:bg-pink-50/20  transition-colors"
                 >
                   <td className="p-4">
                     <div className="flex items-center gap-3">
                       <img
                         src={prod.featuredImage || prod.images[0]}
                         alt={prod.name}
-                        className="h-10 w-10 rounded-xl object-cover border border-pink-100 dark:border-border shrink-0"
+                        className="h-10 w-10 rounded-xl object-cover border border-pink-100  shrink-0"
                       />
                       <div className="min-w-0 max-w-xs">
                         <p className="font-bold text-foreground truncate">
@@ -111,7 +111,7 @@ export const AdminProductsPage: React.FC = () => {
                   </td>
                   <td className="p-4">
                     <span className="font-medium text-foreground">
-                      {prod.categories[0]?.name || "-"}
+                      {prod.categories[0]?.name ||"-"}
                     </span>
                   </td>
                   <td className="p-4 font-bold text-foreground">
@@ -122,7 +122,7 @@ export const AdminProductsPage: React.FC = () => {
                       {prod.variants?.reduce(
                         (acc, v) => acc + (v.stockQuantity || 0),
                         0,
-                      ) || 12}{" "}
+                      ) || 12}{""}
                       un.
                     </span>
                   </td>

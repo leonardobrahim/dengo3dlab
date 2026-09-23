@@ -11,12 +11,12 @@ export const ProductCardSkeleton: React.FC<ProductCardSkeletonProps> = ({ classN
   return (
     <Card
       className={cn(
-        'flex flex-col justify-between overflow-hidden rounded-3xl border border-pink-200/50 dark:border-pink-900/30 bg-card p-0 shadow-2xs',
+        'flex flex-col justify-between overflow-hidden rounded-3xl border border-pink-200/50  bg-card p-0 shadow-2xs',
         className
       )}
     >
       {/* Image Skeleton */}
-      <div className="relative aspect-square w-full bg-pink-50/50 dark:bg-muted/40 overflow-hidden">
+      <div className="relative aspect-square w-full bg-pink-50/50  overflow-hidden">
         <Skeleton className="h-full w-full rounded-none" />
       </div>
 
@@ -40,7 +40,7 @@ export const ProductCardSkeleton: React.FC<ProductCardSkeletonProps> = ({ classN
           <Skeleton className="h-4 w-4 rounded-full" />
         </div>
 
-        <div className="pt-2 flex items-center justify-between border-t border-pink-100/50 dark:border-border/50">
+        <div className="pt-2 flex items-center justify-between border-t border-pink-100/50">
           <div className="space-y-1">
             <Skeleton className="h-5 w-20 rounded-md" />
             <Skeleton className="h-3 w-14 rounded-md" />

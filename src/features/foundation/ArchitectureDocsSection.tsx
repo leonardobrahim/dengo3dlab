@@ -23,7 +23,7 @@ export const ArchitectureDocsSection: React.FC = () => {
   return (
     <div className="space-y-12 text-left">
       {/* Section Header */}
-      <div className="border-b border-pink-200/60 dark:border-pink-900/40 pb-6">
+      <div className="border-b border-pink-200/60  pb-6">
         <div className="flex items-center gap-2 text-pink-500 text-xs font-mono uppercase tracking-wider font-bold">
           <FolderTree className="h-4 w-4" />
           Documentação Técnica & Arquitetura
@@ -45,7 +45,7 @@ export const ArchitectureDocsSection: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {folders.map((f) => (
-            <div key={f.path} className="p-4 rounded-2xl border border-pink-200/60 dark:border-pink-900/40 bg-card space-y-1">
+            <div key={f.path} className="p-4 rounded-2xl border border-pink-200/60  bg-card space-y-1">
               <div className="flex items-center gap-2">
                 <FileCode className="h-4 w-4 text-pink-500" />
                 <span className="font-mono text-xs font-bold text-foreground">{f.path}</span>
@@ -64,9 +64,9 @@ export const ArchitectureDocsSection: React.FC = () => {
         </h3>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card className="rounded-3xl border-pink-200/60 dark:border-pink-900/40">
+          <Card className="rounded-3xl border-pink-200/60">
             <CardHeader>
-              <CardTitle className="text-sm font-bold flex items-center gap-2 text-pink-600 dark:text-pink-400">
+              <CardTitle className="text-sm font-bold flex items-center gap-2 text-pink-600">
                 <Palette className="h-4 w-4" />
                 Design System & Acessibilidade
               </CardTitle>
@@ -79,9 +79,9 @@ export const ArchitectureDocsSection: React.FC = () => {
             </CardContent>
           </Card>
 
-          <Card className="rounded-3xl border-sky-200/60 dark:border-sky-900/40">
+          <Card className="rounded-3xl border-sky-200/60">
             <CardHeader>
-              <CardTitle className="text-sm font-bold flex items-center gap-2 text-sky-600 dark:text-sky-400">
+              <CardTitle className="text-sm font-bold flex items-center gap-2 text-sky-600">
                 <ShieldCheck className="h-4 w-4" />
                 TypeScript Strict & Zod
               </CardTitle>
@@ -94,9 +94,9 @@ export const ArchitectureDocsSection: React.FC = () => {
             </CardContent>
           </Card>
 
-          <Card className="rounded-3xl border-pink-200/60 dark:border-pink-900/40">
+          <Card className="rounded-3xl border-pink-200/60">
             <CardHeader>
-              <CardTitle className="text-sm font-bold flex items-center gap-2 text-pink-600 dark:text-pink-400">
+              <CardTitle className="text-sm font-bold flex items-center gap-2 text-pink-600">
                 <Sparkles className="h-4 w-4" />
                 Zustand & API Desacoplada
               </CardTitle>

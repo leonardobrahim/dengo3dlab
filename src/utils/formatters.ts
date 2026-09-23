@@ -4,7 +4,7 @@
 
 /**
  * Formats a number to Brazilian Real currency (BRL)
- * @example formatCurrency(149.9) => "R$ 149,90"
+ * @example formatCurrency(149.9) =>"R$ 149,90"
  */
 export function formatCurrency(amount: number): string {
   if (isNaN(amount)) return 'R$ 0,00';
@@ -16,7 +16,7 @@ export function formatCurrency(amount: number): string {
 
 /**
  * Formats date into readable pt-BR format
- * @example formatDate("2026-08-25T11:00:00Z") => "25/08/2026"
+ * @example formatDate("2026-08-25T11:00:00Z") =>"25/08/2026"
  */
 export function formatDate(dateStringOrDate: string | Date, options?: Intl.DateTimeFormatOptions): string {
   if (!dateStringOrDate) return '-';
@@ -32,7 +32,7 @@ export function formatDate(dateStringOrDate: string | Date, options?: Intl.DateT
 
 /**
  * Formats date and time into readable pt-BR format
- * @example formatDateTime("2026-08-25T11:30:00Z") => "25/08/2026 às 11:30"
+ * @example formatDateTime("2026-08-25T11:30:00Z") =>"25/08/2026 às 11:30"
  */
 export function formatDateTime(dateStringOrDate: string | Date): string {
   if (!dateStringOrDate) return '-';
@@ -87,7 +87,7 @@ export function formatPhone(phone: string): string {
 
 /**
  * Generates an SEO friendly slug from a string
- * @example generateSlug("Filamento PLA Hyper Preto 1kg") => "filamento-pla-hyper-preto-1kg"
+ * @example generateSlug("Filamento PLA Hyper Preto 1kg") =>"filamento-pla-hyper-preto-1kg"
  */
 export function generateSlug(text: string): string {
   return text
@@ -103,7 +103,7 @@ export function generateSlug(text: string): string {
 
 /**
  * Formats 3D filament weight into readable kg or grams
- * @example formatWeight(1000) => "1.0 kg"
+ * @example formatWeight(1000) =>"1.0 kg"
  */
 export function formatWeight(grams: number): string {
   if (grams >= 1000) {
@@ -115,7 +115,7 @@ export function formatWeight(grams: number): string {
 
 /**
  * Formats time into readable pt-BR format
- * @example formatTime("2026-08-25T11:30:00Z") => "11:30"
+ * @example formatTime("2026-08-25T11:30:00Z") =>"11:30"
  */
 export function formatTime(dateStringOrDate: string | Date): string {
   if (!dateStringOrDate) return '-';

@@ -1,7 +1,7 @@
-import * as React from "react";
-import { AdminLayout } from "@/src/layouts/admin/AdminLayout";
-import { Button } from "@/src/components/ui/Button";
-import { useToast } from "@/src/components/ui/Toast";
+import * as React from"react";
+import { AdminLayout } from"@/src/layouts/admin/AdminLayout";
+import { Button } from"@/src/components/ui/Button";
+import { useToast } from"@/src/components/ui/Toast";
 import {
   Download,
   TrendingUp,
@@ -10,7 +10,7 @@ import {
   Truck,
   BarChart3,
   Filter,
-} from "lucide-react";
+} from"lucide-react";
 import {
   AreaChart,
   Area,
@@ -25,7 +25,7 @@ import {
   PieChart,
   Pie,
   Cell,
-} from "recharts";
+} from"recharts";
 
 export const AdminReportsPage: React.FC = () => {
   const { toast } = useToast();
@@ -37,26 +37,26 @@ export const AdminReportsPage: React.FC = () => {
   };
 
   const salesData = [
-    { name: "01/08", value: 400 },
-    { name: "05/08", value: 300 },
-    { name: "10/08", value: 550 },
-    { name: "15/08", value: 450 },
-    { name: "20/08", value: 700 },
-    { name: "25/08", value: 650 },
+    { name:"01/08", value: 400 },
+    { name:"05/08", value: 300 },
+    { name:"10/08", value: 550 },
+    { name:"15/08", value: 450 },
+    { name:"20/08", value: 700 },
+    { name:"25/08", value: 650 },
   ];
 
   const productData = [
-    { name: "Lontrinha 3D", sales: 120 },
-    { name: "Vaso Robert", sales: 98 },
-    { name: "Dragão Articulado", sales: 86 },
-    { name: "Suporte Fone", sales: 45 },
+    { name:"Lontrinha 3D", sales: 120 },
+    { name:"Vaso Robert", sales: 98 },
+    { name:"Dragão Articulado", sales: 86 },
+    { name:"Suporte Fone", sales: 45 },
   ];
 
-  const COLORS = ["#db2777", "#f472b6", "#38bdf8", "#fbbf24"];
+  const COLORS = ["#db2777","#f472b6","#38bdf8","#fbbf24"];
 
   const customerData = [
-    { name: "Novos", value: 40 },
-    { name: "Retorno", value: 60 },
+    { name:"Novos", value: 40 },
+    { name:"Retorno", value: 60 },
   ];
 
   return (
@@ -85,28 +85,28 @@ export const AdminReportsPage: React.FC = () => {
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 hide-scrollbar">
             <Button
-              variant={reportType === "vendas" ? "dengo" : "outline"}
+              variant={reportType ==="vendas" ?"dengo" :"outline"}
               size="sm"
               onClick={() => setReportType("vendas")}
             >
               <TrendingUp className="h-4 w-4 mr-1" /> Vendas
             </Button>
             <Button
-              variant={reportType === "produtos" ? "dengo" : "outline"}
+              variant={reportType ==="produtos" ?"dengo" :"outline"}
               size="sm"
               onClick={() => setReportType("produtos")}
             >
               <Box className="h-4 w-4 mr-1" /> Produtos
             </Button>
             <Button
-              variant={reportType === "clientes" ? "dengo" : "outline"}
+              variant={reportType ==="clientes" ?"dengo" :"outline"}
               size="sm"
               onClick={() => setReportType("clientes")}
             >
               <Users className="h-4 w-4 mr-1" /> Clientes
             </Button>
             <Button
-              variant={reportType === "frete" ? "dengo" : "outline"}
+              variant={reportType ==="frete" ?"dengo" :"outline"}
               size="sm"
               onClick={() => setReportType("frete")}
             >
@@ -174,7 +174,7 @@ export const AdminReportsPage: React.FC = () => {
                       tickLine={false}
                       tick={{
                         fontSize: 10,
-                        fill: "hsl(var(--muted-foreground))",
+                        fill:"hsl(var(--muted-foreground))",
                       }}
                     />
                     <YAxis
@@ -182,19 +182,19 @@ export const AdminReportsPage: React.FC = () => {
                       tickLine={false}
                       tick={{
                         fontSize: 10,
-                        fill: "hsl(var(--muted-foreground))",
+                        fill:"hsl(var(--muted-foreground))",
                       }}
                     />
                     <Tooltip
                       contentStyle={{
-                        backgroundColor: "hsl(var(--card))",
-                        borderRadius: "12px",
-                        border: "1px solid hsl(var(--border))",
-                        fontSize: "12px",
+                        backgroundColor:"hsl(var(--card))",
+                        borderRadius:"12px",
+                        border:"1px solid hsl(var(--border))",
+                        fontSize:"12px",
                       }}
                       itemStyle={{
-                        color: "hsl(var(--foreground))",
-                        fontWeight: "bold",
+                        color:"hsl(var(--foreground))",
+                        fontWeight:"bold",
                       }}
                     />
                     <Area
@@ -232,7 +232,7 @@ export const AdminReportsPage: React.FC = () => {
                       tickLine={false}
                       tick={{
                         fontSize: 10,
-                        fill: "hsl(var(--muted-foreground))",
+                        fill:"hsl(var(--muted-foreground))",
                       }}
                     />
                     <YAxis
@@ -242,18 +242,18 @@ export const AdminReportsPage: React.FC = () => {
                       tickLine={false}
                       tick={{
                         fontSize: 10,
-                        fill: "hsl(var(--foreground))",
+                        fill:"hsl(var(--foreground))",
                         fontWeight: 600,
                       }}
                       width={120}
                     />
                     <Tooltip
-                      cursor={{ fill: "transparent" }}
+                      cursor={{ fill:"transparent" }}
                       contentStyle={{
-                        backgroundColor: "hsl(var(--card))",
-                        borderRadius: "12px",
-                        border: "1px solid hsl(var(--border))",
-                        fontSize: "12px",
+                        backgroundColor:"hsl(var(--card))",
+                        borderRadius:"12px",
+                        border:"1px solid hsl(var(--border))",
+                        fontSize:"12px",
                       }}
                     />
                     <Bar
@@ -322,13 +322,13 @@ export const AdminReportsPage: React.FC = () => {
                     </Pie>
                     <Tooltip
                       contentStyle={{
-                        backgroundColor: "hsl(var(--card))",
-                        borderRadius: "12px",
-                        border: "1px solid hsl(var(--border))",
-                        fontSize: "12px",
+                        backgroundColor:"hsl(var(--card))",
+                        borderRadius:"12px",
+                        border:"1px solid hsl(var(--border))",
+                        fontSize:"12px",
                       }}
                     />
-                    <Legend wrapperStyle={{ fontSize: "10px" }} />
+                    <Legend wrapperStyle={{ fontSize:"10px" }} />
                   </PieChart>
                 </ResponsiveContainer>
               </div>

@@ -26,8 +26,8 @@ export const ShippingPage: React.FC = () => {
           </p>
         </div>
 
-        <div className="p-6 rounded-3xl border border-pink-200/80 dark:border-pink-900/50 bg-card space-y-4 text-xs text-muted-foreground leading-relaxed">
-          <div className="flex items-center gap-2 text-pink-600 dark:text-pink-400 font-bold text-sm">
+        <div className="p-6 rounded-3xl border border-pink-200/80  bg-card space-y-4 text-xs text-muted-foreground leading-relaxed">
+          <div className="flex items-center gap-2 text-pink-600  font-bold text-sm">
             <Clock className="h-4 w-4" />
             <span>1. Prazo de Produção & Fatiamento</span>
           </div>
@@ -35,7 +35,7 @@ export const ShippingPage: React.FC = () => {
             Produtos marcados com badge <strong>Pronta Entrega</strong> são despachados em até 24h úteis. Produtos personalizados ou sob demanda levam de 1 a 3 dias úteis para impressão 3D de alta definição.
           </p>
 
-          <div className="flex items-center gap-2 text-sky-600 dark:text-sky-400 font-bold text-sm pt-2">
+          <div className="flex items-center gap-2 text-sky-600  font-bold text-sm pt-2">
             <Truck className="h-4 w-4" />
             <span>2. Formas de Envio & Rastreamento</span>
           </div>
@@ -43,7 +43,7 @@ export const ShippingPage: React.FC = () => {
             Enviamos para todo o território brasileiro via Correios (Sedex e PAC) e transportadoras privadas parceiras (Jadlog, Loggi). Assim que a etiqueta é gerada, você recebe o código de rastreamento por e-mail e WhatsApp.
           </p>
 
-          <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-bold text-sm pt-2">
+          <div className="flex items-center gap-2 text-emerald-600  font-bold text-sm pt-2">
             <ShieldCheck className="h-4 w-4" />
             <span>3. Embalagem Anti-Impacto Segura</span>
           </div>

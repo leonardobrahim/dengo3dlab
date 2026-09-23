@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useAuthStore } from '@/src/stores/authStore';
 import { useCartStore } from '@/src/stores/cartStore';
 import { useWishlistStore } from '@/src/stores/wishlistStore';
-import { useUIStore } from '@/src/stores/uiStore';
+
 import { productService, orderService, cartService, adminService } from '@/src/services';
 import { Button } from '@/src/components/ui/Button';
 import { Badge } from '@/src/components/ui/Badge';
@@ -28,7 +28,7 @@ export const ServicesAndStateSection: React.FC = () => {
   const { user, isAuthenticated, login, logout, setUser } = useAuthStore();
   const { items, coupon, addItem, removeItem, clearCart, getSubtotal, getTotal } = useCartStore();
   const { productIds, toggleWishlist } = useWishlistStore();
-  const { theme, toggleTheme } = useUIStore();
+
 
   const [apiLogs, setApiLogs] = React.useState<Array<{ id: string; timestamp: string; method: string; endpoint: string; status: number; duration: number }>>([
     { id: '1', timestamp: new Date().toLocaleTimeString(), method: 'GET', endpoint: '/products', status: 200, duration: 280 },
@@ -256,25 +256,20 @@ export const ServicesAndStateSection: React.FC = () => {
                   uiStore
                 </CardTitle>
                 <Badge variant="tech" className="text-[10px] uppercase">
-                  {theme} mode
+                  Light mode
                 </Badge>
               </div>
             </CardHeader>
             <CardContent className="space-y-3 text-xs">
               <div>
                 <span className="text-muted-foreground block">Tema Ativo:</span>
-                <strong className="text-foreground capitalize">{theme} Theme</strong>
+                <strong className="text-foreground capitalize">Light Theme</strong>
               </div>
               <div>
                 <span className="text-muted-foreground block">Mock API Config:</span>
                 <Badge variant="success" className="text-[10px]">
                   USE_MOCK_API: {String(ENV.USE_MOCK_API)}
                 </Badge>
-              </div>
-              <div className="pt-2">
-                <Button size="sm" variant="outline" className="text-[11px] h-7 w-full" onClick={toggleTheme}>
-                  Alternar Tema
-                </Button>
               </div>
             </CardContent>
           </Card>

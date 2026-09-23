@@ -1,10 +1,9 @@
-import * as React from "react";
-import { Check } from "lucide-react";
-import { cn } from "@/src/lib/utils";
+import * as React from"react";
+import { Check } from"lucide-react";
+import { cn } from"@/src/lib/utils";
 
 export interface CheckboxProps extends Omit<
-  React.InputHTMLAttributes<HTMLInputElement>,
-  "type"
+  React.InputHTMLAttributes<HTMLInputElement>,"type"
 > {
   label?: React.ReactNode;
   description?: string;
@@ -49,9 +48,8 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       <div className="space-y-1 text-left">
         <label
           htmlFor={checkboxId}
-          className={cn(
-            "flex items-start gap-2.5 cursor-pointer select-none group",
-            disabled && "cursor-not-allowed opacity-50",
+          className={cn("flex items-start gap-2.5 cursor-pointer select-none group",
+            disabled &&"cursor-not-allowed opacity-50",
           )}
         >
           <div className="relative flex items-center justify-center mt-0.5">
@@ -66,9 +64,8 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               {...props}
             />
             <div
-              className={cn(
-                "h-4 w-4 shrink-0 rounded-sm border border-input bg-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 peer-checked:bg-primary peer-checked:border-primary peer-checked:text-primary-foreground peer-focus-visible:ring-2 peer-focus-visible:ring-ring flex items-center justify-center",
-                error && "border-destructive",
+              className={cn("h-4 w-4 shrink-0 rounded-sm border border-input bg-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 peer-checked:bg-primary peer-checked:border-primary peer-checked:text-primary-foreground peer-focus-visible:ring-2 peer-focus-visible:ring-ring flex items-center justify-center",
+                error &&"border-destructive",
                 className,
               )}
             >
@@ -97,4 +94,4 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     );
   },
 );
-Checkbox.displayName = "Checkbox";
+Checkbox.displayName ="Checkbox";

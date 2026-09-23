@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from"react";
 import {
   Button,
   Input,
@@ -37,9 +37,9 @@ import {
   Skeleton,
   Progress,
   Separator,
-} from "@/src/components/ui";
-import { DengoLogo } from "@/src/components/brand/DengoLogo";
-import { useToast } from "@/src/hooks/useToast";
+} from"@/src/components/ui";
+import { DengoLogo } from"@/src/components/brand/DengoLogo";
+import { useToast } from"@/src/hooks/useToast";
 import {
   Layers,
   Sparkles,
@@ -56,7 +56,7 @@ import {
   Share2,
   Flower2,
   Wand2,
-} from "lucide-react";
+} from"lucide-react";
 
 export const DesignSystemSection: React.FC = () => {
   const { toast } = useToast();
@@ -73,7 +73,7 @@ export const DesignSystemSection: React.FC = () => {
   return (
     <div className="space-y-12 text-left">
       {/* Section Header */}
-      <div className="border-b border-pink-200/60 dark:border-pink-900/40 pb-6">
+      <div className="border-b border-pink-200/60  pb-6">
         <div className="flex items-center gap-2 text-pink-500 text-xs font-mono uppercase tracking-wider font-bold">
           <Palette className="h-4 w-4" />
           Design System Candy & Tokens Visuais Dengo
@@ -98,7 +98,7 @@ export const DesignSystemSection: React.FC = () => {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
           {/* Baby Pink */}
-          <div className="p-4 rounded-2xl border border-pink-200 dark:border-pink-900/60 bg-pink-50/70 dark:bg-pink-950/40 space-y-2">
+          <div className="p-4 rounded-2xl border border-pink-200  bg-pink-50/70  space-y-2">
             <div className="h-12 w-full rounded-xl bg-pink-400 shadow-xs flex items-center justify-center text-white font-black text-xs">
               #F472B6
             </div>
@@ -113,7 +113,7 @@ export const DesignSystemSection: React.FC = () => {
           </div>
 
           {/* Baby Blue */}
-          <div className="p-4 rounded-2xl border border-sky-200 dark:border-sky-900/60 bg-sky-50/70 dark:bg-sky-950/40 space-y-2">
+          <div className="p-4 rounded-2xl border border-sky-200  bg-sky-50/70  space-y-2">
             <div className="h-12 w-full rounded-xl bg-sky-400 shadow-xs flex items-center justify-center text-white font-black text-xs">
               #38BDF8
             </div>
@@ -128,7 +128,7 @@ export const DesignSystemSection: React.FC = () => {
           </div>
 
           {/* Cherry Red */}
-          <div className="p-4 rounded-2xl border border-rose-200 dark:border-rose-900/60 bg-rose-50/70 dark:bg-rose-950/40 space-y-2">
+          <div className="p-4 rounded-2xl border border-rose-200  bg-rose-50/70  space-y-2">
             <div className="h-12 w-full rounded-xl bg-rose-500 shadow-xs flex items-center justify-center text-white font-black text-xs">
               #FF4D6D
             </div>
@@ -143,7 +143,7 @@ export const DesignSystemSection: React.FC = () => {
           </div>
 
           {/* Otter Fur Warm Brown */}
-          <div className="p-4 rounded-2xl border border-amber-200/60 dark:border-amber-900/40 bg-amber-50/50 dark:bg-amber-950/30 space-y-2">
+          <div className="p-4 rounded-2xl border border-amber-200/60  bg-amber-50/50  space-y-2">
             <div className="h-12 w-full rounded-xl bg-[#8D634E] shadow-xs flex items-center justify-center text-white font-black text-xs">
               #8D634E
             </div>
@@ -158,8 +158,8 @@ export const DesignSystemSection: React.FC = () => {
           </div>
 
           {/* Marshmallow White */}
-          <div className="p-4 rounded-2xl border border-pink-200/60 dark:border-border bg-card space-y-2">
-            <div className="h-12 w-full rounded-xl bg-pink-100/60 dark:bg-zinc-800 border border-pink-200 dark:border-border shadow-xs flex items-center justify-center text-pink-700 dark:text-pink-300 font-bold text-xs">
+          <div className="p-4 rounded-2xl border border-pink-200/60  bg-card space-y-2">
+            <div className="h-12 w-full rounded-xl bg-pink-100/60  border border-pink-200  shadow-xs flex items-center justify-center text-pink-700  font-bold text-xs">
               #FFFDFE
             </div>
             <div>
@@ -187,13 +187,13 @@ export const DesignSystemSection: React.FC = () => {
             onClick={() => setBtnLoading(!btnLoading)}
             className="text-xs"
           >
-            {btnLoading ? "Desativar Loading" : "Simular Loading"}
+            {btnLoading ?"Desativar Loading" :"Simular Loading"}
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 p-5 rounded-2xl border border-pink-200/60 dark:border-pink-900/40 bg-card">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 p-5 rounded-2xl border border-pink-200/60  bg-card">
           <div className="space-y-2">
-            <p className="text-xs font-semibold text-pink-600 dark:text-pink-400">
+            <p className="text-xs font-semibold text-pink-600">
               Dengo Gradient
             </p>
             <Button
@@ -207,7 +207,7 @@ export const DesignSystemSection: React.FC = () => {
           </div>
 
           <div className="space-y-2">
-            <p className="text-xs font-semibold text-sky-600 dark:text-sky-400">
+            <p className="text-xs font-semibold text-sky-600">
               Baby Blue
             </p>
             <Button
@@ -255,7 +255,7 @@ export const DesignSystemSection: React.FC = () => {
           2. Badges & Chips Pastel
         </h3>
 
-        <div className="flex flex-wrap items-center gap-2.5 p-5 rounded-2xl border border-pink-200/60 dark:border-pink-900/40 bg-card">
+        <div className="flex flex-wrap items-center gap-2.5 p-5 rounded-2xl border border-pink-200/60  bg-card">
           <Badge variant="candyGradient">DENGO 3D OFICIAL</Badge>
           <Badge variant="babyPink" dot>
             Rosa Bebê Candy
@@ -282,7 +282,7 @@ export const DesignSystemSection: React.FC = () => {
           3. Formulários & Entradas Acessíveis
         </h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-5 rounded-2xl border border-pink-200/60 dark:border-pink-900/40 bg-card">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-5 rounded-2xl border border-pink-200/60  bg-card">
           <Input
             label="Buscar no Catálogo Dengo"
             placeholder="Ex: Lontra, cortador, PLA rosa..."
@@ -292,10 +292,10 @@ export const DesignSystemSection: React.FC = () => {
           <Select
             label="Cor Candy Color Predileta"
             options={[
-              { value: "pink", label: "🌸 Rosa Bebê Silk" },
-              { value: "blue", label: "☁️ Azul Céu Macaron" },
-              { value: "lavender", label: "💜 Lavanda Pastel" },
-              { value: "mint", label: "🌿 Menta Suave" },
+              { value:"pink", label:"🌸 Rosa Bebê Silk" },
+              { value:"blue", label:"☁️ Azul Céu Macaron" },
+              { value:"lavender", label:"💜 Lavanda Pastel" },
+              { value:"mint", label:"🌿 Menta Suave" },
             ]}
           />
 
@@ -315,10 +315,10 @@ export const DesignSystemSection: React.FC = () => {
           4. Seletores: Checkbox, Radio e Switch
         </h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-5 rounded-2xl border border-pink-200/60 dark:border-pink-900/40 bg-card">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-5 rounded-2xl border border-pink-200/60  bg-card">
           {/* Checkboxes */}
           <div className="space-y-3">
-            <p className="text-xs font-bold text-pink-600 dark:text-pink-400">
+            <p className="text-xs font-bold text-pink-600">
               Opções Adicionais
             </p>
             <Checkbox
@@ -331,7 +331,7 @@ export const DesignSystemSection: React.FC = () => {
 
           {/* Radio Group */}
           <div className="space-y-3">
-            <p className="text-xs font-bold text-sky-600 dark:text-sky-400">
+            <p className="text-xs font-bold text-sky-600">
               Material de Impressão
             </p>
             <RadioGroup
@@ -340,16 +340,16 @@ export const DesignSystemSection: React.FC = () => {
               onChange={setSelectedRadio}
               options={[
                 {
-                  value: "pink_silk",
-                  label: "PLA Silk Rosa Bebê (Toque Aveludado)",
+                  value:"pink_silk",
+                  label:"PLA Silk Rosa Bebê (Toque Aveludado)",
                 },
                 {
-                  value: "blue_mac",
-                  label: "PLA Azul Céu Macaron (Fosco Macio)",
+                  value:"blue_mac",
+                  label:"PLA Azul Céu Macaron (Fosco Macio)",
                 },
                 {
-                  value: "candy_flex",
-                  label: "TPU Flexível Candy (Super Macio)",
+                  value:"candy_flex",
+                  label:"TPU Flexível Candy (Super Macio)",
                 },
               ]}
             />
@@ -387,9 +387,9 @@ export const DesignSystemSection: React.FC = () => {
           5. Tabs & Accordion
         </h3>
 
-        <div className="p-5 rounded-2xl border border-pink-200/60 dark:border-pink-900/40 bg-card space-y-6">
+        <div className="p-5 rounded-2xl border border-pink-200/60  bg-card space-y-6">
           <Tabs defaultValue="specs">
-            <TabsList className="bg-pink-50/80 dark:bg-card">
+            <TabsList className="bg-pink-50/80">
               <TabsTrigger value="specs">Especificações da Peça</TabsTrigger>
               <TabsTrigger value="materials">
                 Cuidados com PLA Candy
@@ -439,17 +439,14 @@ export const DesignSystemSection: React.FC = () => {
           <Accordion
             items={[
               {
-                id: "acc-1",
-                title:
-                  "Como funciona o atendimento personalizado da Dengo 3D Lab?",
-                content:
-                  "Você pode solicitar personalização de cores, gravação de nomes em chaveiros ou modelagem exclusiva de cortadores e mascotes enviando uma mensagem para nossa equipe.",
+                id:"acc-1",
+                title:"Como funciona o atendimento personalizado da Dengo 3D Lab?",
+                content:"Você pode solicitar personalização de cores, gravação de nomes em chaveiros ou modelagem exclusiva de cortadores e mascotes enviando uma mensagem para nossa equipe.",
               },
               {
-                id: "acc-2",
-                title: "Os filamentos em tons pastéis desbotam com o tempo?",
-                content:
-                  "Não! Nossos pigmentos Silk Candy utilizam aditivos estabilizadores UV que preservam o tom pastel vivo e reluzente por muitos anos em ambientes internos.",
+                id:"acc-2",
+                title:"Os filamentos em tons pastéis desbotam com o tempo?",
+                content:"Não! Nossos pigmentos Silk Candy utilizam aditivos estabilizadores UV que preservam o tom pastel vivo e reluzente por muitos anos em ambientes internos.",
               },
             ]}
           />
@@ -463,7 +460,7 @@ export const DesignSystemSection: React.FC = () => {
           6. Modais & Overlays Interativos
         </h3>
 
-        <div className="flex flex-wrap items-center gap-4 p-5 rounded-2xl border border-pink-200/60 dark:border-pink-900/40 bg-card">
+        <div className="flex flex-wrap items-center gap-4 p-5 rounded-2xl border border-pink-200/60  bg-card">
           <Button variant="dengo" onClick={() => setIsDialogOpen(true)}>
             Abrir Modal de Personalização
           </Button>
@@ -513,7 +510,7 @@ export const DesignSystemSection: React.FC = () => {
           7. Tabela de Filamentos Candy Colors
         </h3>
 
-        <div className="p-5 rounded-2xl border border-pink-200/60 dark:border-pink-900/40 bg-card space-y-4">
+        <div className="p-5 rounded-2xl border border-pink-200/60  bg-card space-y-4">
           <Table>
             <TableHeader>
               <TableRow>
@@ -581,9 +578,9 @@ export const DesignSystemSection: React.FC = () => {
         description="Escolha as cores do corpinho e do capuz de ursinho com cerejas!"
       >
         <div className="space-y-4 py-2 text-left">
-          <div className="flex items-center gap-3 p-3 rounded-2xl bg-pink-50 dark:bg-pink-950/40 border border-pink-200 dark:border-pink-900/60">
+          <div className="flex items-center gap-3 p-3 rounded-2xl bg-pink-50  border border-pink-200">
             <DengoLogo size="sm" variant="icon" />
-            <p className="text-xs text-pink-800 dark:text-pink-200 font-medium">
+            <p className="text-xs text-pink-800  font-medium">
               A lontrinha é impressa com articulações flexíveis nos braços,
               patinhas e rabinho!
             </p>
@@ -596,9 +593,9 @@ export const DesignSystemSection: React.FC = () => {
             label="Cor Principal do Capuz de Ursinho"
             defaultValue="pink"
             options={[
-              { value: "pink", label: "🌸 Rosa Bebê Tradicional" },
-              { value: "blue", label: "☁️ Azul Céu Macaron" },
-              { value: "lavender", label: "💜 Lavanda Mágica" },
+              { value:"pink", label:"🌸 Rosa Bebê Tradicional" },
+              { value:"blue", label:"☁️ Azul Céu Macaron" },
+              { value:"lavender", label:"💜 Lavanda Mágica" },
             ]}
           />
           <div className="flex justify-end gap-2 pt-3 border-t border-border">
@@ -627,8 +624,8 @@ export const DesignSystemSection: React.FC = () => {
         side="right"
       >
         <div className="space-y-4 text-left">
-          <div className="p-3.5 rounded-2xl bg-pink-50 dark:bg-pink-950/40 border border-pink-200 dark:border-pink-900/50 text-xs space-y-1">
-            <p className="font-bold text-pink-700 dark:text-pink-300">
+          <div className="p-3.5 rounded-2xl bg-pink-50  border border-pink-200  text-xs space-y-1">
+            <p className="font-bold text-pink-700">
               Dica do Mestre Maker:
             </p>
             <p className="text-muted-foreground">

@@ -23,7 +23,7 @@ export const NotFoundState: React.FC<NotFoundStateProps> = ({
   return (
     <div
       className={cn(
-        'flex flex-col items-center justify-center p-8 sm:p-14 text-center rounded-3xl border border-pink-200/60 dark:border-pink-900/40 bg-card space-y-5 my-8 shadow-xs',
+        'flex flex-col items-center justify-center p-8 sm:p-14 text-center rounded-3xl border border-pink-200/60  bg-card space-y-5 my-8 shadow-xs',
         className
       )}
     >

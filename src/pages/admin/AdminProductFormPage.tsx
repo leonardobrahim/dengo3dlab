@@ -94,7 +94,7 @@ export const AdminProductFormPage: React.FC = () => {
                   className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                   onChange={handleMockUpload}
                 />
-                <div className="h-12 w-12 rounded-full bg-pink-100 dark:bg-pink-900/50 flex items-center justify-center mb-3">
+                <div className="h-12 w-12 rounded-full bg-pink-100  flex items-center justify-center mb-3">
                   <Upload className="h-6 w-6 text-pink-500" />
                 </div>
                 <p className="text-sm font-bold text-foreground">Arraste as imagens aqui</p>

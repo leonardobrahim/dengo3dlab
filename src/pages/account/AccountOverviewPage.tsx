@@ -1,11 +1,11 @@
-import * as React from "react";
-import { AccountLayout } from "@/src/layouts/account/AccountLayout";
-import { Button } from "@/src/components/ui/Button";
-import { Badge } from "@/src/components/ui/Badge";
-import { OrderStatusBadge } from "@/src/components/business/OrderStatusBadge";
-import { useAuthStore } from "@/src/stores/authStore";
-import { useNavigationStore } from "@/src/stores/navigationStore";
-import { useWishlistStore } from "@/src/stores/wishlistStore";
+import * as React from"react";
+import { AccountLayout } from"@/src/layouts/account/AccountLayout";
+import { Button } from"@/src/components/ui/Button";
+import { Badge } from"@/src/components/ui/Badge";
+import { OrderStatusBadge } from"@/src/components/business/OrderStatusBadge";
+import { useAuthStore } from"@/src/stores/authStore";
+import { useNavigationStore } from"@/src/stores/navigationStore";
+import { useWishlistStore } from"@/src/stores/wishlistStore";
 import {
   Package,
   Heart,
@@ -13,8 +13,8 @@ import {
   Sparkles,
   ArrowRight,
   Clock,
-} from "lucide-react";
-import { formatCurrency } from "@/src/utils/formatters";
+} from"lucide-react";
+import { formatCurrency } from"@/src/utils/formatters";
 
 export const AccountOverviewPage: React.FC = () => {
   const { user } = useAuthStore();
@@ -23,20 +23,20 @@ export const AccountOverviewPage: React.FC = () => {
 
   const recentOrders = [
     {
-      id: "DENGO-8942",
-      date: "24/08/2026",
-      status: "in_production" as const,
+      id:"DENGO-8942",
+      date:"24/08/2026",
+      status:"in_production" as const,
       total: 164.8,
       itemCount: 2,
-      firstItemName: "Mascote Lontrinha Dengo 3D Articulada",
+      firstItemName:"Mascote Lontrinha Dengo 3D Articulada",
     },
     {
-      id: "DENGO-7731",
-      date: "12/08/2026",
-      status: "delivered" as const,
+      id:"DENGO-7731",
+      date:"12/08/2026",
+      status:"delivered" as const,
       total: 119.9,
       itemCount: 1,
-      firstItemName: "Filamento PLA Silk Candy Rosa Bebê (1kg)",
+      firstItemName:"Filamento PLA Silk Candy Rosa Bebê (1kg)",
     },
   ];
 
@@ -53,7 +53,7 @@ export const AccountOverviewPage: React.FC = () => {
             <span>Painel do Cliente</span>
           </div>
           <h1 className="text-xl sm:text-2xl font-black text-slate-900">
-            Olá, {user?.name || "Maker"}! 💖
+            Olá, {user?.name ||"Maker"}! 💖
           </h1>
           <p className="text-xs sm:text-sm text-slate-600 max-w-xl">
             Acompanhe a impressão e envio dos seus dengos, gerencie endereços e

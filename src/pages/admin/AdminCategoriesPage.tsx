@@ -1,12 +1,12 @@
-import * as React from "react";
-import { AdminLayout } from "@/src/layouts/admin/AdminLayout";
-import { Button } from "@/src/components/ui/Button";
-import { Badge } from "@/src/components/ui/Badge";
-import { Input } from "@/src/components/ui/Input";
-import { Dialog } from "@/src/components/ui/Dialog";
-import { mockCategories } from "@/src/mocks/categories";
-import { useToast } from "@/src/components/ui/Toast";
-import { Plus, Layers, Edit2, Trash2 } from "lucide-react";
+import * as React from"react";
+import { AdminLayout } from"@/src/layouts/admin/AdminLayout";
+import { Button } from"@/src/components/ui/Button";
+import { Badge } from"@/src/components/ui/Badge";
+import { Input } from"@/src/components/ui/Input";
+import { Dialog } from"@/src/components/ui/Dialog";
+import { mockCategories } from"@/src/mocks/categories";
+import { useToast } from"@/src/components/ui/Toast";
+import { Plus, Layers, Edit2, Trash2 } from"lucide-react";
 
 export const AdminCategoriesPage: React.FC = () => {
   const { toast } = useToast();
@@ -54,7 +54,7 @@ export const AdminCategoriesPage: React.FC = () => {
               className="p-5 rounded-3xl border border-border bg-card space-y-4 shadow-sm hover:border-pink-300 transition-colors"
             >
               <div className="flex items-center justify-between">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-pink-100 dark:bg-pink-900/50 text-pink-600">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-pink-100  text-pink-600">
                   <Layers className="h-6 w-6" />
                 </div>
                 <Badge variant="babyPink">{cat.productCount} Itens</Badge>

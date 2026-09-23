@@ -1,12 +1,12 @@
-import * as React from "react";
-import { AdminLayout } from "@/src/layouts/admin/AdminLayout";
-import { Button } from "@/src/components/ui/Button";
-import { Badge } from "@/src/components/ui/Badge";
-import { Input } from "@/src/components/ui/Input";
-import { Dialog } from "@/src/components/ui/Dialog";
-import { useToast } from "@/src/components/ui/Toast";
-import { Plus, Ticket, Trash2, Edit2 } from "lucide-react";
-import { formatCurrency, formatDate } from "@/src/utils/formatters";
+import * as React from"react";
+import { AdminLayout } from"@/src/layouts/admin/AdminLayout";
+import { Button } from"@/src/components/ui/Button";
+import { Badge } from"@/src/components/ui/Badge";
+import { Input } from"@/src/components/ui/Input";
+import { Dialog } from"@/src/components/ui/Dialog";
+import { useToast } from"@/src/components/ui/Toast";
+import { Plus, Ticket, Trash2, Edit2 } from"lucide-react";
+import { formatCurrency, formatDate } from"@/src/utils/formatters";
 
 export const AdminCouponsPage: React.FC = () => {
   const { toast } = useToast();
@@ -14,27 +14,27 @@ export const AdminCouponsPage: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [coupons, setCoupons] = React.useState([
     {
-      id: "cp-1",
-      code: "DENGO10",
-      type: "percent",
+      id:"cp-1",
+      code:"DENGO10",
+      type:"percent",
       value: 10,
       minPurchase: 50.0,
-      validUntil: "2026-12-31",
+      validUntil:"2026-12-31",
       limit: 500,
       limitPerUser: 1,
-      status: "active",
+      status:"active",
       usageCount: 142,
     },
     {
-      id: "cp-2",
-      code: "FRETEOFF",
-      type: "free_shipping",
+      id:"cp-2",
+      code:"FRETEOFF",
+      type:"free_shipping",
       value: 0,
       minPurchase: 150.0,
-      validUntil: "2026-10-31",
+      validUntil:"2026-10-31",
       limit: 100,
       limitPerUser: 1,
-      status: "active",
+      status:"active",
       usageCount: 88,
     },
   ]);
@@ -103,39 +103,39 @@ export const AdminCouponsPage: React.FC = () => {
                     </div>
                   </td>
                   <td className="p-4 text-center">
-                    {coupon.type === "percent" && (
+                    {coupon.type ==="percent" && (
                       <Badge variant="outline">Percentual (%)</Badge>
                     )}
-                    {coupon.type === "fixed" && (
+                    {coupon.type ==="fixed" && (
                       <Badge variant="outline">Valor Fixo (R$)</Badge>
                     )}
-                    {coupon.type === "free_shipping" && (
+                    {coupon.type ==="free_shipping" && (
                       <Badge variant="outline">Frete Grátis</Badge>
                     )}
                   </td>
                   <td className="p-4 text-right font-bold text-emerald-600">
-                    {coupon.type === "percent"
+                    {coupon.type ==="percent"
                       ? `${coupon.value}%`
-                      : coupon.type === "fixed"
+                      : coupon.type ==="fixed"
                         ? formatCurrency(coupon.value)
-                        : "-"}
+                        :"-"}
                   </td>
                   <td className="p-4 text-right text-muted-foreground">
                     {coupon.minPurchase > 0
                       ? formatCurrency(coupon.minPurchase)
-                      : "Sem mínimo"}
+                      :"Sem mínimo"}
                   </td>
                   <td className="p-4 text-center text-muted-foreground">
                     {coupon.validUntil
                       ? formatDate(new Date(coupon.validUntil).toISOString())
-                      : "Sem validade"}
+                      :"Sem validade"}
                   </td>
                   <td className="p-4 text-center font-mono">
-                    {coupon.usageCount} /{" "}
-                    {coupon.limit > 0 ? coupon.limit : "∞"}
+                    {coupon.usageCount} /{""}
+                    {coupon.limit > 0 ? coupon.limit :"∞"}
                   </td>
                   <td className="p-4 text-center">
-                    {coupon.status === "active" ? (
+                    {coupon.status ==="active" ? (
                       <Badge variant="success">Ativo</Badge>
                     ) : (
                       <Badge variant="outline">Inativo</Badge>

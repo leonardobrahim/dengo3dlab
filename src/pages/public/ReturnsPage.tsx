@@ -26,8 +26,8 @@ export const ReturnsPage: React.FC = () => {
           </p>
         </div>
 
-        <div className="p-6 rounded-3xl border border-pink-200/80 dark:border-pink-900/50 bg-card space-y-4 text-xs text-muted-foreground leading-relaxed">
-          <div className="flex items-center gap-2 text-pink-600 dark:text-pink-400 font-bold text-sm">
+        <div className="p-6 rounded-3xl border border-pink-200/80  bg-card space-y-4 text-xs text-muted-foreground leading-relaxed">
+          <div className="flex items-center gap-2 text-pink-600  font-bold text-sm">
             <RotateCcw className="h-4 w-4" />
             <span>Garantia de 7 Dias (Arrependimento)</span>
           </div>
@@ -35,7 +35,7 @@ export const ReturnsPage: React.FC = () => {
             Você tem até 7 dias corridos após o recebimento do pacote para solicitar a devolução ou troca do produto em perfeitas condições na embalagem original sem qualquer custo de frete.
           </p>
 
-          <div className="flex items-center gap-2 text-rose-600 dark:text-rose-400 font-bold text-sm pt-2">
+          <div className="flex items-center gap-2 text-rose-600  font-bold text-sm pt-2">
             <CheckCircle2 className="h-4 w-4" />
             <span>Defeitos de Fabricação ou Avarias no Transporte</span>
           </div>

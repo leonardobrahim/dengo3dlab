@@ -58,7 +58,7 @@ export const OrderDetailPage: React.FC<{ orderId?: string }> = ({ orderId }) => 
           <div className="flex items-center gap-3">
             <button 
               onClick={() => navigate('/minha-conta/pedidos')}
-              className="p-2 -ml-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-500"
+              className="p-2 -ml-2 rounded-full hover:bg-slate-100  transition-colors text-slate-500"
             >
               <ArrowLeft className="h-5 w-5" />
             </button>
@@ -90,14 +90,14 @@ export const OrderDetailPage: React.FC<{ orderId?: string }> = ({ orderId }) => 
           <div className="lg:col-span-2 space-y-6">
             
             {/* Rastreamento Box */}
-            <div className="bg-white dark:bg-card border border-slate-200 dark:border-slate-800 rounded-3xl p-5 sm:p-6 shadow-sm">
-              <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4 mb-5">
-                <h2 className="text-base font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2">
+            <div className="bg-white  border border-slate-200  rounded-3xl p-5 sm:p-6 shadow-sm">
+              <div className="flex items-center justify-between border-b border-slate-100  pb-4 mb-5">
+                <h2 className="text-base font-bold text-slate-900  flex items-center gap-2">
                   <Truck className="h-5 w-5 text-sky-500" /> Acompanhamento
                 </h2>
                 {order.shipment?.trackingCode && (
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-md text-slate-700 dark:text-slate-300">
+                    <span className="text-xs font-mono bg-slate-100  px-2 py-1 rounded-md text-slate-700">
                       {order.shipment.trackingCode}
                     </span>
                     <button 
@@ -114,7 +114,7 @@ export const OrderDetailPage: React.FC<{ orderId?: string }> = ({ orderId }) => 
               <OrderTimeline order={order} />
               
               {order.shipment?.trackingCode && (
-                <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-end">
+                <div className="mt-6 pt-4 border-t border-slate-100  flex justify-end">
                   <Button variant="outline" size="sm" className="gap-2 text-xs">
                     Acompanhar na {order.shipment.carrierName} <ExternalLink className="h-3.5 w-3.5" />
                   </Button>
@@ -123,25 +123,25 @@ export const OrderDetailPage: React.FC<{ orderId?: string }> = ({ orderId }) => 
             </div>
 
             {/* Itens */}
-            <div className="bg-white dark:bg-card border border-slate-200 dark:border-slate-800 rounded-3xl p-5 sm:p-6 shadow-sm">
-              <h2 className="text-base font-bold text-slate-900 dark:text-slate-100 mb-5 flex items-center gap-2">
+            <div className="bg-white  border border-slate-200  rounded-3xl p-5 sm:p-6 shadow-sm">
+              <h2 className="text-base font-bold text-slate-900  mb-5 flex items-center gap-2">
                 <Package className="h-5 w-5 text-pink-500" /> Produtos do Pedido
               </h2>
               
               <div className="space-y-4">
                 {order.items.map(item => (
-                  <div key={item.id} className="flex items-center gap-4 text-sm pb-4 border-b border-slate-50 dark:border-slate-800/50 last:border-0 last:pb-0">
+                  <div key={item.id} className="flex items-center gap-4 text-sm pb-4 border-b border-slate-50  last:border-0 last:pb-0">
                     <img
                       src={item.imageUrl}
                       alt={item.name}
-                      className="h-16 w-16 rounded-xl object-cover border border-slate-100 dark:border-slate-800 shrink-0 bg-slate-50"
+                      className="h-16 w-16 rounded-xl object-cover border border-slate-100  shrink-0 bg-slate-50"
                     />
                     <div className="flex-1 min-w-0">
-                      <p className="font-bold text-slate-900 dark:text-slate-100 truncate">{item.name}</p>
+                      <p className="font-bold text-slate-900  truncate">{item.name}</p>
                       <p className="text-xs text-slate-500 truncate">{item.variantName}</p>
                     </div>
                     <div className="text-right shrink-0">
-                      <p className="font-bold text-slate-900 dark:text-slate-100">{formatCurrency(item.totalPrice)}</p>
+                      <p className="font-bold text-slate-900">{formatCurrency(item.totalPrice)}</p>
                       <p className="text-xs text-slate-500">Qtd: {item.quantity}</p>
                     </div>
                   </div>
@@ -155,9 +155,9 @@ export const OrderDetailPage: React.FC<{ orderId?: string }> = ({ orderId }) => 
           <div className="space-y-6">
             
             {/* Resumo Financeiro */}
-            <div className="bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-3xl p-5">
-              <h3 className="font-bold text-slate-900 dark:text-slate-100 text-sm mb-4">Resumo Financeiro</h3>
-              <div className="space-y-2 text-xs text-slate-600 dark:text-slate-400">
+            <div className="bg-slate-50  border border-slate-200  rounded-3xl p-5">
+              <h3 className="font-bold text-slate-900  text-sm mb-4">Resumo Financeiro</h3>
+              <div className="space-y-2 text-xs text-slate-600">
                 <div className="flex justify-between">
                   <span>Subtotal</span>
                   <span>{formatCurrency(order.subtotal)}</span>
@@ -172,7 +172,7 @@ export const OrderDetailPage: React.FC<{ orderId?: string }> = ({ orderId }) => 
                     <span>-{formatCurrency(order.discount)}</span>
                   </div>
                 )}
-                <div className="pt-2 mt-2 border-t border-slate-200 dark:border-slate-700 flex justify-between font-black text-sm text-slate-900 dark:text-white">
+                <div className="pt-2 mt-2 border-t border-slate-200  flex justify-between font-black text-sm text-slate-900">
                   <span>Total</span>
                   <span className="text-pink-600">{formatCurrency(order.total)}</span>
                 </div>
@@ -180,12 +180,12 @@ export const OrderDetailPage: React.FC<{ orderId?: string }> = ({ orderId }) => 
             </div>
 
             {/* Endereço */}
-            <div className="bg-white dark:bg-card border border-slate-200 dark:border-slate-800 rounded-3xl p-5">
-              <h3 className="font-bold text-slate-900 dark:text-slate-100 text-sm mb-3 flex items-center gap-2">
+            <div className="bg-white  border border-slate-200  rounded-3xl p-5">
+              <h3 className="font-bold text-slate-900  text-sm mb-3 flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-slate-400" /> Endereço de Entrega
               </h3>
               <div className="text-xs text-slate-500 leading-relaxed">
-                <p className="font-semibold text-slate-700 dark:text-slate-300">{order.shippingAddress.recipientName}</p>
+                <p className="font-semibold text-slate-700">{order.shippingAddress.recipientName}</p>
                 <p>{order.shippingAddress.street}, {order.shippingAddress.number} {order.shippingAddress.complement && `- ${order.shippingAddress.complement}`}</p>
                 <p>{order.shippingAddress.neighborhood}</p>
                 <p>{order.shippingAddress.city} - {order.shippingAddress.state}</p>
@@ -194,12 +194,12 @@ export const OrderDetailPage: React.FC<{ orderId?: string }> = ({ orderId }) => 
             </div>
 
             {/* Pagamento */}
-            <div className="bg-white dark:bg-card border border-slate-200 dark:border-slate-800 rounded-3xl p-5">
-              <h3 className="font-bold text-slate-900 dark:text-slate-100 text-sm mb-3 flex items-center gap-2">
+            <div className="bg-white  border border-slate-200  rounded-3xl p-5">
+              <h3 className="font-bold text-slate-900  text-sm mb-3 flex items-center gap-2">
                 <CreditCard className="h-4 w-4 text-slate-400" /> Pagamento
               </h3>
               <div className="text-xs text-slate-500 leading-relaxed">
-                <p className="font-semibold text-slate-700 dark:text-slate-300">{paymentMethodMap[order.payment?.method || 'credit_card']}</p>
+                <p className="font-semibold text-slate-700">{paymentMethodMap[order.payment?.method || 'credit_card']}</p>
                 {order.payment?.status === 'paid' ? (
                   <p className="text-emerald-600 font-medium">Aprovado em {order.payment.paidAt ? formatDate(order.payment.paidAt) : 'Data não disponível'}</p>
                 ) : (
